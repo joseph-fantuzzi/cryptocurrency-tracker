@@ -1,0 +1,33 @@
+@keyframes slide-in {
+  0% {
+    -webkit-transform: translateX(120%);
+    transform: translateX(120%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+}
+
+.blue-glassmorphism {
+  background: rgb(39, 51, 89, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.links {
+  text-underline-offset: 10px;
+  transition: all 0.5s ease;
+}
+
+.links:hover {
+  text-decoration: underline;
+}
+
+#nav-mobile {
+  animation: slide-in 0.5s ease-out;
+}
