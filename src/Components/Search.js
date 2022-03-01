@@ -13,7 +13,7 @@ const Search = ({ cryptoData, searchValue, setSearchValue, toggleDark }) => {
         Search
       </label>
       <input
-        className={`w-32 h-8 ml-3 px-3 py-1 md:mr-16 drop-shadow-md rounded-3xl border-2 ${toggleDark ? "bg-zinc-800 text-white" : "border-gray-800"}`}
+        className={`w-40 h-8 ml-3 px-3 py-1 md:mr-16 drop-shadow-lg rounded-3xl border-2 ${toggleDark ? "bg-zinc-800 text-white" : "border-gray-800"}`}
         id="search"
         type="text"
         name="search"

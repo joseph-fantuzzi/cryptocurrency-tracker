@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Coin from "./Components/Coin";
 import Search from "./Components/Search";
+import Home from "./Components/Home";
 import { Routes, Route, NavLink } from "react-router-dom";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
@@ -15,6 +16,14 @@ function App() {
   const [toggleDark, setToggleDark] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
+  const filteredSearch = () => {
+    const sanitize = searchValue.trim().toLowerCase();
+    if (!sanitize) return cryptoData;
+    return cryptoData.filter((coin) => {
+      return coin.name.toLowerCase().includes(sanitize);
+    });
+  };
+
   useEffect(() => {
     axios
       .get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
@@ -25,9 +34,9 @@ function App() {
   }, []);
 
   return (
-    <div className={toggleDark ? "bg-zinc-800" : ""}>
+    <div className={`min-h-screen ${toggleDark ? "bg-zinc-800" : ""}`}>
       <nav className={`border-b-2 border-gray-50 text-white py-8 px-5 flex justify-between items-center ${toggleDark ? "bg-zinc-800" : "bg-gray-800"}`}>
-        <h1 className="text-2xl pl-6">CRYPTOX</h1>
+        <h1 className="text-2xl pl-6 font-bold">CRYPTOX</h1>
         <div className="hidden md:w-2/3 md:flex md:justify-around md:items-center">
           <NavLink className="links" to="/">
             Home
@@ -107,14 +116,22 @@ function App() {
                 <h1>Price</h1>
                 <h1>Market Cap</h1>
               </div>
-              {cryptoData.map((coin) => {
+              {filteredSearch().map((coin) => {
                 return <Coin key={coin.id} coin={coin} toggleDark={toggleDark} />;
               })}
             </div>
           }
         />
+        <Route path="/" element={<Home toggleDark={toggleDark} />} />
       </Routes>
-      <footer className={toggleDark ? "bg-zinc-800 text-white py-5 px-2 text-center text-xs" : "bg-gray-800 text-white py-5 px-2 text-center text-xs"}>
+      {filteredSearch().length === 0 ? (
+        <div className={`text-center mb-auto ${toggleDark ? "text-white" : ""}`}>
+          <p>No results for "{searchValue}".</p>
+        </div>
+      ) : (
+        ""
+      )}
+      <footer className={`fixed bottom-0 w-full text-white py-3 text-center text-xs ${toggleDark ? "bg-zinc-800" : "bg-gray-800"}`}>
         <p>&copy; Designed by Joseph Fantuzzi 2022</p>
       </footer>
     </div>
