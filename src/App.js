@@ -26,7 +26,9 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+      .get(
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+      )
       .then((res) => {
         setCryptoData(res.data);
       })
@@ -36,7 +38,11 @@ function App() {
   return (
     <>
       <div className={`min-h-most ${toggleDark ? "bg-zinc-800" : ""}`}>
-        <nav className={`border-b-2 border-gray-50 text-white py-8 px-5 flex justify-between items-center ${toggleDark ? "bg-zinc-800" : "bg-gray-800"}`}>
+        <nav
+          className={`border-b-2 border-gray-50 text-white py-8 px-5 flex justify-between items-center ${
+            toggleDark ? "bg-zinc-800" : "bg-gray-800"
+          }`}
+        >
           <h1 className="text-2xl pl-6 font-bold">CRYPTOX</h1>
           <div className="hidden md:w-2/3 md:flex md:justify-around md:items-center">
             <NavLink className="links" to="/">
@@ -54,25 +60,40 @@ function App() {
             <NavLink className="links" to="/register">
               Register
             </NavLink>
-            {toggleDark ? <MdDarkMode fontSize={20} onClick={() => setToggleDark(false)} /> : <MdOutlineDarkMode fontSize={20} onClick={() => setToggleDark(true)} />}
+            {toggleDark ? (
+              <MdDarkMode fontSize={20} onClick={() => setToggleDark(false)} />
+            ) : (
+              <MdOutlineDarkMode fontSize={20} onClick={() => setToggleDark(true)} />
+            )}
           </div>
           <div className="md:hidden">
             {toggleNav ? (
-              <AiOutlineClose fontSize={28} className="text-white cursor-pointer" onClick={() => setToggleNav(false)} />
+              <AiOutlineClose
+                fontSize={28}
+                className="text-white cursor-pointer"
+                onClick={() => setToggleNav(false)}
+              />
             ) : (
-              <HiMenuAlt4 fontSize={28} className="text-white cursor-pointer" onClick={() => setToggleNav(true)} />
+              <HiMenuAlt4
+                fontSize={28}
+                className="text-white cursor-pointer"
+                onClick={() => setToggleNav(true)}
+              />
             )}
             {toggleNav && (
               <div
                 id="nav-mobile"
-                className={
-                  toggleDark
-                    ? "fixed top-0 -right-2 p-5 z-10 flex flex-col justify-start items-end w-[70vw] h-screen shadow-2xl rounded-md text-black black-glassmorphism"
-                    : "fixed top-0 -right-2 p-5 z-10 flex flex-col justify-start items-end w-[70vw] h-screen shadow-2xl rounded-md text-white blue-glassmorphism"
-                }
+                className={`fixed top-0 -right-2 p-5 z-10 flex flex-col justify-start items-end w-[70vw] 
+                h-screen shadow-2xl rounded-md ${
+                  toggleDark ? "black-glassmorphism text-black" : "text-white blue-glassmorphism"
+                }`}
               >
                 <div className="w-full">
-                  <AiOutlineClose fontSize={28} className={`cursor-pointer ${toggleDark ? "" : "text-white"}`} onClick={() => setToggleNav(false)} />
+                  <AiOutlineClose
+                    fontSize={28}
+                    className={`cursor-pointer ${toggleDark ? "" : "text-white"}`}
+                    onClick={() => setToggleNav(false)}
+                  />
                 </div>
                 <div className="flex flex-col items-end text-2xl pr-5">
                   <NavLink className="py-4" to="/" onClick={() => setToggleNav(false)}>
@@ -92,7 +113,11 @@ function App() {
                   </NavLink>
                 </div>
                 <div className="pr-5 mt-5">
-                  {toggleDark ? <MdDarkMode fontSize={28} onClick={() => setToggleDark(false)} /> : <MdOutlineDarkMode fontSize={28} onClick={() => setToggleDark(true)} />}
+                  {toggleDark ? (
+                    <MdDarkMode fontSize={28} onClick={() => setToggleDark(false)} />
+                  ) : (
+                    <MdOutlineDarkMode fontSize={28} onClick={() => setToggleDark(true)} />
+                  )}
                 </div>
               </div>
             )}
@@ -103,14 +128,19 @@ function App() {
             path="/coins"
             element={
               <>
-                <div className="mb-10">
-                  <Search cryptoData={cryptoData} searchValue={searchValue} setSearchValue={setSearchValue} toggleDark={toggleDark} />
+                <div className="pb-10 pt-1">
+                  <Search
+                    cryptoData={cryptoData}
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
+                    toggleDark={toggleDark}
+                  />
                   <div
-                    className={
-                      toggleDark
-                        ? "hidden md:grid max-w-7xl bg-neutral-900 w-11/12 text-sm text-white text-center mx-auto my-8 px-3 py-5 grid-cols-5 grid-rows-1 flex items-center rounded-xl drop-shadow-lg"
-                        : "hidden md:grid max-w-7xl bg-slate-800 w-11/12 text-sm text-white text-center mx-auto my-8 px-3 py-5 grid-cols-5 grid-rows-1 flex items-center rounded-xl drop-shadow-lg"
-                    }
+                    className={`hidden md:grid max-w-7xl w-11/12 text-sm text-white text-center mx-auto 
+                    my-8 px-3 py-5 grid-cols-5 grid-rows-1
+                    flex items-center rounded-xl drop-shadow-lg ${
+                      toggleDark ? "bg-neutral-900" : "bg-slate-800"
+                    }`}
                   >
                     <h1>Market Cap Rank</h1>
                     <h1>Currency</h1>
@@ -132,10 +162,16 @@ function App() {
               </>
             }
           />
-          <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
+          {cryptoData.length > 0 && (
+            <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
+          )}
         </Routes>
       </div>
-      <footer className={`text-white py-3 text-center text-xs ${toggleDark ? "bg-zinc-800" : "bg-gray-800"}`}>
+      <footer
+        className={`text-white py-3 text-center text-xs ${
+          toggleDark ? "bg-zinc-800" : "bg-gray-800"
+        }`}
+      >
         <p>&copy; Designed by Joseph Fantuzzi 2022</p>
       </footer>
     </>

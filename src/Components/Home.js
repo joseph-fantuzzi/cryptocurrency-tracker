@@ -6,14 +6,25 @@ import Picture from "./Picture";
 const Home = ({ cryptoData, toggleDark }) => {
   return (
     <div>
-      <h1 className={`font-bold text-center text-2xl md:text-9xl pt-10 pb-6 ${toggleDark ? "text-white" : ""}`}>CRYPTOX</h1>
-      <p className={`text-center text-md md:text-5xl ${toggleDark ? "text-white" : ""}`}>Meet the Next Generation of Cryptocurrency Tracking Software</p>
+      <h1
+        className={`font-bold text-center text-2xl md:text-9xl pt-10 pb-6 ${
+          toggleDark ? "text-white" : ""
+        }`}
+      >
+        CRYPTOX
+      </h1>
+      <p className={`text-center text-md md:text-5xl ${toggleDark ? "text-white" : ""}`}>
+        Meet the Next Generation of Cryptocurrency Tracking Software
+      </p>
       <Picture toggleDark={toggleDark} />
       <div className="text-center">
         <Link to="/login">
           <button
-            className={`border-2 mt-6 py-1 px-7 rounded-3xl mb-10 drop-shadow-md md:text-3xl md:border-4 transition duration-500 ease ${
-              toggleDark ? "text-white border-gray-100 hover:bg-gray-100 hover:text-black" : "border-gray-800 hover:bg-gray-800 hover:text-white"
+            className={`border-2 mt-6 py-1 px-7 rounded-3xl mb-10 drop-shadow-md md:text-3xl md:border-4 
+            transition duration-500 ease ${
+              toggleDark
+                ? "text-white border-gray-100 hover:bg-gray-100 hover:text-black"
+                : "border-gray-800 hover:bg-gray-800 hover:text-white"
             }`}
           >
             Login

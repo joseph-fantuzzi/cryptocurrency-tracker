@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       minHeight: {
-        most: "95vh",
+        most: "96vh",
       },
     },
   },
