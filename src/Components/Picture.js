@@ -4,7 +4,7 @@ import "../Styles/styles.css";
 const Picture = ({ toggleDark }) => {
   return (
     <svg
-      className={`w-72 h-auto mx-auto py-10 md:w-8/12 md:my-5 max-w-3xl ${
+      className={`w-72 h-auto mx-auto py-10 md:w-6/12 md:my-5 max-w-xl ${
         toggleDark ? "bg-gray-100 rounded-lg pl-5 mt-8" : ""
       }`}
       xmlns="http://www.w3.org/2000/svg"

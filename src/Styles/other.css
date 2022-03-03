@@ -46,3 +46,17 @@ body {
 #nav-mobile {
   animation: slide-in 0.5s ease-out;
 }
+
+.password-container {
+  width: 100%;
+  position: relative;
+}
+
+.password-icon {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  margin-right: 10px;
+  margin-top: 3px;
+  cursor: pointer;
+}

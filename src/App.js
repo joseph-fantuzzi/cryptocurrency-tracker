@@ -3,6 +3,8 @@ import axios from "axios";
 import Coin from "./Components/Coin";
 import Search from "./Components/Search";
 import Home from "./Components/Home";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
 import { Routes, Route, NavLink } from "react-router-dom";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
@@ -10,11 +12,27 @@ import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import "./Styles/other.css";
 
+const initialRegisterFormValues = {
+  fname: "",
+  lname: "",
+  email: "",
+  username: "",
+  password: "",
+  confirm: "",
+};
+
+const initialLoginFormValues = {
+  email: "",
+  password: "",
+};
+
 function App() {
   const [cryptoData, setCryptoData] = useState([]);
   const [toggleNav, setToggleNav] = useState(false);
   const [toggleDark, setToggleDark] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [registerFormValues, setRegisterFormValues] = useState(initialRegisterFormValues);
+  const [loginFormValues, setLoginFormValues] = useState(initialLoginFormValues);
 
   const filteredSearch = () => {
     const sanitize = searchValue.trim().toLowerCase();
@@ -23,6 +41,8 @@ function App() {
       return coin.name.toLowerCase().includes(sanitize);
     });
   };
+
+  const submit = () => {};
 
   useEffect(() => {
     axios
@@ -37,13 +57,13 @@ function App() {
 
   return (
     <>
-      <div className={`min-h-most ${toggleDark ? "bg-zinc-800" : ""}`}>
+      <div className={toggleDark ? "bg-zinc-800" : ""}>
         <nav
-          className={`border-b-2 border-gray-50 text-white py-8 px-5 flex justify-between items-center ${
+          className={`border-b-2 border-gray-50 text-white px-5 h-12vh min-h-60px flex justify-between items-center ${
             toggleDark ? "bg-zinc-800" : "bg-gray-800"
           }`}
         >
-          <h1 className="text-2xl pl-6 font-bold">CRYPTOX</h1>
+          <h1 className="text-2xl pl-6 font-bold">CRYPTOX.</h1>
           <div className="hidden md:w-2/3 md:flex md:justify-around md:items-center">
             <NavLink className="links" to="/">
               Home
@@ -127,7 +147,7 @@ function App() {
           <Route
             path="/coins"
             element={
-              <>
+              <div className="min-h-83vh">
                 <div className="pb-10 pt-1">
                   <Search
                     cryptoData={cryptoData}
@@ -159,7 +179,29 @@ function App() {
                 ) : (
                   ""
                 )}
-              </>
+              </div>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Login
+                loginFormValues={loginFormValues}
+                setLoginFormValues={setLoginFormValues}
+                submit={submit}
+                toggleDark={toggleDark}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <Register
+                registerFormValues={registerFormValues}
+                setRegisterFormValues={setRegisterFormValues}
+                submit={submit}
+                toggleDark={toggleDark}
+              />
             }
           />
           {cryptoData.length > 0 && (
@@ -168,7 +210,7 @@ function App() {
         </Routes>
       </div>
       <footer
-        className={`text-white py-3 text-center text-xs ${
+        className={`flex justify-center items-center text-white h-5vh min-h-30px text-xs ${
           toggleDark ? "bg-zinc-800" : "bg-gray-800"
         }`}
       >
