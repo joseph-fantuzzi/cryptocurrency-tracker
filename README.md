@@ -1,10 +1,13 @@
 # CRYPTOX Cryptocurrency Tracking Software
 
-<img style="text-align: center" alt="coins-desktop" src="./Images/coins-desktop">
-<img style="text-align: center" alt="coins-desktop-dark" src="./Images/coins-desktop-dark">
-<img style="text-align: center" alt="coins-mobile" src="./Images/coins-mobile">
-<img style="text-align: center" alt="coins-mobile-dark" src="./Images/coins-mobile-dark">
-<img style="text-align: center" alt="coins-mobile-nav" src="./Images/coins-mobile-nav">
-<img style="text-align: center" alt="coins-mobile-nav-dark" src="./Images/coins-mobile-nav-dark">
-<img style="text-align: center" alt="coins-mobile-nav" src="./Images/register-desktop">
-<img style="text-align: center" alt="coins-mobile-nav" src="./Images/login-mobile-dark">
+<img alt="coins-desktop" src="src/Images/coins-desktop.png">
+<img alt="coins-desktop-dark" src="src/Images/coins-desktop-dark.png">
+<img alt="register-desktop" src="src/Images/register-desktop.png">
+
+<img align="left" alt="coins-mobile" src="src/Images/coins-mobile.png">
+<img align="center" alt="coins-mobile-dark" src="src/Images/coins-mobile-dark.png">
+
+<img align="left" alt="coins-mobile-nav" src="src/Images/coins-mobile-nav.png">
+<img align="center" alt="coins-mobile-nav-dark" src="src/Images/coins-mobile-nav-dark.png">
+
+<img align="left" alt="coins-mobile-nav" src="src/Images/login-mobile-dark.png">
