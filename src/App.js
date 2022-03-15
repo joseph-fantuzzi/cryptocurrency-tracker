@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Coin from "./Components/Coin";
+import IndividualCoin from "./Components/IndividualCoin";
 import Search from "./Components/Search";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
@@ -77,7 +78,10 @@ function App() {
             <NavLink className="links" to="/login">
               Login
             </NavLink>
-            <NavLink className="links" to="/register">
+            <NavLink
+              className="bg-gray-100 py-2 px-4 text-black rounded-2xl hover:bg-gray-400 hover:text-white transition duration-300 ease"
+              to="/register"
+            >
               Register
             </NavLink>
             {toggleDark ? (
@@ -182,6 +186,7 @@ function App() {
               </div>
             }
           />
+          <Route path="/coins/:itemID" element={<IndividualCoin toggleDark={toggleDark} />} />
           <Route
             path="/login"
             element={
@@ -204,9 +209,7 @@ function App() {
               />
             }
           />
-          {cryptoData.length > 0 && (
-            <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
-          )}
+          <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
         </Routes>
       </div>
       <footer
