@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "../Styles/styles.css";
 import Ticker from "./Ticker";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const IndividualCoin = ({ toggleDark }) => {
   const [coin, setCoin] = useState(null);
@@ -62,7 +63,10 @@ const IndividualCoin = ({ toggleDark }) => {
       </div>
     </div>
   ) : (
-    <h1 className="min-h-83vh text-4xl flex justify-center items-center">Loading...</h1>
+    <div className="min-h-83vh text-4xl flex flex-col justify-center items-center">
+      <h1 className={toggleDark ? "text-white" : ""}>Loading...</h1>
+      <CircularProgress size={100} style={{ margin: "1em" }} />
+    </div>
   );
 };
 

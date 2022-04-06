@@ -18,7 +18,7 @@ const Coin = ({ coin, toggleDark }) => {
             className={
               toggleDark
                 ? "inline px-3 ml-1 rounded-full bg-gray-100 text-black p-1"
-                : "inline px-3 ml-1 rounded-full bg-cyan-700 text-white p-1"
+                : "inline px-3 ml-1 rounded-full bg-gray-800 text-white p-1"
             }
           >
             {coin.market_cap_rank}
