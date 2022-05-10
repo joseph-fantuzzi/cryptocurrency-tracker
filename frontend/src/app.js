@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Coin from "./Components/Coin";
-import IndividualCoin from "./Components/IndividualCoin";
-import Search from "./Components/Search";
-import Home from "./Components/Home";
-import Login from "./Components/Login";
-import Register from "./Components/Register";
+import Coin from "./components/Coin";
+import IndividualCoin from "./components/IndividualCoin";
+import Search from "./components/Search";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import { Routes, Route, NavLink } from "react-router-dom";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import CircularProgress from "@mui/material/CircularProgress";
-import "./Styles/other.css";
+import "./styles/other.css";
 
 const initialRegisterFormValues = {
   fname: "",

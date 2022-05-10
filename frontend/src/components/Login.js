@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdVisibilityOff } from "react-icons/md";
 import { MdVisibility } from "react-icons/md";
-import "../Styles/styles.css";
-import "../Styles/other.css";
+import "../styles/styles.css";
+import "../styles/other.css";
 
 const Login = ({ loginFormValues, setLoginFormValues, submit, toggleDark }) => {
   const [showPassword, setShowPassword] = useState(false);

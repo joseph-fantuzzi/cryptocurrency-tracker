@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../Styles/styles.css";
+import "../styles/styles.css";
 
 const Home = ({ cryptoData, toggleDark }) => {
   return (

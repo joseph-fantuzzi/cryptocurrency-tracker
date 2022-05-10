@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import "../Styles/styles.css";
+import "../styles/styles.css";
 import Ticker from "./Ticker";
 import CircularProgress from "@mui/material/CircularProgress";
 

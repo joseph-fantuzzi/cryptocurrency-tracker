@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/styles.css";
+import "../styles/styles.css";
 
 const Search = ({ cryptoData, searchValue, setSearchValue, toggleDark }) => {
   const onChange = (e) => {
