@@ -5,13 +5,40 @@ import { MdVisibility } from "react-icons/md";
 import "../styles/styles.css";
 import "../styles/other.css";
 
-const Register = ({ registerFormValues, setRegisterFormValues, submit, toggleDark }) => {
+const Register = ({
+  registerFormValues,
+  setRegisterFormValues,
+  register,
+  toggleDark,
+  registerError,
+  setRegisterError,
+  profileSuccess,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
+  const { first_name, last_name, email, username, password, confirm } = registerFormValues;
+
+  const disabled =
+    first_name.length > 0 &&
+    last_name.length > 0 &&
+    email.length > 0 &&
+    username.length > 0 &&
+    password.length > 0 &&
+    confirm.length > 0
+      ? false
+      : true;
+
   const submitHandler = (e) => {
     e.preventDefault();
+    setRegisterError("");
+    if (password === confirm) {
+      register();
+    } else {
+      setRegisterError("Passwords Do Not Match");
+    }
   };
+
   const changeHandler = (e) => {
     const { name, value } = e.target;
     setRegisterFormValues({ ...registerFormValues, [name]: value });
@@ -27,27 +54,27 @@ const Register = ({ registerFormValues, setRegisterFormValues, submit, toggleDar
       >
         <h1 className="text-2xl font-bold pb-5">Register.</h1>
         <div className="w-full max-w-sm">
-          <label className="self-start text-xs pb-2" htmlFor="fname">
+          <label className="self-start text-xs pb-2" htmlFor="first_name">
             First Name
           </label>
           <input
-            id="fname"
+            id="first_name"
             type="text"
-            name="fname"
-            value={registerFormValues.fname}
+            name="first_name"
+            value={first_name}
             onChange={changeHandler}
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 max-w-sm mb-2"
           />
         </div>
         <div className="w-full max-w-sm">
-          <label className="self-start text-xs py-2" htmlFor="lname">
+          <label className="self-start text-xs py-2" htmlFor="last_name">
             Last Name
           </label>
           <input
-            id="lname"
+            id="last_name"
             type="text"
-            name="lname"
-            value={registerFormValues.lname}
+            name="last_name"
+            value={last_name}
             onChange={changeHandler}
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 max-w-sm mb-2"
           />
@@ -60,7 +87,7 @@ const Register = ({ registerFormValues, setRegisterFormValues, submit, toggleDar
             id="email"
             type="email"
             name="email"
-            value={registerFormValues.email}
+            value={email}
             onChange={changeHandler}
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 max-w-sm mb-2"
           />
@@ -73,7 +100,7 @@ const Register = ({ registerFormValues, setRegisterFormValues, submit, toggleDar
             id="username"
             type="text"
             name="username"
-            value={registerFormValues.username}
+            value={username}
             onChange={changeHandler}
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 max-w-sm mb-2"
           />
@@ -99,13 +126,13 @@ const Register = ({ registerFormValues, setRegisterFormValues, submit, toggleDar
             id="password"
             type={showPassword ? "text" : "password"}
             name="password"
-            value={registerFormValues.password}
+            value={password}
             onChange={changeHandler}
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 mb-2"
           />
         </div>
         <div className="password-container max-w-sm">
-          <label className="self-start text-xs py-2" htmlFor="password">
+          <label className="self-start text-xs py-2" htmlFor="confirm">
             Confirm Password
           </label>
           {showConfirm ? (
@@ -125,23 +152,33 @@ const Register = ({ registerFormValues, setRegisterFormValues, submit, toggleDar
             id="confirm"
             type={showConfirm ? "text" : "password"}
             name="confirm"
-            value={registerFormValues.confirm}
+            value={confirm}
             onChange={changeHandler}
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 mb-2"
           />
         </div>
         <button
-          className="bg-gray-800 text-white rounded-lg py-2 my-8 w-full cursor-pointer max-w-sm drop-shadow-lg transition ease duration-500 hover:bg-gray-100 hover:text-black"
+          disabled={disabled}
+          className={`${
+            disabled ? "bg-gray-100" : "bg-gray-800 hover:bg-gray-100 hover:text-black"
+          } text-white rounded-lg py-2 my-8 w-full cursor-pointer max-w-sm drop-shadow-lg transition ease duration-500`}
           onClick={submitHandler}
         >
           Create Account
         </button>
-        <p>Have An Account With Us?</p>
-        <Link to="/login">
-          <span className="cursor-pointer transition ease duration-500 hover:text-white">
-            Login Now.
-          </span>
-        </Link>
+        <div className="text-red-500 text-center font-bold pb-5">{registerError}</div>
+        {profileSuccess ? (
+          <div className="text-center text-green-500 font-bold">Account Successfully Created!</div>
+        ) : (
+          <div className="text-center">
+            <p>Have An Account With Us?</p>
+            <Link to="/login">
+              <span className="cursor-pointer transition ease duration-500 hover:text-white">
+                Login Now.
+              </span>
+            </Link>
+          </div>
+        )}
       </form>
     </div>
   );

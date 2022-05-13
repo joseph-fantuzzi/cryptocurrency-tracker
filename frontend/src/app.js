@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Coin from "./components/Coin";
+import Coins from "./components/Coins";
 import IndividualCoin from "./components/IndividualCoin";
-import Search from "./components/Search";
+import Account from "./components/Account";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
-import CircularProgress from "@mui/material/CircularProgress";
 import "./styles/other.css";
 
 const initialRegisterFormValues = {
-  fname: "",
-  lname: "",
+  first_name: "",
+  last_name: "",
   email: "",
   username: "",
   password: "",
@@ -24,9 +23,11 @@ const initialRegisterFormValues = {
 };
 
 const initialLoginFormValues = {
-  email: "",
+  username: "",
   password: "",
 };
+
+const baseURL = "http://localhost:9000/api/users";
 
 function App() {
   const [cryptoData, setCryptoData] = useState([]);
@@ -35,6 +36,12 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [registerFormValues, setRegisterFormValues] = useState(initialRegisterFormValues);
   const [loginFormValues, setLoginFormValues] = useState(initialLoginFormValues);
+  const [registerError, setRegisterError] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [loginMessage, setLoginMessage] = useState("");
+  const [profileSuccess, setProfileSuccess] = useState(false);
+
+  const navigate = useNavigate();
 
   const filteredSearch = () => {
     const sanitize = searchValue.trim().toLowerCase();
@@ -44,7 +51,46 @@ function App() {
     });
   };
 
-  const submit = () => {};
+  const register = () => {
+    const request = {
+      first_name: registerFormValues.first_name.trim(),
+      last_name: registerFormValues.last_name.trim(),
+      email: registerFormValues.email.trim(),
+      username: registerFormValues.username.trim(),
+      password: registerFormValues.password.trim(),
+    };
+
+    axios
+      .post(`${baseURL}/register`, request)
+      .then((res) => {
+        setRegisterFormValues(initialRegisterFormValues);
+        setProfileSuccess(true);
+        setTimeout(() => {
+          setProfileSuccess(false);
+          navigate("/login");
+        }, 2000);
+      })
+      .catch((err) => {
+        setRegisterError(err.response.data.message);
+      });
+  };
+
+  const login = () => {
+    axios
+      .post(`${baseURL}/login`, loginFormValues)
+      .then((res) => {
+        setLoginFormValues(initialLoginFormValues);
+        setLoginMessage(res.data.message);
+        window.localStorage.setItem("token", res.data.token);
+        setTimeout(() => {
+          setLoginMessage("");
+          navigate("/coins");
+        }, 2000);
+      })
+      .catch((err) => {
+        setLoginError(err.response.data.message);
+      });
+  };
 
   useEffect(() => {
     axios
@@ -70,11 +116,17 @@ function App() {
             <NavLink className="links" to="/">
               Home
             </NavLink>
-            <NavLink className="links" to="/coins">
+            <NavLink
+              className="links"
+              to={window.localStorage.getItem("token") ? "/coins" : "/login"}
+            >
               Coins
             </NavLink>
-            <NavLink className="links" to="/portfolio">
-              Portfolio
+            <NavLink
+              className="links"
+              to={window.localStorage.getItem("token") ? "/account" : "/login"}
+            >
+              My Account
             </NavLink>
             <NavLink className="links" to="/login">
               Login
@@ -124,11 +176,19 @@ function App() {
                   <NavLink className="py-4" to="/" onClick={() => setToggleNav(false)}>
                     Home
                   </NavLink>
-                  <NavLink className="py-4" to="/coins" onClick={() => setToggleNav(false)}>
+                  <NavLink
+                    className="py-4"
+                    to={window.localStorage.getItem("token") ? "/coins" : "/login"}
+                    onClick={() => setToggleNav(false)}
+                  >
                     Coins
                   </NavLink>
-                  <NavLink className="py-4" to="/portfolio" onClick={() => setToggleNav(false)}>
-                    Portfolio
+                  <NavLink
+                    className="py-4"
+                    to={window.localStorage.getItem("token") ? "/account" : "/login"}
+                    onClick={() => setToggleNav(false)}
+                  >
+                    My Account
                   </NavLink>
                   <NavLink className="py-4" to="/login" onClick={() => setToggleNav(false)}>
                     Login
@@ -152,57 +212,28 @@ function App() {
           <Route
             path="/coins"
             element={
-              <div className="min-h-83vh">
-                <div className="pb-10 pt-1">
-                  <Search
-                    cryptoData={cryptoData}
-                    searchValue={searchValue}
-                    setSearchValue={setSearchValue}
-                    toggleDark={toggleDark}
-                  />
-                  <div
-                    className={`hidden md:grid max-w-7xl w-11/12 text-sm text-white text-center mx-auto 
-                    my-8 px-3 py-5 grid-cols-5 grid-rows-1
-                    flex items-center rounded-xl drop-shadow-lg ${
-                      toggleDark ? "bg-neutral-900" : "bg-slate-800"
-                    }`}
-                  >
-                    <h1>Market Cap Rank</h1>
-                    <h1>Currency</h1>
-                    <h1>Symbol</h1>
-                    <h1>Price</h1>
-                    <h1>Market Cap</h1>
-                  </div>
-                  {cryptoData ? (
-                    filteredSearch().map((coin) => {
-                      return <Coin key={coin.id} coin={coin} toggleDark={toggleDark} />;
-                    })
-                  ) : (
-                    <div className="text-4xl flex flex-col justify-center items-center">
-                      <h1 className={toggleDark ? "text-white" : ""}>Loading...</h1>
-                      <CircularProgress size={100} style={{ margin: "1em" }} />
-                    </div>
-                  )}
-                </div>
-                {filteredSearch().length === 0 && cryptoData.length !== 0 ? (
-                  <div className={`text-center mb-auto ${toggleDark ? "text-white" : ""}`}>
-                    <p>No results for "{searchValue}".</p>
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
+              <Coins
+                cryptoData={cryptoData}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+                toggleDark={toggleDark}
+                filteredSearch={filteredSearch}
+              />
             }
           />
           <Route path="/coins/:itemID" element={<IndividualCoin toggleDark={toggleDark} />} />
+          <Route path="/account" element={<Account />} />
           <Route
             path="/login"
             element={
               <Login
                 loginFormValues={loginFormValues}
                 setLoginFormValues={setLoginFormValues}
-                submit={submit}
+                login={login}
                 toggleDark={toggleDark}
+                loginError={loginError}
+                setLoginError={setLoginError}
+                loginMessage={loginMessage}
               />
             }
           />
@@ -212,8 +243,11 @@ function App() {
               <Register
                 registerFormValues={registerFormValues}
                 setRegisterFormValues={setRegisterFormValues}
-                submit={submit}
+                register={register}
                 toggleDark={toggleDark}
+                registerError={registerError}
+                setRegisterError={setRegisterError}
+                profileSuccess={profileSuccess}
               />
             }
           />

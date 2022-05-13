@@ -43,21 +43,29 @@ router.post("/register", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
   const { username, password } = req.body;
-  Users.getBy({ username }).then((user) => {
-    if (!user) {
-      next({ status: 404, message: "User not found" });
-    } else {
-      const success = bcrypt.compareSync(password, user.password);
-      if (success) {
-        res.json({
-          message: `Welcome back, ${user.username}`,
-          token: generateToken(user),
-        });
+  Users.getBy({ username })
+    .then((user) => {
+      if (!user) {
+        next({ status: 404, message: "User not found" });
       } else {
-        next({ status: 401, message: "Invalid credentials" });
+        const success = bcrypt.compareSync(password, user.password);
+        if (success) {
+          res.json({
+            message: `Welcome back, ${user.username}`,
+            token: generateToken(user),
+            user: {
+              first_name: user.first_name,
+              last_name: user.last_name,
+              email: user.email,
+              username: user.username,
+            },
+          });
+        } else {
+          next({ status: 401, message: "Invalid credentials" });
+        }
       }
-    }
-  });
+    })
+    .catch((err) => next(err));
 });
 
 router.delete("/:id", (req, res, next) => {

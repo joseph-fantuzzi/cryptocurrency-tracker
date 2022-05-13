@@ -5,12 +5,27 @@ import { MdVisibility } from "react-icons/md";
 import "../styles/styles.css";
 import "../styles/other.css";
 
-const Login = ({ loginFormValues, setLoginFormValues, submit, toggleDark }) => {
+const Login = ({
+  loginFormValues,
+  setLoginFormValues,
+  login,
+  toggleDark,
+  loginError,
+  setLoginError,
+  loginMessage,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const { username, password } = loginFormValues;
+
+  const disabled = username && password ? false : true;
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setLoginError("");
+    login();
   };
+
   const changeHandler = (e) => {
     const { name, value } = e.target;
     setLoginFormValues({ ...loginFormValues, [name]: value });
@@ -26,14 +41,14 @@ const Login = ({ loginFormValues, setLoginFormValues, submit, toggleDark }) => {
       >
         <h1 className="text-2xl font-bold pb-5">Login.</h1>
         <div className="w-full max-w-sm">
-          <label className="self-start text-xs py-2" htmlFor="email">
-            Email
+          <label className="self-start text-xs py-2" htmlFor="username">
+            Username
           </label>
           <input
-            id="email"
-            type="email"
-            name="email"
-            value={loginFormValues.email}
+            id="username"
+            type="text"
+            name="username"
+            value={username}
             onChange={changeHandler}
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 max-w-sm mb-2"
           />
@@ -59,23 +74,33 @@ const Login = ({ loginFormValues, setLoginFormValues, submit, toggleDark }) => {
             id="password"
             type={showPassword ? "text" : "password"}
             name="password"
-            value={loginFormValues.password}
+            value={password}
             onChange={changeHandler}
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 mb-2"
           />
         </div>
         <button
-          className="bg-gray-800 text-white rounded-lg py-2 my-8 w-full cursor-pointer max-w-sm drop-shadow-lg transition ease duration-500 hover:bg-gray-100 hover:text-black"
+          disabled={disabled}
+          className={`${
+            disabled ? "bg-gray-100" : "bg-gray-800 hover:bg-gray-100 hover:text-black"
+          } text-white rounded-lg py-2 my-8 w-full cursor-pointer max-w-sm drop-shadow-lg transition ease duration-500`}
           onClick={submitHandler}
         >
           Login
         </button>
-        <p>Don't Have An Account With Us?</p>
-        <Link to="/register">
-          <span className="cursor-pointer transition ease duration-500 hover:text-white">
-            Register Now.
-          </span>
-        </Link>
+        <div className="text-red-500 text-center font-bold pb-5">{loginError}</div>
+        {loginMessage ? (
+          <div className="text-green-500 font-bold">{loginMessage}</div>
+        ) : (
+          <div className="text-center">
+            <p>Don't Have An Account With Us?</p>
+            <Link to="/register">
+              <span className="cursor-pointer transition ease duration-500 hover:text-white">
+                Register Now.
+              </span>
+            </Link>
+          </div>
+        )}
       </form>
     </div>
   );
