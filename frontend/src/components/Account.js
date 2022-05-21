@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Avatar from "@mui/material/Avatar";
 import { FiMail } from "react-icons/fi";
@@ -13,19 +14,43 @@ const styles = {
   p: "pb-5",
   icon: "inline mr-3",
   changePswrdBtn:
-    "bg-gray-100 rounded-2xl py-2 hover:text-white hover:bg-black transition duration-300 ease",
+    "bg-black text-white rounded-2xl py-2 hover:text-black hover:bg-gray-100 transition duration-300 ease",
+  updatePswrdBtnDisabled: "bg-gray-100 mt-5 text-white rounded-2xl py-2",
   updatePswrdBtn:
-    "w-5/6 bg-gray-100 rounded-2xl py-2 hover:text-white hover:bg-black transition duration-300 ease",
+    "bg-black mt-5 text-white rounded-2xl py-2 hover:text-black hover:bg-gray-100 transition duration-300 ease",
   logoutBtn:
     "bg-[#203C7A] w-5/6 my-20 py-2 px-4 text-white rounded-2xl hover:bg-gray-100 hover:text-black transition duration-300 ease",
+  form: "flex flex-col pt-5",
+  input: "rounded-xl py-1 px-3 mb-3",
+  message: "text-red-500 text-center mt-5",
 };
 
-const passwordChangeHandler = (e) => {
-  e.preventDefault();
+const initialFormValues = {
+  current_password: "",
+  new_password: "",
+  confirm_password: "",
 };
 
 const Account = ({ logout }) => {
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [message, setMessage] = useState("");
   const [changePassword, setChangePassword] = useState(false);
+
+  const { current_password, new_password, confirm_password } = formValues;
+
+  const disabled = current_password && new_password && confirm_password ? false : true;
+
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const newPasswordHandler = (e) => {
+    e.preventDefault();
+    if (new_password !== confirm_password) {
+      setMessage("Invalid Attempt");
+    }
+  };
 
   const token = window.localStorage.getItem("token");
   const decoded = jwt_decode(token);
@@ -58,14 +83,41 @@ const Account = ({ logout }) => {
           {changePassword ? "Cancel Changes" : "Change Password"}
         </button>
         {changePassword && (
-          <form onSubmit={passwordChangeHandler}>
-            <label htmlFor="current_password">Current Password:</label>
-            <input type="password" id="current_password" />
-            <label htmlFor="new_password">New Password:</label>
-            <input type="password" id="new_password" />
-            <label htmlFor="confirm_password">Confirm Password:</label>
-            <input type="password" id="confirm_password" />
-            <button className={styles.updatePswrdBtn}>Update Password</button>
+          <form className={styles.form} onSubmit={newPasswordHandler}>
+            <label htmlFor="current_password">Current Password</label>
+            <input
+              className={styles.input}
+              type="password"
+              id="current_password"
+              name="current_password"
+              value={formValues.current_password}
+              onChange={changeHandler}
+            />
+            <label htmlFor="new_password">New Password</label>
+            <input
+              className={styles.input}
+              type="password"
+              id="new_password"
+              name="new_password"
+              value={formValues.new_password}
+              onChange={changeHandler}
+            />
+            <label htmlFor="confirm_password">Confirm Password</label>
+            <input
+              className={styles.input}
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              value={formValues.confirm_password}
+              onChange={changeHandler}
+            />
+            <button
+              disabled={disabled}
+              className={disabled ? styles.updatePswrdBtnDisabled : styles.updatePswrdBtn}
+            >
+              Update Password
+            </button>
+            <p className={styles.message}>{message}</p>
           </form>
         )}
       </div>
