@@ -94,7 +94,7 @@ function App() {
 
   const logout = () => {
     window.localStorage.removeItem("token");
-    window.location.reload(false);
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -206,12 +206,20 @@ function App() {
                   >
                     My Account
                   </NavLink>
-                  <NavLink className="py-4" to="/login" onClick={() => setToggleNav(false)}>
-                    Login
-                  </NavLink>
-                  <NavLink className="py-4" to="/register" onClick={() => setToggleNav(false)}>
-                    Register
-                  </NavLink>
+                  {!window.localStorage.getItem("token") ? (
+                    <>
+                      <NavLink className="py-4" to="/login" onClick={() => setToggleNav(false)}>
+                        Login
+                      </NavLink>
+                      <NavLink className="py-4" to="/register" onClick={() => setToggleNav(false)}>
+                        Register
+                      </NavLink>
+                    </>
+                  ) : (
+                    <button onClick={logout} className="py-4">
+                      Logout
+                    </button>
+                  )}
                 </div>
                 <div className="pr-5 mt-5">
                   {toggleDark ? (
@@ -238,7 +246,7 @@ function App() {
             }
           />
           <Route path="/coins/:itemID" element={<IndividualCoin toggleDark={toggleDark} />} />
-          <Route path="/account" element={<Account />} />
+          <Route path="/account" element={<Account logout={logout} />} />
           <Route
             path="/login"
             element={
