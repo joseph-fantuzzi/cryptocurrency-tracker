@@ -92,6 +92,11 @@ function App() {
       });
   };
 
+  const logout = () => {
+    window.localStorage.removeItem("token");
+    window.location.reload(false);
+  };
+
   useEffect(() => {
     axios
       .get(
@@ -128,15 +133,26 @@ function App() {
             >
               My Account
             </NavLink>
-            <NavLink className="links" to="/login">
-              Login
-            </NavLink>
-            <NavLink
-              className="bg-gray-100 py-2 px-4 text-black rounded-2xl hover:bg-gray-400 hover:text-white transition duration-300 ease"
-              to="/register"
-            >
-              Register
-            </NavLink>
+            {!window.localStorage.getItem("token") ? (
+              <>
+                <NavLink className="links" to="/login">
+                  Login
+                </NavLink>
+                <NavLink
+                  className="bg-gray-100 py-2 px-4 text-black rounded-2xl hover:bg-gray-400 hover:text-white transition duration-300 ease"
+                  to="/register"
+                >
+                  Register
+                </NavLink>
+              </>
+            ) : (
+              <button
+                onClick={logout}
+                className="bg-gray-100 py-2 px-4 text-black rounded-2xl hover:bg-gray-400 hover:text-white transition duration-300 ease"
+              >
+                Logout
+              </button>
+            )}
             {toggleDark ? (
               <MdDarkMode fontSize={20} onClick={() => setToggleDark(false)} />
             ) : (

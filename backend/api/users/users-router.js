@@ -53,12 +53,6 @@ router.post("/login", (req, res, next) => {
           res.json({
             message: `Welcome back, ${user.username}`,
             token: generateToken(user),
-            user: {
-              first_name: user.first_name,
-              last_name: user.last_name,
-              email: user.email,
-              username: user.username,
-            },
           });
         } else {
           next({ status: 401, message: "Invalid credentials" });
