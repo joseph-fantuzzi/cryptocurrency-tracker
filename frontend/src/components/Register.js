@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdVisibilityOff } from "react-icons/md";
 import { MdVisibility } from "react-icons/md";
+import LinearProgress from "@mui/material/LinearProgress";
 import "../styles/styles.css";
 import "../styles/other.css";
 
@@ -161,7 +162,12 @@ const Register = ({
         </button>
         <div className="text-red-500 text-center font-bold pb-5">{registerError}</div>
         {profileSuccess ? (
-          <div className="text-center text-green-500 font-bold">Account Successfully Created!</div>
+          <div>
+            <div className="text-center text-green-800 font-bold pb-3">
+              Account Successfully Created!
+            </div>
+            <LinearProgress color="inherit" />
+          </div>
         ) : (
           <div className="text-center">
             <p>Have An Account With Us?</p>

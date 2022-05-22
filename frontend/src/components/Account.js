@@ -24,7 +24,7 @@ const styles = {
   form: "flex flex-col pt-5",
   input: "rounded-xl py-1 px-3 mb-3",
   message: "text-red-500 text-center mt-5",
-  success: "text-green-500 text-center mt-5",
+  success: "text-green-800 text-center my-3",
 };
 
 const initialFormValues = {
@@ -40,6 +40,7 @@ const Account = ({ logout }) => {
   const [message, setMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [changePassword, setChangePassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { current_password, new_password, confirm_password } = formValues;
 
@@ -60,16 +61,17 @@ const Account = ({ logout }) => {
         .put(URL, { ...formValues, username: decoded.username })
         .then((res) => {
           setSuccessMessage("Password successfully updated, logging out...");
+          setLoading(!loading);
           setFormValues(initialFormValues);
           setChangePassword(!changePassword);
           setTimeout(() => {
             logout();
-          }, 2000);
+          }, 5000);
         })
         .catch((err) => {
           setMessage(err.response.data.message);
         });
-    } else setMessage("Invalid Attempt");
+    } else setMessage("Passwords Do Not Match");
   };
 
   const changePasswordBtnHandler = () => {
@@ -104,6 +106,7 @@ const Account = ({ logout }) => {
           {changePassword ? "Cancel Changes" : "Change Password"}
         </button>
         <p className={styles.success}>{successMessage}</p>
+        {loading && <LinearProgress color="inherit" />}
         {changePassword && (
           <form className={styles.form} onSubmit={newPasswordHandler}>
             <label htmlFor="current_password">Current Password</label>

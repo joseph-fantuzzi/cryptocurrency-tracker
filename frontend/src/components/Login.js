@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdVisibilityOff } from "react-icons/md";
 import { MdVisibility } from "react-icons/md";
+import LinearProgress from "@mui/material/LinearProgress";
 import "../styles/styles.css";
 import "../styles/other.css";
 
@@ -90,7 +91,10 @@ const Login = ({
         </button>
         <div className="text-red-500 text-center font-bold pb-5">{loginError}</div>
         {loginMessage ? (
-          <div className="text-green-500 font-bold">{loginMessage}</div>
+          <div>
+            <div className="text-green-800 font-bold pb-3">{loginMessage}</div>
+            <LinearProgress color="inherit" />
+          </div>
         ) : (
           <div className="text-center">
             <p>Don't Have An Account With Us?</p>
