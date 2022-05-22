@@ -1,13 +1,19 @@
 # CRYPTOX Cryptocurrency Tracking Software
 
+## NPM Scripts
+
+- Frontend
+
+  - `npm run start` starts the development react server
+  - `npm run build` builds the react frontend for production
+
+- Backend
+  - `npm run start` starts the node server
+  - `npm run server` starts the nodemon server
+  - `npm run migrate` runs the knex migration up functions
+  - `npm run rollback` runs the knex migration down functions
+  - `npm run seed` runs the knex seed files
+  - `npm run resetdb` resets the database back to its original state
+
 <img alt="coins-desktop" src="frontend/src/images/coins-desktop.png">
 <img alt="coins-desktop-dark" src="frontend/src/images/coins-desktop-dark.png">
-<img alt="register-desktop" src="frontend/src/images/register-desktop.png">
-
-<img align="left" alt="coins-mobile" src="frontend/src/images/coins-mobile.png">
-<img align="center" alt="coins-mobile-dark" src="frontend/src/images/coins-mobile-dark.png">
-
-<img align="left" alt="coins-mobile-nav" src="frontend/src/images/coins-mobile-nav.png">
-<img align="center" alt="coins-mobile-nav-dark" src="frontend/src/images/coins-mobile-nav-dark.png">
-
-<img align="left" alt="coins-mobile-nav" src="frontend/src/images/login-mobile-dark.png">

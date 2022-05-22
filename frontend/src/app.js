@@ -68,7 +68,7 @@ function App() {
         setTimeout(() => {
           setProfileSuccess(false);
           navigate("/login");
-        }, 5000);
+        }, 3000);
       })
       .catch((err) => {
         setRegisterError(err.response.data.message);
@@ -85,7 +85,7 @@ function App() {
         setTimeout(() => {
           setLoginMessage("");
           navigate("/coins");
-        }, 5000);
+        }, 3000);
       })
       .catch((err) => {
         setLoginError(err.response.data.message);

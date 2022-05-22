@@ -66,7 +66,7 @@ const Account = ({ logout }) => {
           setChangePassword(!changePassword);
           setTimeout(() => {
             logout();
-          }, 5000);
+          }, 3000);
         })
         .catch((err) => {
           setMessage(err.response.data.message);
