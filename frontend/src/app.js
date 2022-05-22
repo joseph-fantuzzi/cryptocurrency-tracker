@@ -94,7 +94,7 @@ function App() {
 
   const logout = () => {
     window.localStorage.removeItem("token");
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {

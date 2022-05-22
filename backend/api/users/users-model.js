@@ -17,10 +17,17 @@ const insert = async (user) => {
   return getById(id);
 };
 
+const changePassword = async (username, password) => {
+  const count = await db("users").where({ username }).update({ password });
+  if (count > 0) {
+    return getBy({ username });
+  }
+};
+
 const remove = async (id) => {
   const removedUser = await getById(id);
   await db("users").where({ id }).del();
   return removedUser;
 };
 
-module.exports = { getUsers, getById, getBy, insert, remove };
+module.exports = { getUsers, getById, getBy, insert, changePassword, remove };

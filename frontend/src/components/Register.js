@@ -20,14 +20,7 @@ const Register = ({
   const { first_name, last_name, email, username, password, confirm } = registerFormValues;
 
   const disabled =
-    first_name.length > 0 &&
-    last_name.length > 0 &&
-    email.length > 0 &&
-    username.length > 0 &&
-    password.length > 0 &&
-    confirm.length > 0
-      ? false
-      : true;
+    first_name && last_name && email && username && password && confirm ? false : true;
 
   const submitHandler = (e) => {
     e.preventDefault();

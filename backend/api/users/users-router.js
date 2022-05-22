@@ -62,6 +62,23 @@ router.post("/login", (req, res, next) => {
     .catch((err) => next(err));
 });
 
+router.put("/change", (req, res, next) => {
+  const { username, current_password, new_password } = req.body;
+  Users.getBy({ username }).then((user) => {
+    const success = bcrypt.compareSync(current_password, user.password);
+    if (success) {
+      const hashedPassword = bcrypt.hashSync(new_password, 8);
+      Users.changePassword(username, hashedPassword)
+        .then((user) => {
+          res.json(user);
+        })
+        .catch((err) => next(err));
+    } else {
+      next({ status: 401, message: "Invalid credentials" });
+    }
+  });
+});
+
 router.delete("/:id", (req, res, next) => {
   const { id } = req.params;
   Users.remove(id)
