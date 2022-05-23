@@ -6,6 +6,7 @@ import Account from "./components/Account";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import useLocalStorage from "./hooks/useLocalStorage";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
@@ -32,7 +33,7 @@ const baseURL = "http://localhost:9000/api/users";
 function App() {
   const [cryptoData, setCryptoData] = useState([]);
   const [toggleNav, setToggleNav] = useState(false);
-  const [toggleDark, setToggleDark] = useState(false);
+  const [toggleDark, setToggleDark] = useLocalStorage("dark", false);
   const [searchValue, setSearchValue] = useState("");
   const [registerFormValues, setRegisterFormValues] = useState(initialRegisterFormValues);
   const [loginFormValues, setLoginFormValues] = useState(initialLoginFormValues);

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/styles.css";
 
 const Search = ({ cryptoData, searchValue, setSearchValue, toggleDark }) => {
+  useEffect(() => {
+    setSearchValue("");
+  }, [setSearchValue]);
+
   const onChange = (e) => {
     const { value } = e.target;
     setSearchValue(value);

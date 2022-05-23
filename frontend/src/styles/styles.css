@@ -487,14 +487,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 5rem;
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .my-8 {
@@ -546,10 +546,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ml-3 {
   margin-left: 0.75rem;
-}
-
-.mt-12 {
-  margin-top: 3rem;
 }
 
 .inline {
@@ -914,16 +910,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 1.5rem;
 }
 
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
-
-.pt-12 {
-  padding-top: 3rem;
-}
-
 .pb-3 {
   padding-bottom: 0.75rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .text-left {
@@ -985,11 +977,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-.text-green-500 {
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
 .text-green-800 {
