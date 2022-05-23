@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Avatar from "@mui/material/Avatar";
 import { FiMail } from "react-icons/fi";
@@ -7,27 +8,6 @@ import { MdVisibilityOff } from "react-icons/md";
 import { MdVisibility } from "react-icons/md";
 import LinearProgress from "@mui/material/LinearProgress";
 import axiosWithAuth from "../axios/index";
-
-const styles = {
-  outerDiv: "min-h-83vh flex flex-col lg-flex-row items-center",
-  h1: "text-center pt-8 text-2xl font-semibold",
-  avatar: "flex flex-col justify-center items-center pt-10",
-  infoDiv: "max-w-md flex flex-col mt-10 p-8 pt-10 bg-gray-300 shadow-lg rounded-2xl w-5/6",
-  h2: "font-bold text-center pb-5",
-  p: "pb-5",
-  icon: "inline mr-3",
-  changePswrdBtn:
-    "bg-black text-white rounded-2xl mt-5 py-2 shadow-md hover:text-black hover:bg-gray-100 transition duration-300 ease",
-  updatePswrdBtnDisabled: "bg-gray-100 mt-5 text-white shadow-md rounded-2xl py-2",
-  updatePswrdBtn:
-    "bg-black mt-5 text-white rounded-2xl shadow-md py-2 hover:text-black hover:bg-gray-100 transition duration-300 ease",
-  logoutBtn:
-    "max-w-md bg-[#203C7A] w-5/6 my-20 py-2 px-4 text-white rounded-2xl shadow-lg hover:bg-gray-100 hover:text-black transition duration-300 ease",
-  form: "flex flex-col pt-5",
-  input: "rounded-xl py-1 px-3 mb-3 w-full shadow-md",
-  message: "text-red-500 text-center mt-5",
-  success: "text-green-800 text-center my-3",
-};
 
 const initialFormValues = {
   current_password: "",
@@ -46,6 +26,32 @@ const Account = ({ logout }) => {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const styles = {
+    outerDiv: "min-h-83vh flex flex-col lg-flex-row items-center",
+    h1: "text-center pt-8 text-2xl font-semibold",
+    avatar: "flex flex-col justify-center items-center pt-10",
+    innerDiv: "w-full flex flex-col items-center",
+    infoDiv: "max-w-md flex flex-col mt-10 p-8 pt-10 bg-gray-300 shadow-lg rounded-2xl w-5/6",
+    h2: "font-bold text-center pb-5",
+    p: "pb-5",
+    icon: "inline mr-3",
+    changePswrdBtn:
+      "bg-black text-white rounded-2xl mt-5 py-2 shadow-md hover:text-black hover:bg-gray-100 transition duration-300 ease",
+    updatePswrdBtnDisabled: "bg-gray-100 mt-5 text-white shadow-md rounded-2xl py-2",
+    updatePswrdBtn:
+      "bg-black mt-5 text-white rounded-2xl shadow-md py-2 hover:text-black hover:bg-gray-100 transition duration-300 ease",
+    logoutBtn:
+      "max-w-md bg-[#203C7A] w-5/6 my-20 py-2 px-4 text-white rounded-2xl shadow-lg hover:bg-gray-100 hover:text-black transition duration-300 ease",
+    form: "flex flex-col pt-5",
+    input: "rounded-xl py-1 px-3 mb-3 w-full shadow-md",
+    message: "text-red-500 text-center mt-5",
+    success: "text-green-800 text-center my-3",
+  };
+
+  if (!window.localStorage.getItem("token")) {
+    return <Navigate to="/login" replace />;
+  }
 
   const { current_password, new_password, confirm_password } = formValues;
 
@@ -99,7 +105,7 @@ const Account = ({ logout }) => {
           </Avatar>
         </div>
       </div>
-      <div className="w-full flex flex-col items-center">
+      <div className={styles.innerDiv}>
         <div className={styles.infoDiv}>
           <h2 className={styles.h2}>Personal Information</h2>
           <p className={styles.p}>
