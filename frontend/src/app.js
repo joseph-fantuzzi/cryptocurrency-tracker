@@ -53,44 +53,58 @@ function App() {
   };
 
   const register = () => {
-    const request = {
-      first_name: registerFormValues.first_name.trim(),
-      last_name: registerFormValues.last_name.trim(),
-      email: registerFormValues.email.trim(),
-      username: registerFormValues.username.trim(),
-      password: registerFormValues.password.trim(),
-    };
+    if (window.localStorage.getItem("token")) {
+      setProfileSuccess(true);
+      setTimeout(() => {
+        navigate("/coins");
+      }, 3000);
+    } else {
+      const request = {
+        first_name: registerFormValues.first_name.trim(),
+        last_name: registerFormValues.last_name.trim(),
+        email: registerFormValues.email.trim(),
+        username: registerFormValues.username.trim(),
+        password: registerFormValues.password.trim(),
+      };
 
-    axios
-      .post(`${baseURL}/register`, request)
-      .then((res) => {
-        setRegisterFormValues(initialRegisterFormValues);
-        setProfileSuccess(true);
-        setTimeout(() => {
-          setProfileSuccess(false);
-          navigate("/login");
-        }, 3000);
-      })
-      .catch((err) => {
-        setRegisterError(err.response.data.message);
-      });
+      axios
+        .post(`${baseURL}/register`, request)
+        .then((res) => {
+          setRegisterFormValues(initialRegisterFormValues);
+          setProfileSuccess(true);
+          setTimeout(() => {
+            setProfileSuccess(false);
+            navigate("/login");
+          }, 3000);
+        })
+        .catch((err) => {
+          setRegisterError(err.response.data.message);
+        });
+    }
   };
 
   const login = () => {
-    axios
-      .post(`${baseURL}/login`, loginFormValues)
-      .then((res) => {
-        setLoginFormValues(initialLoginFormValues);
-        setLoginMessage(res.data.message);
-        window.localStorage.setItem("token", res.data.token);
-        setTimeout(() => {
-          setLoginMessage("");
-          navigate("/coins");
-        }, 3000);
-      })
-      .catch((err) => {
-        setLoginError(err.response.data.message);
-      });
+    if (window.localStorage.getItem("token")) {
+      setLoginMessage("Already logged in");
+      setTimeout(() => {
+        navigate("/coins");
+      }, 3000);
+    } else {
+      axios
+        .post(`${baseURL}/login`, loginFormValues)
+        .then((res) => {
+          setLoginFormValues(initialLoginFormValues);
+          setLoginMessage(res.data.message);
+          window.localStorage.setItem("token", res.data.token);
+          setTimeout(() => {
+            setLoginMessage("");
+            navigate("/coins");
+          }, 3000);
+        })
+        .catch((err) => {
+          setLoginError(err.response.data.message);
+        });
+    }
   };
 
   const logout = () => {

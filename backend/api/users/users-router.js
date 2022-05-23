@@ -2,8 +2,9 @@ const router = require("express").Router();
 const Users = require("./users-model");
 const bcrypt = require("bcryptjs");
 const generateToken = require("./token");
+const { restricted } = require("./users-middleware");
 
-router.get("/", (req, res, next) => {
+router.get("/", restricted, (req, res, next) => {
   Users.getUsers()
     .then((users) => {
       res.json(users);
@@ -11,7 +12,7 @@ router.get("/", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/:id", (req, res, next) => {
+router.get("/:id", restricted, (req, res, next) => {
   const { id } = req.params;
   Users.getById(id)
     .then((user) => {
@@ -62,7 +63,7 @@ router.post("/login", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.put("/change", (req, res, next) => {
+router.put("/change", restricted, (req, res, next) => {
   const { username, current_password, new_password } = req.body;
   Users.getBy({ username }).then((user) => {
     const success = bcrypt.compareSync(current_password, user.password);
@@ -79,7 +80,7 @@ router.put("/change", (req, res, next) => {
   });
 });
 
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", restricted, (req, res, next) => {
   const { id } = req.params;
   Users.remove(id)
     .then((removedUser) => {

@@ -164,7 +164,9 @@ const Register = ({
         {profileSuccess ? (
           <div>
             <div className="text-center text-green-800 font-bold pb-3">
-              Account Successfully Created!
+              {window.localStorage.getItem("token")
+                ? "Already logged in"
+                : "Account Successfully Created!"}
             </div>
             <LinearProgress color="inherit" />
           </div>

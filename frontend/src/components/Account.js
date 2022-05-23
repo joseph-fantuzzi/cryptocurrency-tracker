@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Avatar from "@mui/material/Avatar";
 import { FiMail } from "react-icons/fi";
 import { BiUserCircle } from "react-icons/bi";
 import LinearProgress from "@mui/material/LinearProgress";
+import axiosWithAuth from "../axios/index";
 
 const styles = {
   outerDiv: "min-h-83vh flex flex-col items-center",
@@ -57,7 +57,7 @@ const Account = ({ logout }) => {
   const newPasswordHandler = (e) => {
     e.preventDefault();
     if (new_password === confirm_password) {
-      axios
+      axiosWithAuth()
         .put(URL, { ...formValues, username: decoded.username })
         .then((res) => {
           setSuccessMessage("Password successfully updated, logging out...");
