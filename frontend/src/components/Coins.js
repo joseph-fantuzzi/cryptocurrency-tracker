@@ -9,7 +9,7 @@ const Coins = ({ cryptoData, searchValue, setSearchValue, toggleDark, filteredSe
     outerDiv: "min-h-83vh",
     innerDiv: "pb-10 pt-1",
     infoDiv: `hidden md:grid max-w-7xl w-11/12 text-sm text-white text-center mx-auto 
-    my-8 px-3 py-5 grid-cols-5 grid-rows-1
+    my-8 px-3 py-5 grid-cols-6 grid-rows-1
     flex items-center rounded-xl drop-shadow-lg ${toggleDark ? "bg-neutral-900" : "bg-slate-800"}`,
     loadingDiv: "text-4xl flex flex-col justify-center items-center",
     h1: toggleDark ? "text-white" : "",
@@ -30,11 +30,12 @@ const Coins = ({ cryptoData, searchValue, setSearchValue, toggleDark, filteredSe
           toggleDark={toggleDark}
         />
         <div className={styles.infoDiv}>
-          <h1>Market Cap Rank</h1>
+          <h1>{""}</h1>
           <h1>Currency</h1>
           <h1>Symbol</h1>
           <h1>Price</h1>
           <h1>Market Cap</h1>
+          <h1>Favorites</h1>
         </div>
         {cryptoData ? (
           filteredSearch().map((coin) => {
