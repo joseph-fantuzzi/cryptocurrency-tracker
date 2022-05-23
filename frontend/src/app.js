@@ -127,54 +127,70 @@ function App() {
     <>
       <div className={toggleDark ? "bg-zinc-800" : ""}>
         <nav
-          className={`border-b-2 border-gray-50 text-white px-5 h-12vh min-h-60px flex justify-between items-center ${
+          className={`border-b-2 border-gray-50 text-white h-12vh min-h-60px flex justify-between items-center ${
             toggleDark ? "bg-zinc-800" : "bg-gray-800"
           }`}
         >
-          <h1 className="text-2xl pl-6 font-bold">CRYPTOX.</h1>
-          <div className="hidden md:w-2/3 md:flex md:justify-around md:items-center">
-            <NavLink className="links" to="/">
-              Home
-            </NavLink>
-            <NavLink
-              className="links"
-              to={window.localStorage.getItem("token") ? "/coins" : "/login"}
-            >
-              Coins
-            </NavLink>
-            <NavLink
-              className="links"
-              to={window.localStorage.getItem("token") ? "/account" : "/login"}
-            >
-              My Account
-            </NavLink>
-            {!window.localStorage.getItem("token") ? (
-              <>
-                <NavLink className="links" to="/login">
-                  Login
-                </NavLink>
-                <NavLink
-                  className="bg-gray-100 py-2 px-4 text-black rounded-2xl hover:bg-gray-400 hover:text-white transition duration-300 ease"
-                  to="/register"
-                >
-                  Register
-                </NavLink>
-              </>
-            ) : (
-              <button
-                onClick={logout}
-                className="bg-gray-100 py-2 px-4 text-black rounded-2xl hover:bg-gray-400 hover:text-white transition duration-300 ease"
+          <div className="w-11/12 mx-auto max-w-7xl flex justify-between items-center">
+            <h1 className="text-2xl font-bold ml-10 lg:ml-0">CRYPTOX.</h1>
+            <div className="hidden lg:w-2/3 lg:flex lg:justify-between lg:items-center">
+              <NavLink
+                className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:bg-[#abeb84] hover:text-black"
+                to="/"
               >
-                Logout
-              </button>
-            )}
-            {toggleDark ? (
-              <MdDarkMode fontSize={20} onClick={() => setToggleDark(false)} />
-            ) : (
-              <MdOutlineDarkMode fontSize={20} onClick={() => setToggleDark(true)} />
-            )}
+                Home
+              </NavLink>
+              <NavLink
+                className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:bg-[#abeb84] hover:text-black"
+                to={window.localStorage.getItem("token") ? "/coins" : "/login"}
+              >
+                Coins
+              </NavLink>
+              <NavLink
+                className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:bg-[#abeb84] hover:text-black"
+                to={window.localStorage.getItem("token") ? "/account" : "/login"}
+              >
+                My Account
+              </NavLink>
+              {!window.localStorage.getItem("token") ? (
+                <>
+                  <NavLink
+                    className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:bg-[#abeb84] hover:text-black"
+                    to="/login"
+                  >
+                    Login
+                  </NavLink>
+                  <NavLink
+                    className="bg-gray-100 py-2 px-4 text-black rounded-[3em] hover:bg-[#F984FF] hover:text-white transition duration-500 ease"
+                    to="/register"
+                  >
+                    Register
+                  </NavLink>
+                </>
+              ) : (
+                <button
+                  onClick={logout}
+                  className="bg-gray-100 py-2 px-4 text-black rounded-[3em] hover:bg-[#F984FF] hover:text-white transition duration-300 ease"
+                >
+                  Logout
+                </button>
+              )}
+              {toggleDark ? (
+                <MdDarkMode
+                  className="cursor-pointer"
+                  fontSize={22}
+                  onClick={() => setToggleDark(false)}
+                />
+              ) : (
+                <MdOutlineDarkMode
+                  className="cursor-pointer"
+                  fontSize={22}
+                  onClick={() => setToggleDark(true)}
+                />
+              )}
+            </div>
           </div>
-          <div className="md:hidden">
+          <div className="lg:hidden">
             {toggleNav ? (
               <AiOutlineClose
                 fontSize={28}
@@ -184,7 +200,7 @@ function App() {
             ) : (
               <HiMenuAlt4
                 fontSize={28}
-                className="text-white cursor-pointer"
+                className="text-white cursor-pointer mr-10"
                 onClick={() => setToggleNav(true)}
               />
             )}

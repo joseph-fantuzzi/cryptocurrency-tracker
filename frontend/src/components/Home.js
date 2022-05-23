@@ -30,13 +30,6 @@ const Home = ({ cryptoData, toggleDark }) => {
         />
         <img
           className="rounded-full w-16 md:w-20 mx-1"
-          src={
-            "https://assets.coingecko.com/coins/images/8284/large/luna1557227471663.png?1567147072"
-          }
-          alt="coin"
-        />
-        <img
-          className="rounded-full w-16 md:w-20 mx-1"
           src={"https://assets.coingecko.com/coins/images/4128/large/solana.png?1640133422"}
           alt="coin"
         />

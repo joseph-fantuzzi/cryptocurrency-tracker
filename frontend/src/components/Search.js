@@ -12,12 +12,12 @@ const Search = ({ cryptoData, searchValue, setSearchValue, toggleDark }) => {
   };
 
   return (
-    <div className="w-full flex justify-center md:justify-end items-center my-8">
+    <div className="w-11/12 max-w-7xl flex justify-end mx-auto items-center my-8">
       <label className={toggleDark ? "text-white" : ""} htmlFor="search">
         Search
       </label>
       <input
-        className={`w-40 h-8 ml-3 px-3 py-1 md:mr-16 drop-shadow-lg rounded-3xl border-2 
+        className={`w-80 h-8 ml-3 px-3 py-1 drop-shadow-lg rounded-3xl border-2 
         ${toggleDark ? "bg-zinc-800 text-white" : "border-gray-800"}`}
         id="search"
         type="text"
