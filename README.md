@@ -15,5 +15,4 @@
   - `npm run seed` runs the knex seed files
   - `npm run resetdb` resets the database back to its original state
 
-<img alt="coins-desktop" src="frontend/src/images/coins-desktop.png">
-<img alt="coins-desktop-dark" src="frontend/src/images/coins-desktop-dark.png">
+<img alt="coins-desktop" src="frontend/src/images/desktop-view.png">
