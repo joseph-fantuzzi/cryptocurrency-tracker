@@ -5,10 +5,12 @@ import "../styles/styles.css";
 
 const Search = ({ cryptoData, searchValue, setSearchValue, toggleDark }) => {
   const styles = {
-    outerDiv: "w-11/12 max-w-7xl flex justify-between mx-auto items-center my-8",
+    outerDiv:
+      "w-11/12 max-w-7xl flex flex-col justify-between mx-auto items-center my-8 sm:flex-row",
     label: toggleDark ? "text-white" : "",
-    input: `w-80 h-8 ml-3 px-3 py-1 drop-shadow-lg rounded-3xl border-2 
+    input: `ml-3 px-3 py-1 drop-shadow-lg rounded-3xl border-2 
       ${toggleDark ? "bg-zinc-800 text-white" : "border-gray-800"}`,
+    search: "mt-8 sm:mt-0",
     favoriteBtn:
       "bg-gray-800 drop-shadow-md rounded-3xl text-white py-2 px-5 hover:bg-white hover:drop-shadow-lg hover:text-black transition duration-500 ease",
     favIcon: "inline ml-2",
@@ -35,7 +37,7 @@ const Search = ({ cryptoData, searchValue, setSearchValue, toggleDark }) => {
         Favorites List
         <FiArrowRightCircle fontSize={20} className={styles.favIcon} />
       </button>
-      <div>
+      <div className={styles.search}>
         <label className={styles.label} htmlFor="search">
           Search
         </label>

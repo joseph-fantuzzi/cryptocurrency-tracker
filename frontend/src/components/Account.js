@@ -8,6 +8,7 @@ import { MdVisibilityOff } from "react-icons/md";
 import { MdVisibility } from "react-icons/md";
 import LinearProgress from "@mui/material/LinearProgress";
 import axiosWithAuth from "../axios/index";
+import "../styles/other.css";
 
 const initialFormValues = {
   current_password: "",
@@ -28,7 +29,7 @@ const Account = ({ logout }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const styles = {
-    outerDiv: "flex flex-col lg-flex-row items-center",
+    outerDiv: "outer-min-height flex flex-col justify-center items-center",
     h1: "text-center pt-8 text-2xl font-semibold",
     avatar: "flex flex-col justify-center items-center pt-10",
     innerDiv: "w-full flex flex-col items-center",
@@ -42,7 +43,7 @@ const Account = ({ logout }) => {
     updatePswrdBtn:
       "bg-black mt-5 text-white rounded-2xl shadow-md py-2 hover:text-black hover:bg-gray-100 transition duration-300 ease",
     logoutBtn:
-      "max-w-md bg-[#203C7A] w-5/6 my-20 py-2 px-4 text-white rounded-2xl shadow-lg hover:bg-gray-100 hover:text-black transition duration-300 ease",
+      "max-w-md bg-[#203C7A] w-5/6 mt-16 mb-8 py-2 px-4 text-white rounded-2xl shadow-lg hover:bg-gray-100 hover:text-black transition duration-300 ease",
     form: "flex flex-col pt-5",
     input: "rounded-xl py-1 px-3 mb-3 w-full shadow-md",
     message: "text-red-500 text-center mt-5",

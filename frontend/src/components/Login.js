@@ -33,9 +33,9 @@ const Login = ({
   };
 
   return (
-    <div className="w-full flex justify-center items-center">
+    <div className="outer-min-height flex justify-center items-center">
       <form
-        className={`flex flex-col justify-between items-center my-5 px-8 py-10 rounded-3xl w-5/6 max-w-xl drop-shadow-2xl ${
+        className={`flex flex-col justify-between items-center my-8 px-8 py-10 rounded-3xl w-5/6 max-w-xl drop-shadow-2xl ${
           toggleDark ? "bg-gray-100" : "bg-gray-300"
         }`}
         onSubmit={submitHandler}

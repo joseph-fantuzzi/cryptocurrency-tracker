@@ -3,10 +3,11 @@ import Search from "./Search";
 import Coin from "./Coin";
 import { Navigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import "../styles/other.css";
 
 const Coins = ({ cryptoData, searchValue, setSearchValue, toggleDark, filteredSearch }) => {
   const styles = {
-    outerDiv: "",
+    outerDiv: "outer-min-height",
     innerDiv: "pb-10 pt-1",
     infoDiv: `hidden md:grid max-w-7xl w-11/12 text-sm text-white text-center mx-auto 
     my-8 px-3 py-5 grid-cols-6 grid-rows-1

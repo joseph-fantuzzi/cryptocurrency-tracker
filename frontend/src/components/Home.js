@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/styles.css";
+import "../styles/other.css";
 
 const images = {
   img1: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
@@ -10,7 +11,7 @@ const images = {
 
 const Home = ({ cryptoData, toggleDark }) => {
   const styles = {
-    outerDiv: "flex flex-col justify-center",
+    outerDiv: "outer-min-height flex flex-col justify-center",
     h1: `font-bold text-center text-6xl md:text-8xl  pt-10 pb-6 ${toggleDark ? "text-white" : ""}`,
     p: `text-center px-10 mb-10 text-2xl md:text-4xl ${toggleDark ? "text-white" : ""}`,
     innerDiv: "flex w-full justify-center mb-10 items-center",

@@ -58,3 +58,7 @@ body {
   margin-top: 3px;
   cursor: pointer;
 }
+
+.outer-min-height {
+  min-height: calc(95vh - 100px);
+}
