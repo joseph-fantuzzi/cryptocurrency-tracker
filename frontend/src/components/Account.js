@@ -28,7 +28,7 @@ const Account = ({ logout }) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const styles = {
-    outerDiv: "min-h-83vh flex flex-col lg-flex-row items-center",
+    outerDiv: "flex flex-col lg-flex-row items-center",
     h1: "text-center pt-8 text-2xl font-semibold",
     avatar: "flex flex-col justify-center items-center pt-10",
     innerDiv: "w-full flex flex-col items-center",

@@ -6,6 +6,7 @@ import Account from "./components/Account";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Favorites from "./components/Favorites";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import { HiMenuAlt4 } from "react-icons/hi";
@@ -125,9 +126,9 @@ function App() {
 
   return (
     <>
-      <div className={toggleDark ? "bg-zinc-800" : ""}>
+      <div className={`min-h-[95vh] ${toggleDark ? "bg-zinc-800" : ""}`}>
         <nav
-          className={`border-b-2 border-gray-50 text-white h-12vh min-h-60px flex justify-between items-center ${
+          className={`border-b-2 border-gray-50 text-white py-8 flex justify-between items-center ${
             toggleDark ? "bg-zinc-800" : "bg-gray-800"
           }`}
         >
@@ -306,11 +307,12 @@ function App() {
               />
             }
           />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
         </Routes>
       </div>
       <footer
-        className={`flex justify-center items-center text-white h-5vh min-h-30px text-xs ${
+        className={`flex justify-center items-center text-white min-h-[5vh] text-xs ${
           toggleDark ? "bg-zinc-800" : "bg-gray-800"
         }`}
       >

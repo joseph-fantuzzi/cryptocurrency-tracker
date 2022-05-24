@@ -10,7 +10,7 @@ const images = {
 
 const Home = ({ cryptoData, toggleDark }) => {
   const styles = {
-    outerDiv: "min-h-83vh flex flex-col justify-center",
+    outerDiv: "flex flex-col justify-center",
     h1: `font-bold text-center text-6xl md:text-8xl  pt-10 pb-6 ${toggleDark ? "text-white" : ""}`,
     p: `text-center px-10 mb-10 text-2xl md:text-4xl ${toggleDark ? "text-white" : ""}`,
     innerDiv: "flex w-full justify-center mb-10 items-center",

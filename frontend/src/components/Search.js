@@ -9,7 +9,8 @@ const Search = ({ cryptoData, searchValue, setSearchValue, toggleDark }) => {
     label: toggleDark ? "text-white" : "",
     input: `w-80 h-8 ml-3 px-3 py-1 drop-shadow-lg rounded-3xl border-2 
       ${toggleDark ? "bg-zinc-800 text-white" : "border-gray-800"}`,
-    favoriteBtn: "bg-gray-800 rounded-3xl text-white py-2 px-5",
+    favoriteBtn:
+      "bg-gray-800 drop-shadow-md rounded-3xl text-white py-2 px-5 hover:bg-white hover:drop-shadow-lg hover:text-black transition duration-500 ease",
     favIcon: "inline ml-2",
   };
 

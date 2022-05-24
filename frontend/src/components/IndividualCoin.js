@@ -21,7 +21,7 @@ const IndividualCoin = ({ toggleDark }) => {
   }, [itemID]);
 
   return coin ? (
-    <div className="min-h-83vh w-3/4 mx-auto py-10 text-center flex flex-col items-center justify-center">
+    <div className="w-3/4 mx-auto py-10 text-center flex flex-col items-center justify-center">
       <h1 className="text-3xl pb-5">{coin.name}</h1>
       <img className="w-96" src={coin.image.large} alt={coin} />
       <p>Sybmol: {coin.symbol}</p>
@@ -63,7 +63,7 @@ const IndividualCoin = ({ toggleDark }) => {
       </div>
     </div>
   ) : (
-    <div className="min-h-83vh text-4xl flex flex-col justify-center items-center">
+    <div className="text-4xl flex flex-col justify-center items-center">
       <h1 className={toggleDark ? "text-white" : ""}>Loading...</h1>
       <CircularProgress size={100} style={{ margin: "1em" }} />
     </div>
