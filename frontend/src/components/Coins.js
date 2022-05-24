@@ -8,7 +8,7 @@ import "../styles/other.css";
 const Coins = ({ cryptoData, searchValue, setSearchValue, toggleDark, filteredSearch }) => {
   const styles = {
     outerDiv: "outer-min-height",
-    innerDiv: "pb-10 pt-1",
+    innerDiv: "pb-10",
     infoDiv: `hidden md:grid max-w-7xl w-11/12 text-sm text-white text-center mx-auto 
     my-8 px-3 py-5 grid-cols-6 grid-rows-1
     flex items-center rounded-xl drop-shadow-lg ${toggleDark ? "bg-neutral-900" : "bg-slate-800"}`,

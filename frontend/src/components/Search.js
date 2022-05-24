@@ -8,9 +8,9 @@ const Search = ({ cryptoData, searchValue, setSearchValue, toggleDark }) => {
     outerDiv:
       "w-11/12 max-w-7xl flex flex-col justify-between mx-auto items-center my-8 sm:flex-row",
     label: toggleDark ? "text-white" : "",
-    input: `ml-3 px-3 py-1 drop-shadow-lg rounded-3xl border-2 
+    input: `w-full max-w-xs min-w-[140px] ml-3 px-3 py-1 drop-shadow-lg rounded-3xl border-2 
       ${toggleDark ? "bg-zinc-800 text-white" : "border-gray-800"}`,
-    search: "mt-8 sm:mt-0",
+    search: "w-4/6 flex items-center justify-end mt-8 sm:mt-0",
     favoriteBtn:
       "bg-gray-800 drop-shadow-md rounded-3xl text-white py-2 px-5 hover:bg-white hover:drop-shadow-lg hover:text-black transition duration-500 ease",
     favIcon: "inline ml-2",
