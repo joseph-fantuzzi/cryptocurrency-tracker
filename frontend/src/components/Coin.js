@@ -17,15 +17,16 @@ const Coin = ({ coin, toggleDark }) => {
     img: "w-10 md:w-12 rounded-full",
     span: "md:hidden",
     favDiv: "flex justify-center",
-    star: "cursor-pointer",
-    go: "flex justify-center cursor-pointer",
+    star: "cursor-pointer drop-shadow-md",
+    go: "flex justify-center",
+    icon: "drop-shadow-md cursor-pointer hover:text-white transition duration-500 ease",
   };
 
   return (
     <div className={styles.outerDiv}>
       <div className={styles.go}>
         <Link to={`/coins/${coin.id}`}>
-          <BsFillArrowRightCircleFill fontSize={22} />
+          <BsFillArrowRightCircleFill fontSize={22} className={styles.icon} />
         </Link>
       </div>
       <div className={styles.imgDiv}>
