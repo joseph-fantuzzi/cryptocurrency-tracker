@@ -126,7 +126,9 @@ function App() {
 
   return (
     <>
-      <div className={`min-h-[95vh] ${toggleDark ? "bg-zinc-800" : ""}`}>
+      <div
+        className={`min-h-[95vh] transition duration-500 ease ${toggleDark ? "bg-zinc-800" : ""}`}
+      >
         <nav
           className={`text-white min-h-[100px] flex justify-between items-center ${
             toggleDark ? "bg-zinc-800" : "bg-gray-800"
