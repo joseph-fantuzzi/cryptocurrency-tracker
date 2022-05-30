@@ -22,6 +22,8 @@ const Home = ({ cryptoData, toggleDark }) => {
     transition duration-500 ease ${
       toggleDark ? "hover:bg-gray-400" : "hover:bg-gray-800 hover:text-white"
     }`,
+    toggleDiv: "text-center",
+    toggle: "bg-[#abeb84] py-3 px-4 rounded-2xl hover:bg-[#F984FF] transition duration-500 ease",
   };
 
   return (
@@ -36,6 +38,11 @@ const Home = ({ cryptoData, toggleDark }) => {
       <div className={styles.btnDiv}>
         <Link to="/login">
           <button className={styles.btn}>Login</button>
+        </Link>
+      </div>
+      <div className={styles.toggleDiv}>
+        <Link to="/toggle">
+          <button className={styles.toggle}>Interactive Dark Mode</button>
         </Link>
       </div>
     </div>

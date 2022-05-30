@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Favorites from "./components/Favorites";
+import Toggle from "./components/Toggle";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import { HiMenuAlt4 } from "react-icons/hi";
@@ -308,6 +309,10 @@ function App() {
                 profileSuccess={profileSuccess}
               />
             }
+          />
+          <Route
+            path="/toggle"
+            element={<Toggle toggleDark={toggleDark} setToggleDark={setToggleDark} />}
           />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
