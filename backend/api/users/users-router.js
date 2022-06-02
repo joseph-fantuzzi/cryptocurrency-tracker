@@ -107,7 +107,16 @@ router.post("/:id/favorites", restricted, (req, res, next) => {
   const { coin_name } = req.body;
   Users.addFavorites(id, coin_name)
     .then((favorites) => {
-      res.json(favorites);
+      res.status(201).json(favorites);
+    })
+    .catch((err) => next(err));
+});
+
+router.delete("/favorites/:favorites_id", restricted, (req, res, next) => {
+  const { favorites_id } = req.params;
+  Users.removeFavorites(favorites_id)
+    .then(() => {
+      res.json({ message: "Successfully deleted." });
     })
     .catch((err) => next(err));
 });

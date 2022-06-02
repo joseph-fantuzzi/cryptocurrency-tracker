@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import Coin from "./Coin";
+import axiosWithAuth from "../axios/index";
+import jwt_decode from "jwt-decode";
 import { Navigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import "../styles/other.css";
 
+const baseURL = "http://localhost:9000/api/users";
+
 const Coins = ({ cryptoData, searchValue, setSearchValue, toggleDark, filteredSearch }) => {
+  const [favoritesList, setFavoritesList] = useState([]);
+
+  const token = window.localStorage.getItem("token");
+  const decodedToken = jwt_decode(token);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`${baseURL}/${decodedToken.subject}/favorites`)
+      .then((res) => {
+        setFavoritesList(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [decodedToken.subject]);
+
+  if (!window.localStorage.getItem("token")) {
+    return <Navigate to="/login" replace />;
+  }
+
   const styles = {
     outerDiv: "outer-min-height",
     innerDiv: "pb-10",
@@ -16,10 +40,6 @@ const Coins = ({ cryptoData, searchValue, setSearchValue, toggleDark, filteredSe
     h1: toggleDark ? "text-white" : "",
     noResultsDiv: `text-center mb-auto ${toggleDark ? "text-white" : ""}`,
   };
-
-  if (!window.localStorage.getItem("token")) {
-    return <Navigate to="/login" replace />;
-  }
 
   return (
     <div className={styles.outerDiv}>
@@ -40,7 +60,14 @@ const Coins = ({ cryptoData, searchValue, setSearchValue, toggleDark, filteredSe
         </div>
         {cryptoData ? (
           filteredSearch().map((coin) => {
-            return <Coin key={coin.id} coin={coin} toggleDark={toggleDark} />;
+            return (
+              <Coin
+                key={coin.id}
+                coin={coin}
+                toggleDark={toggleDark}
+                favoritesList={favoritesList}
+              />
+            );
           })
         ) : (
           <div className={styles.loadingDiv}>

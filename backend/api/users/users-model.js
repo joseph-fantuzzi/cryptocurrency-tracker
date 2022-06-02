@@ -34,7 +34,7 @@ const getFavorites = async (user_id) => {
   const data = await db("users as u")
     .join("favorites as f", "u.user_id", "f.user_id")
     .select("u.user_id", "u.username", "f.favorites_id", "f.coin_name")
-    .orderBy("f.coin_name", "asc")
+    .orderBy("f.favorites_id", "asc")
     .where("u.user_id", user_id);
   return data;
 };
@@ -42,6 +42,10 @@ const getFavorites = async (user_id) => {
 const addFavorites = async (user_id, coin_name) => {
   await db("favorites").insert({ coin_name, user_id });
   return getFavorites(user_id);
+};
+
+const removeFavorites = async (favorites_id) => {
+  await db("favorites").where({ favorites_id }).del();
 };
 
 module.exports = {
@@ -53,4 +57,5 @@ module.exports = {
   remove,
   getFavorites,
   addFavorites,
+  removeFavorites,
 };

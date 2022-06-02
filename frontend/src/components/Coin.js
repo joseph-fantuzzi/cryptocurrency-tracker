@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axiosWithAuth from "../axios/index";
+import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import "../styles/styles.css";
 
-const Coin = ({ coin, toggleDark }) => {
+const baseURL = "http://localhost:9000/api/users";
+
+const Coin = ({ coin, toggleDark, favoritesList }) => {
   const [favorite, setFavorite] = useState(false);
+  const [favoriteObj, setFavoriteObj] = useState([]);
 
   const styles = {
     outerDiv: `max-w-7xl w-11/12 text-center mx-auto py-2 px-2 grid grid-cols-1 
@@ -20,6 +25,42 @@ const Coin = ({ coin, toggleDark }) => {
     star: "cursor-pointer drop-shadow-md",
     go: "flex justify-center",
     icon: "drop-shadow-md cursor-pointer hover:text-white transition duration-500 ease",
+  };
+
+  const token = window.localStorage.getItem("token");
+  const decodedToken = jwt_decode(token);
+
+  useEffect(() => {
+    favoritesList.forEach((obj) => {
+      if (obj.coin_name === coin.name) {
+        setFavorite(true);
+        setFavoriteObj(obj);
+        return;
+      }
+    });
+  }, [favoritesList, coin.name]);
+
+  const favoritesHandler = () => {
+    setFavorite(!favorite);
+    if (!favorite) {
+      axiosWithAuth()
+        .post(`${baseURL}/${decodedToken.subject}/favorites`, { coin_name: coin.name })
+        .then((res) => {
+          return;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } else {
+      axiosWithAuth()
+        .delete(`${baseURL}/favorites/${favoriteObj.favorites_id}`)
+        .then((res) => {
+          return;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
 
   return (
@@ -43,9 +84,9 @@ const Coin = ({ coin, toggleDark }) => {
       </h2>
       <div className={styles.favDiv}>
         {favorite ? (
-          <AiFillStar className={styles.star} fontSize={22} onClick={() => setFavorite(false)} />
+          <AiFillStar className={styles.star} fontSize={22} onClick={favoritesHandler} />
         ) : (
-          <AiOutlineStar className={styles.star} fontSize={22} onClick={() => setFavorite(true)} />
+          <AiOutlineStar className={styles.star} fontSize={22} onClick={favoritesHandler} />
         )}
       </div>
     </div>
