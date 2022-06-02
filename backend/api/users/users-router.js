@@ -93,4 +93,23 @@ router.delete("/:id", restricted, (req, res, next) => {
     .catch((err) => next(err));
 });
 
+router.get("/:id/favorites", restricted, (req, res, next) => {
+  const { id } = req.params;
+  Users.getFavorites(id)
+    .then((favorites) => {
+      res.json(favorites);
+    })
+    .catch((err) => next(err));
+});
+
+router.post("/:id/favorites", (req, res, next) => {
+  const { id } = req.params;
+  const { coin_name } = req.body;
+  Users.addFavorites(id, coin_name)
+    .then((favorites) => {
+      res.json(favorites);
+    })
+    .catch((err) => next(err));
+});
+
 module.exports = router;
