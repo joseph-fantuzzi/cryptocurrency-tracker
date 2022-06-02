@@ -102,7 +102,7 @@ router.get("/:id/favorites", restricted, (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.post("/:id/favorites", (req, res, next) => {
+router.post("/:id/favorites", restricted, (req, res, next) => {
   const { id } = req.params;
   const { coin_name } = req.body;
   Users.addFavorites(id, coin_name)
