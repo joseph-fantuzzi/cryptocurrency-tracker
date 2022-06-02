@@ -30,8 +30,9 @@ const Account = ({ logout }) => {
 
   const styles = {
     outerDiv: "outer-min-height flex flex-col justify-center items-center",
-    h1: "text-center pt-8 text-2xl font-semibold",
+    h1: "text-center pt-8 text-4xl font-semibold",
     avatar: "flex flex-col justify-center items-center pt-10",
+    avatarH1: "text-black font-bold text-3xl",
     innerDiv: "w-full flex flex-col items-center",
     infoDiv: "max-w-md flex flex-col mt-10 p-8 pt-10 bg-gray-300 shadow-lg rounded-2xl w-5/6",
     h2: "font-bold text-center pb-5",
@@ -43,7 +44,7 @@ const Account = ({ logout }) => {
     updatePswrdBtn:
       "bg-black mt-5 text-white rounded-2xl shadow-md py-2 hover:text-black hover:bg-gray-100 transition duration-300 ease",
     logoutBtn:
-      "max-w-md bg-[#203C7A] w-5/6 mt-16 mb-8 py-2 px-4 text-white rounded-2xl shadow-lg hover:bg-gray-100 hover:text-black transition duration-300 ease",
+      "max-w-md bg-[#EBAAE4] w-5/6 mt-16 mb-8 py-2 px-4 rounded-2xl shadow-lg hover:bg-gray-100 transition duration-300 ease",
     form: "flex flex-col pt-5",
     input: "rounded-xl py-1 px-3 mb-3 w-full shadow-md",
     message: "text-red-500 text-center mt-5",
@@ -100,9 +101,11 @@ const Account = ({ logout }) => {
         ${decoded.last_name}`}
         </h1>
         <div className={styles.avatar}>
-          <Avatar sx={{ bgcolor: "#203C7A", width: 100, height: 100 }}>
-            {decoded.first_name[0]}
-            {decoded.last_name[0]}
+          <Avatar sx={{ bgcolor: "#59FF00", width: 150, height: 150 }}>
+            <h1 className={styles.avatarH1}>
+              {decoded.first_name[0]}
+              {decoded.last_name[0]}
+            </h1>
           </Avatar>
         </div>
       </div>
