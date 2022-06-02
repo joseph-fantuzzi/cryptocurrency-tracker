@@ -43,6 +43,7 @@ function App() {
   const [loginError, setLoginError] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
   const [profileSuccess, setProfileSuccess] = useState(false);
+  const [favoritesList, setFavoritesList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -277,6 +278,8 @@ function App() {
                 setSearchValue={setSearchValue}
                 toggleDark={toggleDark}
                 filteredSearch={filteredSearch}
+                favoritesList={favoritesList}
+                setFavoritesList={setFavoritesList}
               />
             }
           />
@@ -314,7 +317,7 @@ function App() {
             path="/toggle"
             element={<Toggle toggleDark={toggleDark} setToggleDark={setToggleDark} />}
           />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/favorites" element={<Favorites favoritesList={favoritesList} />} />
           <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
         </Routes>
       </div>

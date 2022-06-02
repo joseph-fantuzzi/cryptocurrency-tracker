@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Search from "./Search";
 import Coin from "./Coin";
 import axiosWithAuth from "../axios/index";
@@ -9,9 +9,15 @@ import "../styles/other.css";
 
 const baseURL = "http://localhost:9000/api/users";
 
-const Coins = ({ cryptoData, searchValue, setSearchValue, toggleDark, filteredSearch }) => {
-  const [favoritesList, setFavoritesList] = useState([]);
-
+const Coins = ({
+  cryptoData,
+  searchValue,
+  setSearchValue,
+  toggleDark,
+  filteredSearch,
+  favoritesList,
+  setFavoritesList,
+}) => {
   const token = window.localStorage.getItem("token");
   const decodedToken = jwt_decode(token);
 
@@ -24,7 +30,7 @@ const Coins = ({ cryptoData, searchValue, setSearchValue, toggleDark, filteredSe
       .catch((err) => {
         console.error(err);
       });
-  }, [decodedToken.subject]);
+  }, [decodedToken.subject, setFavoritesList]);
 
   if (!window.localStorage.getItem("token")) {
     return <Navigate to="/login" replace />;

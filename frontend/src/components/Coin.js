@@ -38,7 +38,7 @@ const Coin = ({ coin, toggleDark, favoritesList }) => {
         return;
       }
     });
-  }, [favoritesList, coin.name]);
+  }, [coin.name, favoritesList]);
 
   const favoritesHandler = () => {
     setFavorite(!favorite);
