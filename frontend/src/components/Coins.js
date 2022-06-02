@@ -3,7 +3,6 @@ import Search from "./Search";
 import Coin from "./Coin";
 import axiosWithAuth from "../axios/index";
 import jwt_decode from "jwt-decode";
-import { Navigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import "../styles/other.css";
 
@@ -31,10 +30,6 @@ const Coins = ({
         console.error(err);
       });
   }, [decodedToken.subject, setFavoritesList]);
-
-  if (!window.localStorage.getItem("token")) {
-    return <Navigate to="/login" replace />;
-  }
 
   const styles = {
     outerDiv: "outer-min-height",

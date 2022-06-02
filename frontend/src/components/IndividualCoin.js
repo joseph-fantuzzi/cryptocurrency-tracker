@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../styles/styles.css";
 import Ticker from "./Ticker";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -19,10 +19,6 @@ const IndividualCoin = ({ toggleDark }) => {
         console.error(err);
       });
   }, [itemID]);
-
-  if (!window.localStorage.getItem("token")) {
-    return <Navigate to="/login" replace />;
-  }
 
   return coin ? (
     <div className="w-3/4 mx-auto py-10 text-center flex flex-col items-center justify-center">

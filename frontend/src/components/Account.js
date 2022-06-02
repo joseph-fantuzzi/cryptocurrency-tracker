@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Avatar from "@mui/material/Avatar";
 import { FiMail } from "react-icons/fi";
@@ -50,10 +49,6 @@ const Account = ({ logout }) => {
     message: "text-red-500 text-center mt-5",
     success: "text-green-800 text-center my-3",
   };
-
-  if (!window.localStorage.getItem("token")) {
-    return <Navigate to="/login" replace />;
-  }
 
   const { current_password, new_password, confirm_password } = formValues;
 
