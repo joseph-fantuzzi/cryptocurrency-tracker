@@ -137,7 +137,7 @@ function App() {
           }`}
         >
           <div className="w-11/12 mx-auto max-w-7xl flex justify-between items-center">
-            <h1 className="text-2xl font-bold ml-10 lg:ml-0">CRYPTOX.</h1>
+            <h1 className="text-[#59FF00] text-2xl font-bold ml-10 lg:ml-0">CRYPTOX.</h1>
             <div className="hidden lg:w-2/3 lg:flex lg:justify-between lg:items-center">
               <NavLink
                 className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:bg-[#abeb84] hover:text-black"
@@ -317,7 +317,7 @@ function App() {
             path="/toggle"
             element={<Toggle toggleDark={toggleDark} setToggleDark={setToggleDark} />}
           />
-          <Route path="/favorites" element={<Favorites favoritesList={favoritesList} />} />
+          <Route path="/favorites" element={<Favorites toggleDark={toggleDark} />} />
           <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
         </Routes>
       </div>
