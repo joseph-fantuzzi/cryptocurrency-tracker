@@ -63,9 +63,9 @@ const IndividualCoin = ({ toggleDark }) => {
       </div>
     </div>
   ) : (
-    <div className="text-4xl flex flex-col justify-center items-center">
+    <div className="outer-min-height text-4xl flex flex-col justify-center items-center">
       <h1 className={toggleDark ? "text-white" : ""}>Loading...</h1>
-      <CircularProgress size={100} style={{ margin: "1em" }} />
+      <CircularProgress color="inherit" size={100} style={{ margin: "1em" }} />
     </div>
   );
 };

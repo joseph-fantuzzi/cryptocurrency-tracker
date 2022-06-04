@@ -43,11 +43,11 @@ const Account = ({ logout }) => {
     updatePswrdBtn:
       "bg-black mt-5 text-white rounded-2xl shadow-md py-2 hover:text-black hover:bg-gray-100 transition duration-300 ease",
     logoutBtn:
-      "max-w-md bg-[#EBAAE4] w-5/6 mt-16 mb-8 py-2 px-4 rounded-2xl shadow-lg hover:bg-gray-100 transition duration-300 ease",
+      "max-w-md w-5/6 mt-16 mb-8 py-2 px-4 rounded-2xl drop-shadow-lg bg-white hover:bg-[#EBAAE4] transition duration-300 ease",
     form: "flex flex-col pt-5",
     input: "rounded-xl py-1 px-3 mb-3 w-full shadow-md",
     message: "text-red-500 text-center mt-5",
-    success: "text-green-800 text-center my-3",
+    success: "text-[#59FF00] text-center my-3",
   };
 
   const { current_password, new_password, confirm_password } = formValues;

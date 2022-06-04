@@ -92,7 +92,7 @@ const Login = ({
         <div className="text-red-500 text-center font-bold pb-5">{loginError}</div>
         {loginMessage ? (
           <div>
-            <div className="text-green-800 font-bold pb-3">{loginMessage}</div>
+            <div className="text-[#59FF00] font-bold pb-3">{loginMessage}</div>
             <LinearProgress color="inherit" />
           </div>
         ) : (

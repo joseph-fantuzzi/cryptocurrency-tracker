@@ -163,7 +163,7 @@ const Register = ({
         <div className="text-red-500 text-center font-bold pb-5">{registerError}</div>
         {profileSuccess ? (
           <div>
-            <div className="text-center text-green-800 font-bold pb-3">
+            <div className="text-center text-[#59FF00] font-bold pb-3">
               {window.localStorage.getItem("token")
                 ? "Already logged in"
                 : "Account Successfully Created!"}
