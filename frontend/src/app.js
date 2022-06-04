@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Favorites from "./components/Favorites";
 import Toggle from "./components/Toggle";
+import ProtectedRoute from "./components/ProtectedRoute";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import { HiMenuAlt4 } from "react-icons/hi";
@@ -272,19 +273,35 @@ function App() {
           <Route
             path="/coins"
             element={
-              <Coins
-                cryptoData={cryptoData}
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-                toggleDark={toggleDark}
-                filteredSearch={filteredSearch}
-                favoritesList={favoritesList}
-                setFavoritesList={setFavoritesList}
-              />
+              <ProtectedRoute>
+                <Coins
+                  cryptoData={cryptoData}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  toggleDark={toggleDark}
+                  filteredSearch={filteredSearch}
+                  favoritesList={favoritesList}
+                  setFavoritesList={setFavoritesList}
+                />
+              </ProtectedRoute>
             }
           />
-          <Route path="/coins/:itemID" element={<IndividualCoin toggleDark={toggleDark} />} />
-          <Route path="/account" element={<Account logout={logout} />} />
+          <Route
+            path="/coins/:itemID"
+            element={
+              <ProtectedRoute>
+                <IndividualCoin toggleDark={toggleDark} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account logout={logout} />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/login"
             element={
@@ -317,7 +334,14 @@ function App() {
             path="/toggle"
             element={<Toggle toggleDark={toggleDark} setToggleDark={setToggleDark} />}
           />
-          <Route path="/favorites" element={<Favorites toggleDark={toggleDark} />} />
+          <Route
+            path="/favorites"
+            element={
+              <ProtectedRoute>
+                <Favorites toggleDark={toggleDark} />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
         </Routes>
       </div>
