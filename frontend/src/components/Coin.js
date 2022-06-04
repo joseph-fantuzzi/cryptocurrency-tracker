@@ -31,20 +31,25 @@ const Coin = ({ coin, toggleDark, favoritesList }) => {
   const decodedToken = jwt_decode(token);
 
   useEffect(() => {
-    favoritesList.forEach((obj) => {
-      if (obj.coin_name === coin.name) {
+    for (let i = 0; i < favoritesList.length; i++) {
+      if (favoritesList[i].coin_name === coin.name) {
         setFavorite(true);
-        setFavoriteObj(obj);
+        setFavoriteObj(favoritesList[i]);
         return;
       }
-    });
+    }
+    setFavorite(false);
+    setFavoriteObj([]);
   }, [coin.name, favoritesList]);
 
   const favoritesHandler = () => {
     setFavorite(!favorite);
     if (!favorite) {
       axiosWithAuth()
-        .post(`${baseURL}/${decodedToken.subject}/favorites`, { coin_name: coin.name })
+        .post(`${baseURL}/${decodedToken.subject}/favorites`, {
+          coin_name: coin.name,
+          coin_id: coin.id,
+        })
         .then((res) => {
           return;
         })

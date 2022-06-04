@@ -37,7 +37,7 @@ const Coins = ({
     infoDiv: `hidden md:grid max-w-7xl w-11/12 text-sm text-white text-center mx-auto 
     my-8 px-3 py-5 grid-cols-6 grid-rows-1
     flex items-center rounded-xl drop-shadow-lg ${toggleDark ? "bg-neutral-900" : "bg-slate-800"}`,
-    loadingDiv: "text-4xl flex flex-col justify-center items-center",
+    loadingDiv: "outer-min-height text-4xl flex flex-col justify-center items-center",
     h1: toggleDark ? "text-white" : "",
     noResultsDiv: `text-center mb-auto ${toggleDark ? "text-white" : ""}`,
   };
@@ -73,7 +73,7 @@ const Coins = ({
         ) : (
           <div className={styles.loadingDiv}>
             <h1 className={styles.h1}>Loading...</h1>
-            <CircularProgress size={100} style={{ margin: "1em" }} />
+            <CircularProgress color="inherit" size={100} style={{ margin: "1em" }} />
           </div>
         )}
       </div>

@@ -10,7 +10,8 @@ exports.up = function (knex) {
     })
     .createTable("favorites", (tbl) => {
       tbl.increments("favorites_id");
-      tbl.string("coin_name");
+      tbl.string("coin_name").notNullable();
+      tbl.string("coin_id").notNullable();
       tbl.integer("user_id").unsigned().notNullable().references("user_id").inTable("users");
     });
 };

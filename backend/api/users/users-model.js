@@ -33,14 +33,14 @@ const remove = async (user_id) => {
 const getFavorites = async (user_id) => {
   const data = await db("users as u")
     .join("favorites as f", "u.user_id", "f.user_id")
-    .select("u.user_id", "u.username", "f.favorites_id", "f.coin_name")
-    .orderBy("f.favorites_id", "asc")
+    .select("u.user_id", "u.username", "f.favorites_id", "f.coin_name", "f.coin_id")
+    .orderBy("f.coin_name", "asc")
     .where("u.user_id", user_id);
   return data;
 };
 
-const addFavorites = async (user_id, coin_name) => {
-  await db("favorites").insert({ coin_name, user_id });
+const addFavorites = async (user_id, coin_name, coin_id) => {
+  await db("favorites").insert({ coin_name, coin_id, user_id });
   return getFavorites(user_id);
 };
 

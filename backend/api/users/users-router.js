@@ -104,8 +104,8 @@ router.get("/:id/favorites", restricted, (req, res, next) => {
 
 router.post("/:id/favorites", restricted, (req, res, next) => {
   const { id } = req.params;
-  const { coin_name } = req.body;
-  Users.addFavorites(id, coin_name)
+  const { coin_name, coin_id } = req.body;
+  Users.addFavorites(id, coin_name, coin_id)
     .then((favorites) => {
       res.status(201).json(favorites);
     })

@@ -15,7 +15,7 @@ const Favorites = ({ toggleDark }) => {
     outerDiv: "outer-min-height flex flex-col justify-center items-center",
     h1: `text-center font-bold py-8 text-5xl ${toggleDark ? "text-[#59FF00]" : "text-gray-800"}`,
     favorite:
-      "grid grid-cols-3 grid-rows-1 justify-items-center items-center py-3 w-11/12 bg-gray-100 px-2 py-1 rounded-xl mb-5 drop-shadow-lg max-w-2xl",
+      "grid grid-cols-3 grid-rows-1 justify-items-center items-center py-3 w-11/12 bg-gray-100 px-2 py-1 rounded-xl mb-5 drop-shadow-lg max-w-sm",
     arrow: "drop-shadow-md cursor-pointer hover:text-gray-100 transition duration-300 ease",
     trash: "drop-shadow-md cursor-pointer hover:text-red-500 transition duration-300 ease",
   };
@@ -55,21 +55,25 @@ const Favorites = ({ toggleDark }) => {
   return (
     <div className={styles.outerDiv}>
       <h1 className={styles.h1}>Favorites List</h1>
-      {list.map((favorite) => {
-        return (
-          <div key={favorite.favorites_id} className={styles.favorite}>
-            <Link to={`/coins/${favorite.coin_name.toLowerCase()}`}>
-              <BsFillArrowRightCircleFill fontSize={20} className={styles.arrow} />
-            </Link>
-            {favorite.coin_name}
-            <GoTrashcan
-              fontSize={20}
-              className={styles.trash}
-              onClick={() => deleteFavoriteHandler(favorite.favorites_id)}
-            />
-          </div>
-        );
-      })}
+      {list.length === 0 ? (
+        <p>There are no favorite coins in your list currently.</p>
+      ) : (
+        list.map((favorite) => {
+          return (
+            <div key={favorite.favorites_id} className={styles.favorite}>
+              <Link to={`/coins/${favorite.coin_id}`}>
+                <BsFillArrowRightCircleFill fontSize={20} className={styles.arrow} />
+              </Link>
+              {favorite.coin_name}
+              <GoTrashcan
+                fontSize={20}
+                className={styles.trash}
+                onClick={() => deleteFavoriteHandler(favorite.favorites_id)}
+              />
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };
