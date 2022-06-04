@@ -9,6 +9,7 @@ import Register from "./components/Register";
 import Favorites from "./components/Favorites";
 import Toggle from "./components/Toggle";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ErrorPage from "./components/ErrorPage";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import { HiMenuAlt4 } from "react-icons/hi";
@@ -343,6 +344,7 @@ function App() {
             }
           />
           <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
       <footer
