@@ -12,5 +12,5 @@ const user = {
 };
 
 exports.seed = async function (knex) {
-  return knex("users").insert([user]);
+  return knex("users").insert(user);
 };
