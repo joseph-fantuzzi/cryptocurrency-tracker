@@ -17,6 +17,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import "./styles/other.css";
+import { baseURL } from "./config/index";
 
 const initialRegisterFormValues = {
   first_name: "",
@@ -31,8 +32,6 @@ const initialLoginFormValues = {
   username: "",
   password: "",
 };
-
-const baseURL = "http://localhost:9000/api/users";
 
 function App() {
   const [cryptoData, setCryptoData] = useState([]);

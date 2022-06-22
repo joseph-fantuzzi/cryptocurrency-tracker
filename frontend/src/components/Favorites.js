@@ -5,8 +5,7 @@ import jwt_decode from "jwt-decode";
 import { GoTrashcan } from "react-icons/go";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import "../styles/other.css";
-
-const baseURL = "http://localhost:9000/api/users";
+import { baseURL } from "../config/index";
 
 const Favorites = ({ toggleDark }) => {
   const [list, setList] = useState([]);

@@ -8,6 +8,7 @@ import { MdVisibility } from "react-icons/md";
 import LinearProgress from "@mui/material/LinearProgress";
 import axiosWithAuth from "../axios/index";
 import "../styles/other.css";
+import { baseURL } from "../config/index";
 
 const initialFormValues = {
   current_password: "",
@@ -15,7 +16,7 @@ const initialFormValues = {
   confirm_password: "",
 };
 
-const URL = "http://localhost:9000/api/users/change";
+const URL = `${baseURL}/change`;
 
 const Account = ({ logout }) => {
   const [formValues, setFormValues] = useState(initialFormValues);

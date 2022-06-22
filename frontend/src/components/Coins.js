@@ -5,8 +5,7 @@ import axiosWithAuth from "../axios/index";
 import jwt_decode from "jwt-decode";
 import CircularProgress from "@mui/material/CircularProgress";
 import "../styles/other.css";
-
-const baseURL = "http://localhost:9000/api/users";
+import { baseURL } from "../config/index";
 
 const Coins = ({
   cryptoData,

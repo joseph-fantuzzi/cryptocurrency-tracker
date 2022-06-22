@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import "../styles/styles.css";
-
-const baseURL = "http://localhost:9000/api/users";
+import { baseURL } from "../config/index";
 
 const Coin = ({ coin, toggleDark, favoritesList }) => {
   const [favorite, setFavorite] = useState(false);
