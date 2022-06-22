@@ -13,8 +13,8 @@ const getBy = (filter) => {
 };
 
 const insert = async (user) => {
-  const [id] = await db("users").insert(user);
-  return getById(id);
+  const [id] = await db("users").insert(user).returning("user_id");
+  return getById(id.user_id);
 };
 
 const changePassword = async (username, password) => {
