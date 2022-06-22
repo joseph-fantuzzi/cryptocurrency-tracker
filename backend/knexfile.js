@@ -1,5 +1,7 @@
+require("dotenv").config();
+
 const sharedConfig = {
-  client: "sqlite3",
+  client: "pg",
   useNullAsDefault: true,
   migrations: {
     directory: "./data/migrations",
@@ -8,23 +10,18 @@ const sharedConfig = {
     directory: "./data/seeds",
   },
   pool: {
-    afterCreate: (conn, done) => {
-      conn.run("PRAGMA foreign_keys = ON", done);
-    },
+    min: 2,
+    max: 10,
   },
 };
 
 module.exports = {
   development: {
     ...sharedConfig,
-    connection: { filename: "./data/development.db3" },
-  },
-  testing: {
-    ...sharedConfig,
-    connection: { filename: "./data/testing.db3" },
+    connection: process.env.DEV_DATABASE_URL,
   },
   production: {
     ...sharedConfig,
-    connection: { filename: "./data/production.db3" },
+    connection: process.env.PROD_DATABASE_URL,
   },
 };
