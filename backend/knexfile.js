@@ -22,6 +22,9 @@ module.exports = {
   },
   production: {
     ...sharedConfig,
-    connection: process.env.DATABASE_URL,
+    connection: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: true,
+    },
   },
 };
