@@ -22,6 +22,6 @@ module.exports = {
   },
   production: {
     ...sharedConfig,
-    connection: process.env.PROD_DATABASE_URL,
+    connection: process.env.DATABASE_URL,
   },
 };
