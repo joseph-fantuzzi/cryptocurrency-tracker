@@ -6,13 +6,14 @@ import "../styles/styles.css";
 const Search = ({ cryptoData, searchValue, setSearchValue, toggleDark }) => {
   const styles = {
     outerDiv:
-      "w-11/12 max-w-7xl flex flex-col justify-between mx-auto items-center my-8 sm:flex-row",
+      "w-11/12 max-w-7xl flex flex-col justify-between mx-auto items-center mb-8 mt-16 sm:flex-row",
     label: toggleDark ? "text-white" : "",
-    input: `w-full max-w-xs min-w-[140px] ml-3 px-3 py-1 drop-shadow-lg rounded-3xl border-2 
-      ${toggleDark ? "bg-zinc-800 text-white" : "border-gray-800"}`,
+    input: `w-full max-w-xs min-w-[140px] ml-3 px-3 py-1 rounded-3xl border-2 
+      ${toggleDark ? "border-white text-white bg-[#000924]" : "border-black bg-[#E9ECEE]"}`,
     search: "w-4/6 flex items-center justify-end mt-8 sm:mt-0",
-    favoriteBtn:
-      "bg-gray-800 drop-shadow-md rounded-3xl text-white py-2 px-5 hover:bg-white hover:drop-shadow-lg hover:text-black transition duration-500 ease",
+    favoriteBtn: `rounded-3xl text-white py-2 px-5 hover:drop-shadow-lg transition duration-500 ease ${
+      toggleDark ? "text-black bg-[#E9ECEE]" : "bg-[#000924]"
+    }`,
     favIcon: "inline ml-2",
   };
 

@@ -13,7 +13,7 @@ const Register = ({
   toggleDark,
   registerError,
   setRegisterError,
-  profileSuccess,
+  registerMessage,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -161,13 +161,9 @@ const Register = ({
           Create Account
         </button>
         <div className="text-red-500 text-center font-bold pb-5">{registerError}</div>
-        {profileSuccess ? (
+        {registerMessage ? (
           <div>
-            <div className="text-center text-[#59FF00] font-bold pb-3">
-              {window.localStorage.getItem("token")
-                ? "Already logged in"
-                : "Account Successfully Created!"}
-            </div>
+            <div className="text-center font-bold pb-3">{registerMessage}</div>
             <LinearProgress color="inherit" />
           </div>
         ) : (

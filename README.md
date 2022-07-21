@@ -1,6 +1,6 @@
-# CRYPTOX Cryptocurrency Tracking Software
+# Cryptox: Cryptocurrency Tracking Software
 
-## NPM Scripts
+## Installation and Setup
 
 - Frontend
 
@@ -14,5 +14,3 @@
   - `npm run rollback` runs the knex migration down functions
   - `npm run seed` runs the knex seed files
   - `npm run resetdb` resets the database back to its original state
-
-<img alt="coins-desktop" src="frontend/src/images/desktop-view.png">

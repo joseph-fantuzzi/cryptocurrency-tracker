@@ -44,11 +44,11 @@ const Account = ({ logout }) => {
     updatePswrdBtn:
       "bg-black mt-5 text-white rounded-2xl shadow-md py-2 hover:text-black hover:bg-gray-100 transition duration-300 ease",
     logoutBtn:
-      "max-w-md w-5/6 mt-16 mb-8 py-2 px-4 rounded-2xl drop-shadow-lg bg-white hover:bg-[#EBAAE4] transition duration-300 ease",
+      "max-w-md w-5/6 mt-16 mb-8 py-2 px-4 rounded-2xl drop-shadow-lg bg-white hover:bg-[#52E6FA] transition duration-300 ease",
     form: "flex flex-col pt-5",
     input: "rounded-xl py-1 px-3 mb-3 w-full shadow-md",
     message: "text-red-500 text-center mt-5",
-    success: "text-[#59FF00] text-center my-3",
+    success: "text-center my-3",
   };
 
   const { current_password, new_password, confirm_password } = formValues;
@@ -65,12 +65,12 @@ const Account = ({ logout }) => {
 
   const newPasswordHandler = (e) => {
     e.preventDefault();
+    setLoading(true);
     if (new_password === confirm_password) {
       axiosWithAuth()
         .put(URL, { ...formValues, username: decoded.username })
         .then((res) => {
           setSuccessMessage("Password successfully updated, logging out...");
-          setLoading(!loading);
           setFormValues(initialFormValues);
           setChangePassword(!changePassword);
           setTimeout(() => {
@@ -78,9 +78,13 @@ const Account = ({ logout }) => {
           }, 3000);
         })
         .catch((err) => {
+          setLoading(false);
           setMessage(err.response.data.message);
         });
-    } else setMessage("Passwords Do Not Match");
+    } else {
+      setLoading(false);
+      setMessage("Passwords Do Not Match");
+    }
   };
 
   const changePasswordBtnHandler = () => {
@@ -97,7 +101,7 @@ const Account = ({ logout }) => {
         ${decoded.last_name}`}
         </h1>
         <div className={styles.avatar}>
-          <Avatar sx={{ bgcolor: "#59FF00", width: 150, height: 150 }}>
+          <Avatar sx={{ bgcolor: "#52E6FA", width: 150, height: 150 }}>
             <h1 className={styles.avatarH1}>
               {decoded.first_name[0]}
               {decoded.last_name[0]}

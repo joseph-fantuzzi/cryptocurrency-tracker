@@ -12,7 +12,7 @@ const Home = ({ cryptoData, toggleDark }) => {
   useEffect(() => {
     axios
       .get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false"
       )
       .then((res) => {
         setTopCoins(res.data);
@@ -23,16 +23,15 @@ const Home = ({ cryptoData, toggleDark }) => {
   const styles = {
     outerDiv: "outer-min-height flex flex-col justify-center",
     h1: `font-bold text-center text-6xl md:text-8xl  pt-10 pb-6 ${toggleDark ? "text-white" : ""}`,
-    p: `text-center px-10 mb-10 text-2xl md:text-4xl ${toggleDark ? "text-white" : ""}`,
-    carousel: "flex h-1/2 items-center",
+    p: `w-11/12 mx-auto max-w-7xl text-center mt-5 mb-10 text-2xl ${
+      toggleDark ? "text-white" : ""
+    }`,
+    carousel: "flex items-center w-11/12 mx-auto max-w-7xl mb-10",
     carouselItem: "flex flex-col items-center cursor-pointer",
+    carouselItemText: `${toggleDark ? "text-white" : "text-black"}`,
     btnDiv: "text-center",
-    btn: `py-4 px-20 mb-10 w-3/4 max-w-lg rounded-3xl drop-shadow-xl bg-gray-200 md:text-3xl
-   transition duration-500 ease ${
-     toggleDark ? "hover:bg-gray-400" : "hover:bg-gray-800 hover:text-white"
-   }`,
-    toggleDiv: "text-center",
-    toggle: "bg-[#abeb84] py-3 px-4 rounded-2xl hover:bg-[#F984FF] transition duration-500 ease",
+    btn: `px-10 py-3 text-2xl rounded-2xl bg-[#52E6FA] border-2 border-[#52E6FA] hover:bg-[#52E6FA4D]
+   transition duration-500 ease ${toggleDark ? "" : "shadow"}`,
   };
 
   const coins = topCoins.map((coin) => {
@@ -41,14 +40,18 @@ const Home = ({ cryptoData, toggleDark }) => {
     if (coin.name !== "Tether" && coin.name !== "USD Coin" && coin.name !== "Binance USD") {
       return (
         <Link className={styles.carouselItem} to={`/coins/${coin.id}`}>
-          <img src={coin?.image} alt={coin.name} style={{ marginBottom: 10 }} />
-          <span>
-            {coin?.symbol}
-            &nbsp;
+          <img
+            src={coin?.image}
+            alt={coin.name}
+            style={{ marginBottom: 10, width: 100, borderRadius: 50 }}
+          />
+          <span className={styles.carouselItemText}>
+            {coin?.symbol.toUpperCase()}
             <span
               style={{
                 color: profit > 0 ? "rgb(14, 203, 129)" : "red",
                 fontWeight: 500,
+                marginLeft: 10,
               }}
             >
               {profit && "+"}
@@ -71,8 +74,11 @@ const Home = ({ cryptoData, toggleDark }) => {
     0: {
       items: 2,
     },
-    512: {
-      items: 4,
+    400: {
+      items: 3,
+    },
+    800: {
+      items: 6,
     },
   };
 
@@ -94,7 +100,7 @@ const Home = ({ cryptoData, toggleDark }) => {
 
   return (
     <div className={styles.outerDiv}>
-      <h1 className={styles.h1}>CRYPTOX</h1>
+      <h1 className={styles.h1}>Cryptox</h1>
       <p className={styles.p}>Meet the Next Generation of Cryptocurrency Tracking Software</p>
       <div className={styles.carousel}>
         <Gallery />
@@ -102,11 +108,6 @@ const Home = ({ cryptoData, toggleDark }) => {
       <div className={styles.btnDiv}>
         <Link to="/login">
           <button className={styles.btn}>Login</button>
-        </Link>
-      </div>
-      <div className={styles.toggleDiv}>
-        <Link to="/toggle">
-          <button className={styles.toggle}>Interactive Dark Mode</button>
         </Link>
       </div>
     </div>

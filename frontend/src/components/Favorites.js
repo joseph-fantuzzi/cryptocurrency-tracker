@@ -11,8 +11,10 @@ const Favorites = ({ toggleDark }) => {
   const [list, setList] = useState([]);
 
   const styles = {
-    outerDiv: "outer-min-height flex flex-col justify-center items-center",
-    h1: `text-center font-bold py-8 text-5xl ${toggleDark ? "text-[#59FF00]" : "text-gray-800"}`,
+    outerDiv: `outer-min-height flex flex-col justify-center items-center ${
+      toggleDark ? "text-white" : "text-gray-800"
+    }`,
+    h1: `text-center font-bold py-8 text-5xl ${toggleDark ? "text-white" : "text-gray-800"}`,
     favorite:
       "grid grid-cols-3 grid-rows-1 justify-items-center items-center py-3 w-11/12 bg-gray-100 px-2 py-1 rounded-xl mb-5 drop-shadow-lg max-w-sm",
     arrow: "drop-shadow-md cursor-pointer hover:text-gray-100 transition duration-300 ease",

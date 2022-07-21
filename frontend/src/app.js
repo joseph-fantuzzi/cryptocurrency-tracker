@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Favorites from "./components/Favorites";
-import Toggle from "./components/Toggle";
+import Logo from "./components/Logo";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ErrorPage from "./components/ErrorPage";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -43,7 +43,7 @@ function App() {
   const [registerError, setRegisterError] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
-  const [profileSuccess, setProfileSuccess] = useState(false);
+  const [registerMessage, setRegisterMessage] = useState(false);
   const [favoritesList, setFavoritesList] = useState([]);
 
   const navigate = useNavigate();
@@ -57,8 +57,9 @@ function App() {
   };
 
   const register = () => {
+    setRegisterMessage("Creating Account ...");
     if (window.localStorage.getItem("token")) {
-      setProfileSuccess(true);
+      setRegisterMessage("Already logged in.");
       setTimeout(() => {
         navigate("/coins");
       }, 3000);
@@ -75,19 +76,21 @@ function App() {
         .post(`${baseURL}/register`, request)
         .then((res) => {
           setRegisterFormValues(initialRegisterFormValues);
-          setProfileSuccess(true);
+          setRegisterMessage("Account Successfully Created!");
           setTimeout(() => {
-            setProfileSuccess(false);
+            setRegisterMessage("");
             navigate("/login");
           }, 3000);
         })
         .catch((err) => {
+          setRegisterMessage("");
           setRegisterError(err.response.data.message);
         });
     }
   };
 
   const login = () => {
+    setLoginMessage("Logging In ...");
     if (window.localStorage.getItem("token")) {
       setLoginMessage("Already logged in");
       setTimeout(() => {
@@ -106,6 +109,7 @@ function App() {
           }, 3000);
         })
         .catch((err) => {
+          setLoginMessage("");
           setLoginError(err.response.data.message);
         });
     }
@@ -130,30 +134,34 @@ function App() {
   return (
     <>
       <div
-        className={`min-h-[95vh] transition duration-500 ease ${toggleDark ? "bg-zinc-800" : ""}`}
+        className={`min-h-[95vh] transition duration-500 ease ${
+          toggleDark ? "bg-[#000924]" : "bg-[#E9ECEE]"
+        }`}
       >
         <nav
-          className={`text-white min-h-[100px] flex justify-between items-center ${
-            toggleDark ? "bg-zinc-800" : "bg-gray-800"
+          className={`min-h-[100px] flex justify-between items-center ${
+            toggleDark ? "text-white" : "text-black"
           }`}
         >
           <div className="w-11/12 mx-auto max-w-7xl flex justify-between items-center">
-            <h1 className="text-[#59FF00] text-2xl font-bold ml-10 lg:ml-0">CRYPTOX.</h1>
-            <div className="hidden lg:w-2/3 lg:flex lg:justify-between lg:items-center">
+            <div className="ml-5 lg:ml-0 relative top-5">
+              <Logo />
+            </div>
+            <div className="hidden lg:w-1/2 lg:flex lg:justify-between lg:items-center">
               <NavLink
-                className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:bg-[#abeb84] hover:text-black"
+                className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:text-[#52E6FA]"
                 to="/"
               >
                 Home
               </NavLink>
               <NavLink
-                className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:bg-[#abeb84] hover:text-black"
+                className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:text-[#52E6FA]"
                 to={window.localStorage.getItem("token") ? "/coins" : "/login"}
               >
                 Coins
               </NavLink>
               <NavLink
-                className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:bg-[#abeb84] hover:text-black"
+                className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:text-[#52E6FA]"
                 to={window.localStorage.getItem("token") ? "/account" : "/login"}
               >
                 My Account
@@ -161,13 +169,13 @@ function App() {
               {!window.localStorage.getItem("token") ? (
                 <>
                   <NavLink
-                    className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:bg-[#abeb84] hover:text-black"
+                    className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:text-[#52E6FA]"
                     to="/login"
                   >
                     Login
                   </NavLink>
                   <NavLink
-                    className="bg-gray-100 py-2 px-4 text-black rounded-[3em] hover:bg-[#F984FF] hover:text-white transition duration-500 ease"
+                    className="py-2 px-4 rounded-2xl border-2 border-[#52E6FA] hover:bg-[#52E6FA] transition duration-500 ease"
                     to="/register"
                   >
                     Register
@@ -176,7 +184,7 @@ function App() {
               ) : (
                 <button
                   onClick={logout}
-                  className="bg-gray-100 py-2 px-4 text-black rounded-[3em] hover:bg-[#F984FF] hover:text-white transition duration-300 ease"
+                  className="py-2 px-4 rounded-2xl border-2 border-[#52E6FA] hover:bg-[#52E6FA] transition duration-500 ease"
                 >
                   Logout
                 </button>
@@ -200,23 +208,21 @@ function App() {
             {toggleNav ? (
               <AiOutlineClose
                 fontSize={28}
-                className="text-white cursor-pointer"
+                className={`cursor-pointer mr-10 ${toggleDark ? "text-white" : "text-black"}`}
                 onClick={() => setToggleNav(false)}
               />
             ) : (
               <HiMenuAlt4
                 fontSize={28}
-                className="text-white cursor-pointer mr-10"
+                className={`cursor-pointer mr-10 ${toggleDark ? "text-white" : "text-black"}`}
                 onClick={() => setToggleNav(true)}
               />
             )}
             {toggleNav && (
               <div
                 id="nav-mobile"
-                className={`fixed top-0 -right-2 p-5 z-10 flex flex-col justify-start items-end w-[70vw] 
-                h-screen shadow-2xl rounded-md ${
-                  toggleDark ? "black-glassmorphism text-black" : "text-white blue-glassmorphism"
-                }`}
+                className="glassmorphism text-white fixed top-0 -right-2 p-5 z-10 flex flex-col justify-start items-end w-[70vw] 
+                h-screen shadow-2xl rounded-md"
               >
                 <div className="w-full">
                   <AiOutlineClose
@@ -326,13 +332,9 @@ function App() {
                 toggleDark={toggleDark}
                 registerError={registerError}
                 setRegisterError={setRegisterError}
-                profileSuccess={profileSuccess}
+                registerMessage={registerMessage}
               />
             }
-          />
-          <Route
-            path="/toggle"
-            element={<Toggle toggleDark={toggleDark} setToggleDark={setToggleDark} />}
           />
           <Route
             path="/favorites"
@@ -347,11 +349,11 @@ function App() {
         </Routes>
       </div>
       <footer
-        className={`flex justify-center items-center text-white min-h-[5vh] text-xs ${
-          toggleDark ? "bg-zinc-800" : "bg-gray-800"
+        className={`flex justify-center items-center min-h-[5vh] text-xs transition duration-500 ease ${
+          toggleDark ? "bg-[#000924] text-white" : "bg-[#E9ECEE] text-black"
         }`}
       >
-        <p>&copy; Designed by Joseph Fantuzzi 2022</p>
+        <p>Designed and Created By Joseph Fantuzzi 2022</p>
       </footer>
     </>
   );

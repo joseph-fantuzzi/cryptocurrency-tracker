@@ -33,9 +33,11 @@ const Coins = ({
   const styles = {
     outerDiv: "outer-min-height",
     innerDiv: "pb-10",
-    infoDiv: `hidden md:grid max-w-7xl w-11/12 text-sm text-white text-center mx-auto 
+    infoDiv: `hidden md:grid max-w-7xl w-11/12 text-sm text-center mx-auto 
     my-8 px-3 py-5 grid-cols-6 grid-rows-1
-    flex items-center rounded-xl drop-shadow-lg ${toggleDark ? "bg-neutral-900" : "bg-slate-800"}`,
+    flex items-center rounded-xl text-white border-2 ${
+      toggleDark ? "border-[#E9ECEE]" : "border-[#000924] bg-[#000924] shadow"
+    }`,
     loadingDiv: "outer-min-height text-4xl flex flex-col justify-center items-center",
     h1: toggleDark ? "text-white" : "",
     noResultsDiv: `text-center mb-auto ${toggleDark ? "text-white" : ""}`,
