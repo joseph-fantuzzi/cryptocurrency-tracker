@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Logo = () => {
+  const navigate = useNavigate();
+
   return (
     <svg
       width="102"
@@ -8,6 +11,8 @@ const Logo = () => {
       viewBox="0 0 102 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      onClick={() => navigate("/")}
+      style={{ cursor: "pointer" }}
     >
       <ellipse cx="51" cy="50" rx="51" ry="50" fill="url(#paint0_linear_792_1371)" />
       <g filter="url(#filter0_d_792_1371)">
