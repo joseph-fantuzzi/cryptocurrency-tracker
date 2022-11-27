@@ -184,7 +184,9 @@ function App() {
               ) : (
                 <button
                   onClick={logout}
-                  className="py-2 px-4 rounded-2xl border-2 border-[#52E6FA] hover:bg-[#52E6FA] transition duration-500 ease"
+                  className={`py-2 px-4 rounded-2xl text-black ${
+                    toggleDark ? "hover:text-white" : ""
+                  } border-2 border-[#52E6FA] bg-[#52E6FA] hover:bg-[#52E6FA4D] transition duration-500 ease`}
                 >
                   Logout
                 </button>
