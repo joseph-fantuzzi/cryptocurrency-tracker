@@ -1113,13 +1113,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-duration: 300ms;
 }
 
-.hover\:bg-\[\#52E6FA\]:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(82 230 250 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-\[\#52E6FA3E\]:hover {
-  background-color: #52E6FA3E;
+.hover\:bg-\[\#52E6FA4D\]:hover {
+  background-color: #52E6FA4D;
 }
 
 .hover\:bg-gray-100:hover {
@@ -1127,13 +1122,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-\[\#52E6FA\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(82 230 250 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-\[\#52E6FA4D\]:hover {
-  background-color: #52E6FA4D;
 }
 
 .hover\:text-\[\#52E6FA\]:hover {
@@ -1141,14 +1137,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(82 230 250 / var(--tw-text-opacity));
 }
 
-.hover\:text-black:hover {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .hover\:text-gray-100:hover {
