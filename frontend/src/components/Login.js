@@ -78,7 +78,7 @@ const Login = ({
             value={password}
             onChange={changeHandler}
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 mb-2"
-            autoComplete="on"
+            autoComplete="off"
           />
         </div>
         <button
