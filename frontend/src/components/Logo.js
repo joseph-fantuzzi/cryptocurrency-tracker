@@ -1,8 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Logo = () => {
+const Logo = ({ setShowLogoAnimation }) => {
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    setShowLogoAnimation(true);
+    setTimeout(() => {
+      navigate("/");
+    }, 4500);
+  };
 
   return (
     <svg
@@ -11,7 +18,7 @@ const Logo = () => {
       viewBox="0 0 102 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      onClick={() => navigate("/")}
+      onClick={handleClick}
       style={{ cursor: "pointer" }}
     >
       <ellipse cx="51" cy="50" rx="51" ry="50" fill="url(#paint0_linear_792_1371)" />
