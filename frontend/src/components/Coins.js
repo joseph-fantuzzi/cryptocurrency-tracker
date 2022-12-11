@@ -11,7 +11,7 @@ const Coins = ({
   cryptoData,
   searchValue,
   setSearchValue,
-  toggleDark,
+  dark,
   filteredSearch,
   favoritesList,
   setFavoritesList,
@@ -36,11 +36,11 @@ const Coins = ({
     infoDiv: `hidden md:grid max-w-7xl w-11/12 text-sm text-center mx-auto 
     my-8 px-3 py-5 grid-cols-6 grid-rows-1
     flex items-center rounded-xl text-white border-2 ${
-      toggleDark ? "border-[#E9ECEE]" : "border-[#000924] bg-[#000924] shadow"
+      dark ? "border-[#E9ECEE]" : "border-[#000924] bg-[#000924] shadow"
     }`,
     loadingDiv: "outer-min-height text-4xl flex flex-col justify-center items-center",
-    h1: toggleDark ? "text-white" : "",
-    noResultsDiv: `text-center mb-auto ${toggleDark ? "text-white" : ""}`,
+    h1: dark ? "text-white" : "",
+    noResultsDiv: `text-center mb-auto ${dark ? "text-white" : ""}`,
   };
 
   return (
@@ -50,7 +50,7 @@ const Coins = ({
           cryptoData={cryptoData}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
-          toggleDark={toggleDark}
+          dark={dark}
         />
         <div className={styles.infoDiv}>
           <h1>{""}</h1>
@@ -62,14 +62,7 @@ const Coins = ({
         </div>
         {cryptoData ? (
           filteredSearch().map((coin) => {
-            return (
-              <Coin
-                key={coin.id}
-                coin={coin}
-                toggleDark={toggleDark}
-                favoritesList={favoritesList}
-              />
-            );
+            return <Coin key={coin.id} coin={coin} dark={dark} favoritesList={favoritesList} />;
           })
         ) : (
           <div className={styles.loadingDiv}>

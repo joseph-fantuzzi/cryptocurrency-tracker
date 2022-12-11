@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import { MdVisibilityOff } from "react-icons/md";
 import { MdVisibility } from "react-icons/md";
 import LinearProgress from "@mui/material/LinearProgress";
-import "../styles/styles.css";
 import "../styles/other.css";
 
 const Register = ({
   registerFormValues,
   setRegisterFormValues,
   register,
-  toggleDark,
+  dark,
   registerError,
   setRegisterError,
   registerMessage,
@@ -42,7 +41,7 @@ const Register = ({
     <div className="outer-min-height flex justify-center items-center">
       <form
         className={`flex flex-col justify-between items-center my-5 px-8 py-10 rounded-3xl w-5/6 max-w-xl drop-shadow-2xl ${
-          toggleDark ? "bg-gray-100" : "bg-gray-300"
+          dark ? "bg-gray-100" : "bg-gray-300"
         }`}
         onSubmit={submitHandler}
       >

@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import AliceCarousel from "react-alice-carousel";
-import "../styles/styles.css";
 import "../styles/other.css";
 import "react-alice-carousel/lib/alice-carousel.css";
 
-const Home = ({ cryptoData, toggleDark }) => {
+const Home = ({ cryptoData, dark }) => {
   const [topCoins, setTopCoins] = useState([]);
 
   useEffect(() => {
@@ -22,16 +21,14 @@ const Home = ({ cryptoData, toggleDark }) => {
 
   const styles = {
     outerDiv: "outer-min-height flex flex-col justify-center",
-    h1: `font-bold text-center text-6xl md:text-8xl  pt-10 pb-6 ${toggleDark ? "text-white" : ""}`,
-    p: `w-11/12 mx-auto max-w-7xl text-center mt-5 mb-10 text-2xl ${
-      toggleDark ? "text-white" : ""
-    }`,
+    h1: `font-bold text-center text-6xl md:text-8xl  pt-10 pb-6 ${dark ? "text-white" : ""}`,
+    p: `w-11/12 mx-auto max-w-7xl text-center mt-5 mb-10 text-2xl ${dark ? "text-white" : ""}`,
     carousel: "flex items-center w-11/12 mx-auto max-w-7xl mb-10",
     carouselItem: "flex flex-col items-center cursor-pointer",
-    carouselItemText: `${toggleDark ? "text-white" : "text-black"}`,
+    carouselItemText: `${dark ? "text-white" : "text-black"}`,
     btnDiv: "text-center",
     btn: `px-10 py-3 text-2xl rounded-2xl bg-[#52E6FA] border-2 border-[#52E6FA] hover:bg-[#52E6FA4D]
-   transition duration-500 ease ${toggleDark ? "" : "shadow"}`,
+   transition duration-500 ease ${dark ? "" : "shadow"}`,
   };
 
   const coins = topCoins.map((coin) => {

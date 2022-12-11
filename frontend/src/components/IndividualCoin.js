@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import "../styles/styles.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import {
   Chart as ChartJS,
@@ -18,7 +17,7 @@ import moment from "moment";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Title, Tooltip);
 
-const IndividualCoin = ({ toggleDark }) => {
+const IndividualCoin = ({ dark }) => {
   const [coin, setCoin] = useState(null);
   const [coinData, setCoinData] = useState([]);
   const { itemID } = useParams();
@@ -73,7 +72,7 @@ const IndividualCoin = ({ toggleDark }) => {
   return coin ? (
     <div
       className={`w-11/12 max-w-7xl mx-auto py-10 flex flex-col ${
-        toggleDark ? "text-white" : "text-black"
+        dark ? "text-white" : "text-black"
       }`}
     >
       <div className="flex items-center gap-3">
@@ -119,7 +118,7 @@ const IndividualCoin = ({ toggleDark }) => {
     </div>
   ) : (
     <div className="outer-min-height text-4xl flex flex-col justify-center items-center">
-      <h1 className={toggleDark ? "text-white" : ""}>Loading...</h1>
+      <h1 className={dark ? "text-white" : ""}>Loading...</h1>
       <CircularProgress color="inherit" size={100} style={{ margin: "1em" }} />
     </div>
   );

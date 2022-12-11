@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiArrowRightCircle } from "react-icons/fi";
-import "../styles/styles.css";
 
-const Search = ({ cryptoData, searchValue, setSearchValue, toggleDark }) => {
+const Search = ({ cryptoData, searchValue, setSearchValue, dark }) => {
   const styles = {
     outerDiv:
       "w-11/12 max-w-7xl flex flex-col justify-between mx-auto items-center mb-8 mt-16 sm:flex-row",
-    label: toggleDark ? "text-white" : "",
+    label: dark ? "text-white" : "",
     input: `w-full max-w-xs min-w-[140px] ml-3 px-3 py-1 rounded-3xl border-2 
-      ${toggleDark ? "border-white text-white bg-[#000924]" : "border-black bg-[#E9ECEE]"}`,
+      ${dark ? "border-white text-white bg-[#000924]" : "border-black bg-[#E9ECEE]"}`,
     search: "w-4/6 flex items-center justify-end mt-8 sm:mt-0",
     favoriteBtn: `rounded-3xl text-white py-2 px-5 hover:drop-shadow-lg transition duration-500 ease ${
-      toggleDark ? "text-black bg-[#E9ECEE]" : "bg-[#000924]"
+      dark ? "text-black bg-[#E9ECEE]" : "bg-[#000924]"
     }`,
     favIcon: "inline ml-2",
   };

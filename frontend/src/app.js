@@ -17,6 +17,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import "./styles/other.css";
+import "./styles/styles.css";
 import { baseURL } from "./config/index";
 
 const initialRegisterFormValues = {
@@ -36,7 +37,7 @@ const initialLoginFormValues = {
 function App() {
   const [cryptoData, setCryptoData] = useState([]);
   const [toggleNav, setToggleNav] = useState(false);
-  const [toggleDark, setToggleDark] = useLocalStorage("dark", false);
+  const [dark, setDark] = useLocalStorage("dark", false);
   const [searchValue, setSearchValue] = useState("");
   const [registerFormValues, setRegisterFormValues] = useState(initialRegisterFormValues);
   const [loginFormValues, setLoginFormValues] = useState(initialLoginFormValues);
@@ -135,12 +136,12 @@ function App() {
     <>
       <div
         className={`min-h-[95vh] transition duration-500 ease ${
-          toggleDark ? "bg-[#000924]" : "bg-[#E9ECEE]"
+          dark ? "bg-[#000924]" : "bg-[#E9ECEE]"
         }`}
       >
         <nav
           className={`min-h-[100px] flex justify-between items-center ${
-            toggleDark ? "text-white" : "text-black"
+            dark ? "text-white" : "text-black"
           }`}
         >
           <div className="w-11/12 mx-auto max-w-7xl flex justify-between items-center">
@@ -176,7 +177,7 @@ function App() {
                   </NavLink>
                   <NavLink
                     className={`py-2 px-4 rounded-2xl border-2 text-black ${
-                      toggleDark ? "hover:text-white" : ""
+                      dark ? "hover:text-white" : ""
                     } border-[#52E6FA] bg-[#52E6FA] hover:bg-[#52E6FA4D] transition duration-500 ease`}
                     to="/register"
                   >
@@ -187,23 +188,23 @@ function App() {
                 <button
                   onClick={logout}
                   className={`py-2 px-4 rounded-2xl text-black ${
-                    toggleDark ? "hover:text-white" : ""
+                    dark ? "hover:text-white" : ""
                   } border-2 border-[#52E6FA] bg-[#52E6FA] hover:bg-[#52E6FA4D] transition duration-500 ease`}
                 >
                   Logout
                 </button>
               )}
-              {toggleDark ? (
+              {dark ? (
                 <MdDarkMode
                   className="cursor-pointer"
                   fontSize={22}
-                  onClick={() => setToggleDark(false)}
+                  onClick={() => setDark(false)}
                 />
               ) : (
                 <MdOutlineDarkMode
                   className="cursor-pointer"
                   fontSize={22}
-                  onClick={() => setToggleDark(true)}
+                  onClick={() => setDark(true)}
                 />
               )}
             </div>
@@ -212,13 +213,13 @@ function App() {
             {toggleNav ? (
               <AiOutlineClose
                 fontSize={28}
-                className={`cursor-pointer mr-10 ${toggleDark ? "text-white" : "text-black"}`}
+                className={`cursor-pointer mr-10 ${dark ? "text-white" : "text-black"}`}
                 onClick={() => setToggleNav(false)}
               />
             ) : (
               <HiMenuAlt4
                 fontSize={28}
-                className={`cursor-pointer mr-10 ${toggleDark ? "text-white" : "text-black"}`}
+                className={`cursor-pointer mr-10 ${dark ? "text-white" : "text-black"}`}
                 onClick={() => setToggleNav(true)}
               />
             )}
@@ -231,7 +232,7 @@ function App() {
                 <div className="w-full">
                   <AiOutlineClose
                     fontSize={28}
-                    className={`cursor-pointer ${toggleDark ? "" : "text-white"}`}
+                    className={`cursor-pointer ${dark ? "" : "text-white"}`}
                     onClick={() => setToggleNav(false)}
                   />
                 </div>
@@ -269,10 +270,10 @@ function App() {
                   )}
                 </div>
                 <div className="pr-5 mt-5">
-                  {toggleDark ? (
-                    <MdDarkMode fontSize={28} onClick={() => setToggleDark(false)} />
+                  {dark ? (
+                    <MdDarkMode fontSize={28} onClick={() => setDark(false)} />
                   ) : (
-                    <MdOutlineDarkMode fontSize={28} onClick={() => setToggleDark(true)} />
+                    <MdOutlineDarkMode fontSize={28} onClick={() => setDark(true)} />
                   )}
                 </div>
               </div>
@@ -288,7 +289,7 @@ function App() {
                   cryptoData={cryptoData}
                   searchValue={searchValue}
                   setSearchValue={setSearchValue}
-                  toggleDark={toggleDark}
+                  dark={dark}
                   filteredSearch={filteredSearch}
                   favoritesList={favoritesList}
                   setFavoritesList={setFavoritesList}
@@ -300,7 +301,7 @@ function App() {
             path="/coins/:itemID"
             element={
               <ProtectedRoute>
-                <IndividualCoin toggleDark={toggleDark} />
+                <IndividualCoin dark={dark} />
               </ProtectedRoute>
             }
           />
@@ -319,7 +320,7 @@ function App() {
                 loginFormValues={loginFormValues}
                 setLoginFormValues={setLoginFormValues}
                 login={login}
-                toggleDark={toggleDark}
+                dark={dark}
                 loginError={loginError}
                 setLoginError={setLoginError}
                 loginMessage={loginMessage}
@@ -333,7 +334,7 @@ function App() {
                 registerFormValues={registerFormValues}
                 setRegisterFormValues={setRegisterFormValues}
                 register={register}
-                toggleDark={toggleDark}
+                dark={dark}
                 registerError={registerError}
                 setRegisterError={setRegisterError}
                 registerMessage={registerMessage}
@@ -344,17 +345,17 @@ function App() {
             path="/favorites"
             element={
               <ProtectedRoute>
-                <Favorites toggleDark={toggleDark} />
+                <Favorites dark={dark} />
               </ProtectedRoute>
             }
           />
-          <Route path="/" element={<Home cryptoData={cryptoData} toggleDark={toggleDark} />} />
+          <Route path="/" element={<Home cryptoData={cryptoData} dark={dark} />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
       <footer
         className={`flex justify-center items-center min-h-[5vh] text-xs transition duration-500 ease ${
-          toggleDark ? "bg-[#000924] text-white" : "bg-[#E9ECEE] text-black"
+          dark ? "bg-[#000924] text-white" : "bg-[#E9ECEE] text-black"
         }`}
       >
         <p>Designed and Created By Joseph Fantuzzi 2022</p>

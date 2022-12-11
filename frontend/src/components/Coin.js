@@ -4,10 +4,9 @@ import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import "../styles/styles.css";
 import { baseURL } from "../config/index";
 
-const Coin = ({ coin, toggleDark, favoritesList }) => {
+const Coin = ({ coin, dark, favoritesList }) => {
   const [favorite, setFavorite] = useState(false);
   const [favoriteObj, setFavoriteObj] = useState([]);
 
@@ -15,7 +14,7 @@ const Coin = ({ coin, toggleDark, favoritesList }) => {
     outerDiv: `max-w-7xl w-11/12 text-center mx-auto py-2 px-2 grid grid-cols-1 
       md:grid-cols-6 grid-rows-4 md:grid-rows-1 flex items-center 
       gap-2 rounded-xl my-3 border-2 border-[#E9ECEE] ${
-        toggleDark ? "text-white border-[#E9ECEE4D]" : "bg-[#E9ECEE] shadow"
+        dark ? "text-white border-[#E9ECEE4D]" : "bg-[#E9ECEE] shadow"
       }`,
     imgDiv: "flex justify-center",
     img: "w-10 md:w-12 rounded-full",
