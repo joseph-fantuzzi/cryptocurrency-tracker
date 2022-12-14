@@ -150,7 +150,7 @@ function App() {
             }`}
           >
             <div className="w-11/12 mx-auto max-w-7xl flex justify-between items-center">
-              <div className={"ml-10 lg:ml-0"}>
+              <div>
                 <Logo setShowLogoAnimation={setShowLogoAnimation} />
               </div>
               <div className="hidden lg:w-1/2 lg:flex lg:justify-between lg:items-center">
@@ -213,80 +213,80 @@ function App() {
                   />
                 )}
               </div>
-            </div>
-            <div className="lg:hidden">
-              {toggleNav ? (
-                <AiOutlineClose
-                  fontSize={28}
-                  className={`cursor-pointer mr-10 ${dark ? "text-white" : "text-black"}`}
-                  onClick={() => setToggleNav(false)}
-                />
-              ) : (
-                <HiMenuAlt4
-                  fontSize={28}
-                  className={`cursor-pointer mr-10 ${dark ? "text-white" : "text-black"}`}
-                  onClick={() => setToggleNav(true)}
-                />
-              )}
-              {toggleNav && (
-                <div
-                  id="nav-mobile"
-                  className="glassmorphism text-white fixed top-0 -right-2 p-5 z-10 flex flex-col justify-start items-end w-[70vw] 
+              <div className="lg:hidden">
+                {toggleNav ? (
+                  <AiOutlineClose
+                    fontSize={28}
+                    className={`cursor-pointer ${dark ? "text-white" : "text-black"}`}
+                    onClick={() => setToggleNav(false)}
+                  />
+                ) : (
+                  <HiMenuAlt4
+                    fontSize={28}
+                    className={`cursor-pointer ${dark ? "text-white" : "text-black"}`}
+                    onClick={() => setToggleNav(true)}
+                  />
+                )}
+                {toggleNav && (
+                  <div
+                    id="nav-mobile"
+                    className="glassmorphism text-white fixed top-0 -right-2 p-5 z-10 flex flex-col justify-start items-end w-[70vw] 
                 h-screen shadow-2xl rounded-md"
-                >
-                  <div className="w-full">
-                    <AiOutlineClose
-                      fontSize={28}
-                      className={`cursor-pointer ${dark ? "" : "text-white"}`}
-                      onClick={() => setToggleNav(false)}
-                    />
+                  >
+                    <div className="w-full">
+                      <AiOutlineClose
+                        fontSize={28}
+                        className={`cursor-pointer ${dark ? "" : "text-white"}`}
+                        onClick={() => setToggleNav(false)}
+                      />
+                    </div>
+                    <div className="flex flex-col items-end text-2xl pr-5">
+                      <NavLink className="py-4" to="/" onClick={() => setToggleNav(false)}>
+                        Home
+                      </NavLink>
+                      <NavLink
+                        className="py-4"
+                        to={window.localStorage.getItem("token") ? "/coins" : "/login"}
+                        onClick={() => setToggleNav(false)}
+                      >
+                        Coins
+                      </NavLink>
+                      <NavLink
+                        className="py-4"
+                        to={window.localStorage.getItem("token") ? "/account" : "/login"}
+                        onClick={() => setToggleNav(false)}
+                      >
+                        My Account
+                      </NavLink>
+                      {!window.localStorage.getItem("token") ? (
+                        <>
+                          <NavLink className="py-4" to="/login" onClick={() => setToggleNav(false)}>
+                            Login
+                          </NavLink>
+                          <NavLink
+                            className="py-4"
+                            to="/register"
+                            onClick={() => setToggleNav(false)}
+                          >
+                            Register
+                          </NavLink>
+                        </>
+                      ) : (
+                        <button onClick={logout} className="py-4">
+                          Logout
+                        </button>
+                      )}
+                    </div>
+                    <div className="pr-5 mt-5">
+                      {dark ? (
+                        <MdDarkMode fontSize={28} onClick={() => setDark(false)} />
+                      ) : (
+                        <MdOutlineDarkMode fontSize={28} onClick={() => setDark(true)} />
+                      )}
+                    </div>
                   </div>
-                  <div className="flex flex-col items-end text-2xl pr-5">
-                    <NavLink className="py-4" to="/" onClick={() => setToggleNav(false)}>
-                      Home
-                    </NavLink>
-                    <NavLink
-                      className="py-4"
-                      to={window.localStorage.getItem("token") ? "/coins" : "/login"}
-                      onClick={() => setToggleNav(false)}
-                    >
-                      Coins
-                    </NavLink>
-                    <NavLink
-                      className="py-4"
-                      to={window.localStorage.getItem("token") ? "/account" : "/login"}
-                      onClick={() => setToggleNav(false)}
-                    >
-                      My Account
-                    </NavLink>
-                    {!window.localStorage.getItem("token") ? (
-                      <>
-                        <NavLink className="py-4" to="/login" onClick={() => setToggleNav(false)}>
-                          Login
-                        </NavLink>
-                        <NavLink
-                          className="py-4"
-                          to="/register"
-                          onClick={() => setToggleNav(false)}
-                        >
-                          Register
-                        </NavLink>
-                      </>
-                    ) : (
-                      <button onClick={logout} className="py-4">
-                        Logout
-                      </button>
-                    )}
-                  </div>
-                  <div className="pr-5 mt-5">
-                    {dark ? (
-                      <MdDarkMode fontSize={28} onClick={() => setDark(false)} />
-                    ) : (
-                      <MdOutlineDarkMode fontSize={28} onClick={() => setDark(true)} />
-                    )}
-                  </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </nav>
           <Routes>

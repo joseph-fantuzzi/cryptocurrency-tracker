@@ -574,6 +574,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.5rem;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .inline {
   display: inline;
 }
@@ -608,6 +612,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[30\%\] {
   height: 30%;
+}
+
+.h-96 {
+  height: 24rem;
+}
+
+.h-auto {
+  height: auto;
 }
 
 .min-h-\[95vh\] {
@@ -656,6 +668,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-4\/6 {
   width: 66.666667%;
+}
+
+.w-16 {
+  width: 4rem;
 }
 
 .min-w-\[140px\] {
@@ -1076,6 +1092,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .font-semibold {

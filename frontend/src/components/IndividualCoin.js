@@ -22,6 +22,17 @@ const IndividualCoin = ({ dark }) => {
   const [coinData, setCoinData] = useState([]);
   const { itemID } = useParams();
 
+  const styles = {
+    outerDiv: `w-11/12 max-w-7xl mx-auto py-10 flex flex-col ${dark ? "text-white" : "text-black"}`,
+    header: "flex items-center gap-3",
+    name: "text-3xl",
+    image: "w-16",
+    outerChartDiv: "mt-5 w-full h-auto relative bg-[#000924] p-5 rounded-2xl",
+    innerChartDiv: "w-full h-96 flex justify-center",
+    headerContainer: "flex justify-between items-center",
+    price: "text-xl",
+  };
+
   useEffect(() => {
     axios
       .get(`https://api.coingecko.com/api/v3/coins/${itemID}`)
@@ -70,22 +81,21 @@ const IndividualCoin = ({ dark }) => {
   };
 
   return coin ? (
-    <div
-      className={`w-11/12 max-w-7xl mx-auto py-10 flex flex-col ${
-        dark ? "text-white" : "text-black"
-      }`}
-    >
-      <div className="flex items-center gap-3">
-        <img className="w-20" src={coin.image.large} alt={coin} />
-        <h1 className="text-3xl">{coin.name}</h1>
+    <div className={styles.outerDiv}>
+      <div className={styles.headerContainer}>
+        <div className={styles.header}>
+          <img className={styles.image} src={coin.image.large} alt={coin} />
+          <h1 className={styles.name}>{coin.name}</h1>
+          <p>{coin.symbol.toUpperCase()}</p>
+        </div>
+        <div className={styles.price}>${coin.market_data.current_price.usd}</div>
       </div>
-      <div className="mt-5 w-full h-1/2 hinline-block relative bg-[#000924] p-5 rounded-2xl">
-        <div className="w-full h-full flex justify-center">
+      <div className={styles.outerChartDiv}>
+        <div className={styles.innerChartDiv}>
           <Line options={options} data={data} />
         </div>
       </div>
-      <p>Sybmol: {coin.symbol}</p>
-      <p>Market Cap Rank: {coin.market_cap_rank}</p>
+      {/* <p>Market Cap Rank: {coin.market_cap_rank}</p>
       <p>Market Capitalization: {coin.market_data.market_cap.usd}</p>
       <p>Circulating Supply: {coin.market_data.circulating_supply}</p>
       <p>Total Supply: {coin.market_data.total_supply}</p>
@@ -114,7 +124,7 @@ const IndividualCoin = ({ dark }) => {
       <p>Fully Diluted Market Valuation: {coin.market_data.fully_diluted_valuation.usd}</p>
       <p>Total Volume: {coin.market_data.total_volume.usd}</p>
       <p>24 Hour High: {coin.market_data.high_24h.usd}</p>
-      <p>24 Hour Low: {coin.market_data.low_24h.usd}</p>
+      <p>24 Hour Low: {coin.market_data.low_24h.usd}</p> */}
     </div>
   ) : (
     <div className="outer-min-height text-4xl flex flex-col justify-center items-center">
