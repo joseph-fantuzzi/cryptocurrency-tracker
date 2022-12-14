@@ -19,7 +19,7 @@ const Logo = ({ setShowLogoAnimation }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       onClick={handleClick}
-      style={{ cursor: "pointer" }}
+      className={"cursor-pointer w-20 h-20 lg:w-24 lg:h-24"}
     >
       <ellipse cx="51" cy="50" rx="51" ry="50" fill="url(#paint0_linear_792_1371)" />
       <g filter="url(#filter0_d_792_1371)">

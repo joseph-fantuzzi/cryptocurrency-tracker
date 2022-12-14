@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Search from "./Search";
 import Coin from "./Coin";
 import axiosWithAuth from "../axios/index";
@@ -19,6 +20,8 @@ const Coins = ({
   const token = window.localStorage.getItem("token");
   const decodedToken = jwt_decode(token);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     axiosWithAuth()
       .get(`${baseURL}/${decodedToken.subject}/favorites`)
@@ -30,17 +33,26 @@ const Coins = ({
       });
   }, [decodedToken.subject, setFavoritesList]);
 
+  const handleNavigate = (id) => {
+    navigate(`/coins/${id}`);
+  };
+
   const styles = {
     outerDiv: "outer-min-height",
     innerDiv: "pb-10",
-    infoDiv: `hidden md:grid max-w-7xl w-11/12 text-sm text-center mx-auto 
-    my-8 px-3 py-5 grid-cols-6 grid-rows-1
-    flex items-center rounded-xl text-white border-2 ${
+    infoDiv: `grid max-w-7xl w-11/12 text-sm font-medium mx-auto 
+    my-8 px-5 md:px-2 py-5 grid-cols-4 grid-rows-1
+    flex items-center justify-end rounded-xl text-white border-2 ${
       dark ? "border-[#E9ECEE]" : "border-[#000924] bg-[#000924] shadow"
     }`,
     loadingDiv: "outer-min-height text-4xl flex flex-col justify-center items-center",
     h1: dark ? "text-white" : "",
     noResultsDiv: `text-center mb-auto ${dark ? "text-white" : ""}`,
+    priceTitle: "flex justify-end",
+    mcapTitle: "hidden md:flex justify-end",
+    currencyTitle: "md:pl-12 md:col-span-1 col-span-2",
+    favTitle: "flex justify-end md:pr-12",
+    coinDiv: "cursor-pointer",
   };
 
   return (
@@ -53,16 +65,18 @@ const Coins = ({
           dark={dark}
         />
         <div className={styles.infoDiv}>
-          <h1>{""}</h1>
-          <h1>Currency</h1>
-          <h1>Symbol</h1>
-          <h1>Price</h1>
-          <h1>Market Cap</h1>
-          <h1>Favorites</h1>
+          <h1 className={styles.currencyTitle}>Currency</h1>
+          <h1 className={styles.priceTitle}>Price</h1>
+          <h1 className={styles.mcapTitle}>Market Cap</h1>
+          <h1 className={styles.favTitle}>Favorites</h1>
         </div>
         {cryptoData ? (
           filteredSearch().map((coin) => {
-            return <Coin key={coin.id} coin={coin} dark={dark} favoritesList={favoritesList} />;
+            return (
+              <div key={coin.id} className={styles.coinDiv} onClick={() => handleNavigate(coin.id)}>
+                <Coin coin={coin} dark={dark} favoritesList={favoritesList} />
+              </div>
+            );
           })
         ) : (
           <div className={styles.loadingDiv}>

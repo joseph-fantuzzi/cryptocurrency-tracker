@@ -50,7 +50,7 @@ body {
 }
 
 .outer-min-height {
-  min-height: calc(95vh - 100px);
+  min-height: calc(95vh - 136px);
 }
 
 .shadow {

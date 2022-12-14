@@ -145,12 +145,12 @@ function App() {
           }`}
         >
           <nav
-            className={`min-h-[100px] flex justify-between items-center ${
+            className={`min-h-[100px] pt-5 flex justify-between items-center ${
               dark ? "text-white" : "text-black"
             }`}
           >
             <div className="w-11/12 mx-auto max-w-7xl flex justify-between items-center">
-              <div className="ml-5 lg:ml-0 relative top-5">
+              <div className={"ml-10 lg:ml-0"}>
                 <Logo setShowLogoAnimation={setShowLogoAnimation} />
               </div>
               <div className="hidden lg:w-1/2 lg:flex lg:justify-between lg:items-center">
