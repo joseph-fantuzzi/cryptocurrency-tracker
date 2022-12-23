@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axiosWithAuth from "../axios/index";
 import jwt_decode from "jwt-decode";
-import { GoTrashcan } from "react-icons/go";
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import "../styles/other.css";
 import { baseURL } from "../config/index";
+import Favorite from "./Favorite";
 
 const Favorites = ({ dark }) => {
   const [list, setList] = useState([]);
 
   const styles = {
-    outerDiv: `outer-min-height flex flex-col justify-center items-center ${
+    outerDiv: `max-w-7xl w-11/12 mx-auto py-10 lg:py-20 outer-min-height ${
       dark ? "text-white" : "text-gray-800"
     }`,
-    h1: `text-center font-bold py-8 text-5xl ${dark ? "text-white" : "text-gray-800"}`,
-    favorite:
-      "grid grid-cols-3 grid-rows-1 justify-items-center items-center py-3 w-11/12 bg-gray-100 px-2 py-1 rounded-xl mb-5 drop-shadow-lg max-w-sm",
-    arrow: "drop-shadow-md cursor-pointer hover:text-gray-100 transition duration-300 ease",
-    trash: "drop-shadow-md cursor-pointer hover:text-red-500 transition duration-300 ease",
+    h1: `font-bold mb-2 text-2xl lg:text-4xl ${dark ? "text-white" : "text-gray-800"}`,
+    p: "text-xs lg:text-lg",
+    infoDiv: `grid text-sm font-medium 
+    mb-8 mt-6 px-5 md:px-2 py-5 grid-cols-4 grid-rows-1
+    flex items-center justify-end rounded-xl text-white border-2 transition duration-300 ease ${
+      dark ? "border-[#E9ECEE]" : "border-[#000924] bg-[#000924] shadow"
+    }`,
+    currencyTitle: "md:pl-12 md:col-span-1 col-span-2",
+    priceTitle: "flex justify-end",
+    mcapTitle: "hidden md:flex justify-end",
+    deleteTitle: "flex justify-end md:pr-12",
   };
 
   const token = window.localStorage.getItem("token");
@@ -35,45 +39,32 @@ const Favorites = ({ dark }) => {
       });
   }, [decodedToken.subject]);
 
-  const deleteFavoriteHandler = (favorites_id) => {
-    axiosWithAuth()
-      .delete(`${baseURL}/favorites/${favorites_id}`)
-      .then((res) => {
-        axiosWithAuth()
-          .get(`${baseURL}/${decodedToken.subject}/favorites`)
-          .then((res) => {
-            setList(res.data);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
   return (
     <div className={styles.outerDiv}>
       <h1 className={styles.h1}>Favorites List</h1>
       {list.length === 0 ? (
-        <p>There are no favorite coins in your list currently.</p>
+        <p className={styles.p}>There are no favorite coins in your list currently.</p>
       ) : (
-        list.map((favorite) => {
-          return (
-            <div key={favorite.favorites_id} className={styles.favorite}>
-              <Link to={`/coins/${favorite.coin_id}`}>
-                <BsFillArrowRightCircleFill fontSize={20} className={styles.arrow} />
-              </Link>
-              {favorite.coin_name}
-              <GoTrashcan
-                fontSize={20}
-                className={styles.trash}
-                onClick={() => deleteFavoriteHandler(favorite.favorites_id)}
-              />
-            </div>
-          );
-        })
+        <>
+          <div className={styles.infoDiv}>
+            <h1 className={styles.currencyTitle}>Currency</h1>
+            <h1 className={styles.priceTitle}>Price</h1>
+            <h1 className={styles.mcapTitle}>Market Cap</h1>
+            <h1 className={styles.deleteTitle}>Delete</h1>
+          </div>
+          {list.map((favorite) => {
+            return (
+              <div key={favorite.coin_id}>
+                <Favorite
+                  coin_id={favorite.coin_id}
+                  favorite_id={favorite.favorites_id}
+                  setList={setList}
+                  dark={dark}
+                />
+              </div>
+            );
+          })}
+        </>
       )}
     </div>
   );

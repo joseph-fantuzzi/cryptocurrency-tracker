@@ -20,15 +20,15 @@ const Home = ({ cryptoData, dark }) => {
   }, []);
 
   const styles = {
-    outerDiv: "outer-min-height flex flex-col justify-center",
-    h1: `font-bold text-center text-6xl md:text-8xl  pt-10 pb-6 ${dark ? "text-white" : ""}`,
-    p: `w-11/12 mx-auto max-w-7xl text-center mt-5 mb-10 text-2xl ${dark ? "text-white" : ""}`,
-    carousel: "flex items-center w-11/12 mx-auto max-w-7xl mb-10",
-    carouselItem: "flex flex-col items-center cursor-pointer",
+    outerDiv:
+      "max-w-7xl w-11/12 mx-auto outer-min-height flex gap-10 flex-col justify-center pt-10 pb-32",
+    h1: `font-bold text-4xl mb-4 md:text-6xl ${dark ? "text-white" : ""}`,
+    p: `text-md md:text-xl ${dark ? "text-white" : ""}`,
+    carouselItem: "flex flex-col items-center justify-center cursor-pointer",
     carouselItemText: `${dark ? "text-white" : "text-black"}`,
-    btnDiv: "text-center",
-    btn: `px-10 py-3 text-2xl rounded-2xl bg-[#52E6FA] border-2 border-[#52E6FA] hover:bg-[#52E6FA4D]
-   transition duration-500 ease ${dark ? "" : "shadow"}`,
+    btn: `px-4 py-2 rounded-2xl bg-[#52E6FA] border-2 border-[#52E6FA] hover:bg-[#52E6FA4D]
+   transition duration-300 ease ${dark ? "" : "shadow"}`,
+    img: "mb-2 w-20 h-20 rounded-full",
   };
 
   const coins = topCoins.map((coin) => {
@@ -37,11 +37,7 @@ const Home = ({ cryptoData, dark }) => {
     if (coin.name !== "Tether" && coin.name !== "USD Coin" && coin.name !== "Binance USD") {
       return (
         <Link className={styles.carouselItem} to={`/coins/${coin.id}`}>
-          <img
-            src={coin?.image}
-            alt={coin.name}
-            style={{ marginBottom: 10, width: 100, borderRadius: 50 }}
-          />
+          <img src={coin?.image} alt={coin.name} className={styles.img} />
           <span className={styles.carouselItemText}>
             {coin?.symbol.toUpperCase()}
             <span
@@ -55,7 +51,6 @@ const Home = ({ cryptoData, dark }) => {
               {coin?.price_change_percentage_24h?.toFixed(2)}%
             </span>
           </span>
-          <span style={{ fontSize: 22, fontWeight: 500 }}></span>
         </Link>
       );
     } else {
@@ -72,10 +67,13 @@ const Home = ({ cryptoData, dark }) => {
       items: 2,
     },
     400: {
-      items: 3,
+      items: 4,
     },
     800: {
       items: 6,
+    },
+    1000: {
+      items: 8,
     },
   };
 
@@ -97,16 +95,16 @@ const Home = ({ cryptoData, dark }) => {
 
   return (
     <div className={styles.outerDiv}>
-      <h1 className={styles.h1}>Cryptox</h1>
-      <p className={styles.p}>Meet the Next Generation of Cryptocurrency Tracking Software</p>
-      <div className={styles.carousel}>
+      <div>
+        <h1 className={styles.h1}>Cryptox</h1>
+        <p className={styles.p}>Meet the Next Generation of Cryptocurrency Tracking Software</p>
+      </div>
+      <div>
         <Gallery />
       </div>
-      <div className={styles.btnDiv}>
-        <Link to="/login">
-          <button className={styles.btn}>Login</button>
-        </Link>
-      </div>
+      <Link to="/register">
+        <button className={styles.btn}>Get Started</button>
+      </Link>
     </div>
   );
 };

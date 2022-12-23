@@ -49,10 +49,16 @@ body {
   cursor: pointer;
 }
 
-.outer-min-height {
-  min-height: calc(95vh - 136px);
-}
-
 .shadow {
   box-shadow: 4px 4px 8px #cbcbcb, -4px -4px 8px #ffffff;
+}
+
+.outer-min-height {
+  min-height: calc(100vh - 5vh - 100px);
+}
+
+@media (min-width: 1024px) {
+  .outer-min-height {
+    min-height: calc(100vh - 5vh - 116px);
+  }
 }

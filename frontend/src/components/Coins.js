@@ -42,7 +42,7 @@ const Coins = ({
     innerDiv: "pb-10",
     infoDiv: `grid max-w-7xl w-11/12 text-sm font-medium mx-auto 
     my-8 px-5 md:px-2 py-5 grid-cols-4 grid-rows-1
-    flex items-center justify-end rounded-xl text-white border-2 ${
+    flex items-center justify-end rounded-xl text-white border-2 transition duration-300 ease ${
       dark ? "border-[#E9ECEE]" : "border-[#000924] bg-[#000924] shadow"
     }`,
     loadingDiv: "outer-min-height text-4xl flex flex-col justify-center items-center",

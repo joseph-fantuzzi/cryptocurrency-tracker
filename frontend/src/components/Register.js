@@ -40,8 +40,8 @@ const Register = ({
   return (
     <div className="outer-min-height flex justify-center items-center">
       <form
-        className={`flex flex-col justify-between items-center my-5 px-8 py-10 rounded-3xl w-5/6 max-w-xl drop-shadow-2xl ${
-          dark ? "bg-gray-100" : "bg-gray-300"
+        className={`flex flex-col justify-between items-center my-5 px-8 py-10 rounded-3xl w-11/12 max-w-xl transition duration-300 ease ${
+          dark ? "bg-gray-100" : "bg-gray-300 shadow"
         }`}
         onSubmit={submitHandler}
       >
@@ -155,8 +155,10 @@ const Register = ({
         <button
           disabled={disabled}
           className={`${
-            disabled ? "bg-gray-100" : "bg-gray-800 hover:bg-gray-100 hover:text-black"
-          } text-white rounded-lg py-2 my-8 w-full cursor-pointer max-w-sm drop-shadow-lg transition ease duration-500`}
+            disabled
+              ? "bg-gray-100 cursor-not-allowed"
+              : "bg-gray-800 hover:bg-gray-100 hover:text-black"
+          } text-white rounded-lg py-2 my-8 w-full cursor-pointer max-w-sm drop-shadow-lg`}
           onClick={submitHandler}
         >
           Create Account
@@ -171,9 +173,7 @@ const Register = ({
           <div className="text-center">
             <p>Have An Account With Us?</p>
             <Link to="/login">
-              <span className="cursor-pointer transition ease duration-500 hover:text-white">
-                Login Now.
-              </span>
+              <span className="underline cursor-pointer hover:text-white">Login Now.</span>
             </Link>
           </div>
         )}

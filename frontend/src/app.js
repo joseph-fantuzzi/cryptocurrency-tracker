@@ -140,7 +140,7 @@ function App() {
         <LogoAnimation setShowLogoAnimation={setShowLogoAnimation} />
       ) : (
         <div
-          className={`min-h-[95vh] transition duration-500 ease ${
+          className={`min-h-[95vh] transition duration-300 ease ${
             dark ? "bg-[#000924]" : "bg-[#E9ECEE]"
           }`}
         >
@@ -153,29 +153,23 @@ function App() {
               <div>
                 <Logo setShowLogoAnimation={setShowLogoAnimation} />
               </div>
-              <div className="hidden lg:w-1/2 lg:flex lg:justify-between lg:items-center">
+              <div className="hidden lg:w-5/12 lg:flex lg:justify-between lg:items-center">
                 <NavLink
-                  className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:text-[#52E6FA]"
-                  to="/"
-                >
-                  Home
-                </NavLink>
-                <NavLink
-                  className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:text-[#52E6FA]"
+                  className="py-[0.5em] px-[1em] rounded-[3em] transition duration-300 ease hover:text-[#52E6FA]"
                   to={window.localStorage.getItem("token") ? "/coins" : "/login"}
                 >
                   Coins
                 </NavLink>
                 <NavLink
-                  className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:text-[#52E6FA]"
+                  className="py-[0.5em] px-[1em] rounded-[3em] transition duration-300 ease hover:text-[#52E6FA]"
                   to={window.localStorage.getItem("token") ? "/account" : "/login"}
                 >
-                  My Account
+                  Account
                 </NavLink>
                 {!window.localStorage.getItem("token") ? (
                   <>
                     <NavLink
-                      className="py-[0.5em] px-[1em] rounded-[3em] transition duration-500 ease hover:text-[#52E6FA]"
+                      className="py-[0.5em] px-[1em] rounded-[3em] transition duration-300 ease hover:text-[#52E6FA]"
                       to="/login"
                     >
                       Login
@@ -183,7 +177,7 @@ function App() {
                     <NavLink
                       className={`py-2 px-4 rounded-2xl border-2 text-black ${
                         dark ? "hover:text-white" : ""
-                      } border-[#52E6FA] bg-[#52E6FA] hover:bg-[#52E6FA4D] transition duration-500 ease`}
+                      } border-[#52E6FA] bg-[#52E6FA] hover:bg-[#52E6FA4D] transition duration-300 ease`}
                       to="/register"
                     >
                       Register
@@ -194,20 +188,20 @@ function App() {
                     onClick={logout}
                     className={`py-2 px-4 rounded-2xl text-black ${
                       dark ? "hover:text-white" : ""
-                    } border-2 border-[#52E6FA] bg-[#52E6FA] hover:bg-[#52E6FA4D] transition duration-500 ease`}
+                    } border-2 border-[#52E6FA] bg-[#52E6FA] hover:bg-[#52E6FA4D] transition duration-300 ease`}
                   >
                     Logout
                   </button>
                 )}
                 {dark ? (
                   <MdDarkMode
-                    className="cursor-pointer"
+                    className="cursor-pointer ml-4"
                     fontSize={22}
                     onClick={() => setDark(false)}
                   />
                 ) : (
                   <MdOutlineDarkMode
-                    className="cursor-pointer"
+                    className="cursor-pointer ml-4"
                     fontSize={22}
                     onClick={() => setDark(true)}
                   />
@@ -241,9 +235,6 @@ function App() {
                       />
                     </div>
                     <div className="flex flex-col items-end text-2xl pr-5">
-                      <NavLink className="py-4" to="/" onClick={() => setToggleNav(false)}>
-                        Home
-                      </NavLink>
                       <NavLink
                         className="py-4"
                         to={window.localStorage.getItem("token") ? "/coins" : "/login"}
@@ -256,7 +247,7 @@ function App() {
                         to={window.localStorage.getItem("token") ? "/account" : "/login"}
                         onClick={() => setToggleNav(false)}
                       >
-                        My Account
+                        Account
                       </NavLink>
                       {!window.localStorage.getItem("token") ? (
                         <>
@@ -364,7 +355,7 @@ function App() {
         </div>
       )}
       <footer
-        className={`flex justify-center items-center min-h-[5vh] text-xs transition duration-500 ease ${
+        className={`flex justify-center items-center min-h-[5vh] text-xs transition duration-300 ease ${
           dark ? "bg-[#000924] text-white" : "bg-[#E9ECEE] text-black"
         }`}
       >
