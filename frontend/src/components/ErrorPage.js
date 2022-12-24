@@ -4,22 +4,35 @@ import { BiArrowBack } from "react-icons/bi";
 import "../styles/other.css";
 
 const styles = {
-  outerDiv: "outer-min-height flex flex-col justify-center items-center",
-  innerDiv: "w-11/12 max-w-lg bg-gray-300 drop-shadow-2xl px-10 py-12 rounded-3xl",
+  outerDiv: "py-10 outer-min-height flex flex-col justify-center items-center",
+  innerDiv: (dark) =>
+    [
+      "w-11/12",
+      "max-w-lg",
+      "px-10",
+      "py-12",
+      "rounded-3xl",
+      "transition duration-300 ease",
+      dark ? "border-2 border-[#E9ECEE4D]" : "shadow bg-[#E9ECEE]",
+    ].join(" "),
   h1: "text-center text-red-500 font-bold text-3xl pb-8",
-  btn: "text-center py-1 max-w-xs text-white flex items-center justify-center bg-gray-800 rounded-2xl w-7/8 mx-auto hover:drop-shadow-lg hover:bg-white hover:text-black transition duration-300 ease",
+  btn: (dark) =>
+    [
+      "text-center border-2 py-2 text-white flex items-center justify-center bg-[#000924] rounded-3xl w-1/2 min-w-[130px] mx-auto hover:bg-[#E9ECEE] hover:text-black transition duration-300 ease",
+      dark ? "border-[#E9ECEE4D]" : "shadow border-[#000924]",
+    ].join(" "),
   p: "text-lg pr-2",
   icon: "",
 };
 
-const ErrorPage = () => {
+const ErrorPage = ({ dark }) => {
   return (
     <div className={styles.outerDiv}>
-      <div className={styles.innerDiv}>
+      <div className={styles.innerDiv(dark)}>
         <h1 className={styles.h1}>404 Not Found</h1>
         <Link to="/">
-          <div className={styles.btn}>
-            <p className={styles.p}>Back to Home</p>
+          <div className={styles.btn(dark)}>
+            <p className={styles.p}>Home</p>
             <BiArrowBack fontSize={20} className={styles.icon} />
           </div>
         </Link>

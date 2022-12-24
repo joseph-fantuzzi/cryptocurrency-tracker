@@ -18,7 +18,47 @@ const initialFormValues = {
 
 const URL = `${baseURL}/change`;
 
-const Account = ({ logout }) => {
+const styles = {
+  outerDiv: "outer-min-height w-11/12 max-w-7xl mx-auto flex flex-col justify-center items-center",
+  h1: (dark) =>
+    [
+      "text-center pt-8 text-4xl font-semibold transition duration-300 ease",
+      dark ? "text-white" : "text-black",
+    ].join(" "),
+  avatar: "flex flex-col justify-center items-center pt-10",
+  avatarH1: "text-black font-bold text-3xl",
+  innerDiv: "w-full flex flex-col items-center",
+  infoDiv: (dark) =>
+    [
+      "w-full max-w-md flex flex-col mt-10 p-8 pt-10 rounded-2xl border-2 transition duration-300 ease",
+      dark ? "text-white border-[#E9ECEE4D]" : "border-[#E9ECEE] shadow",
+    ].join(" "),
+  h2: "font-bold text-center pb-5",
+  p: "pb-5",
+  icon: "inline mr-3",
+  changePswrdBtn: (dark) =>
+    [
+      "rounded-3xl border-2 text-white py-2 px-6 transition duration-300 ease hover:text-black hover:bg-[#E9ECEE]",
+      dark ? "text-white" : "bg-[#000924] border-[#000924]",
+    ].join(" "),
+  updatePswrdBtnDisabled:
+    "bg-gray-100 border-2 border-gray-100 mt-5 text-white rounded-3xl py-2 cursor-not-allowed",
+  updatePswrdBtn: (dark) =>
+    [
+      "rounded-3xl border-2 text-white py-2 px-6 mt-5 transition duration-300 ease hover:text-black hover:bg-[#E9ECEE]",
+      dark ? "text-white" : "bg-[#000924] border-[#000924]",
+    ].join(" "),
+  logoutBtn:
+    "w-full max-w-md mt-8 py-2 px-4 rounded-2xl drop-shadow-lg bg-white hover:bg-[#52E6FA] transition duration-300 ease",
+  form: "flex flex-col pt-5",
+  input:
+    "rounded-xl py-1 px-3 mb-3 w-full shadow-md text-black mt-1 focus:outline-none focus:ring focus:ring-[#52E6FA]",
+  message: "text-red-500 text-center mt-5",
+  success: "text-center my-3",
+  label: "text-xs",
+};
+
+const Account = ({ logout, dark }) => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [message, setMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -27,29 +67,6 @@ const Account = ({ logout }) => {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const styles = {
-    outerDiv: "outer-min-height flex flex-col justify-center items-center",
-    h1: "text-center pt-8 text-4xl font-semibold",
-    avatar: "flex flex-col justify-center items-center pt-10",
-    avatarH1: "text-black font-bold text-3xl",
-    innerDiv: "w-full flex flex-col items-center",
-    infoDiv: "max-w-md flex flex-col mt-10 p-8 pt-10 bg-gray-300 shadow-lg rounded-2xl w-5/6",
-    h2: "font-bold text-center pb-5",
-    p: "pb-5",
-    icon: "inline mr-3",
-    changePswrdBtn:
-      "bg-black text-white rounded-2xl mt-5 py-2 shadow-md hover:text-black hover:bg-gray-100 transition duration-300 ease",
-    updatePswrdBtnDisabled: "bg-gray-100 mt-5 text-white shadow-md rounded-2xl py-2",
-    updatePswrdBtn:
-      "bg-black mt-5 text-white rounded-2xl shadow-md py-2 hover:text-black hover:bg-gray-100 transition duration-300 ease",
-    logoutBtn:
-      "max-w-md w-5/6 mt-16 mb-8 py-2 px-4 rounded-2xl drop-shadow-lg bg-white hover:bg-[#52E6FA] transition duration-300 ease",
-    form: "flex flex-col pt-5",
-    input: "rounded-xl py-1 px-3 mb-3 w-full shadow-md",
-    message: "text-red-500 text-center mt-5",
-    success: "text-center my-3",
-  };
 
   const { current_password, new_password, confirm_password } = formValues;
 
@@ -96,7 +113,7 @@ const Account = ({ logout }) => {
   return (
     <div className={styles.outerDiv}>
       <div>
-        <h1 className={styles.h1}>
+        <h1 className={styles.h1(dark)}>
           {`${decoded.first_name} 
         ${decoded.last_name}`}
         </h1>
@@ -110,7 +127,7 @@ const Account = ({ logout }) => {
         </div>
       </div>
       <div className={styles.innerDiv}>
-        <div className={styles.infoDiv}>
+        <div className={styles.infoDiv(dark)}>
           <h2 className={styles.h2}>Personal Information</h2>
           <p className={styles.p}>
             <BiUserCircle className={styles.icon} fontSize={24} />
@@ -120,24 +137,26 @@ const Account = ({ logout }) => {
             <FiMail className={styles.icon} fontSize={24} />
             Email: {decoded.email}
           </p>
-          <button onClick={changePasswordBtnHandler} className={styles.changePswrdBtn}>
+          <button onClick={changePasswordBtnHandler} className={styles.changePswrdBtn(dark)}>
             {changePassword ? "Cancel Changes" : "Change Password"}
           </button>
-          <p className={styles.success}>{successMessage}</p>
+          {successMessage.length > 0 && <p className={styles.success}>{successMessage}</p>}
           {loading && <LinearProgress color="inherit" />}
           {changePassword && (
             <form className={styles.form} onSubmit={newPasswordHandler}>
               <div className="password-container">
-                <label htmlFor="current_password">Current Password</label>
+                <label htmlFor="current_password" className={styles.label}>
+                  Current Password
+                </label>
                 {showCurrentPassword ? (
                   <MdVisibility
-                    className="password-icon"
+                    className="password-icon-account"
                     fontSize={22}
                     onClick={() => setShowCurrentPassword(false)}
                   />
                 ) : (
                   <MdVisibilityOff
-                    className="password-icon"
+                    className="password-icon-account"
                     fontSize={22}
                     onClick={() => setShowCurrentPassword(true)}
                   />
@@ -149,19 +168,22 @@ const Account = ({ logout }) => {
                   name="current_password"
                   value={formValues.current_password}
                   onChange={changeHandler}
+                  autoComplete="off"
                 />
               </div>
               <div className="password-container">
-                <label htmlFor="new_password">New Password</label>
+                <label htmlFor="new_password" className={styles.label}>
+                  New Password
+                </label>
                 {showNewPassword ? (
                   <MdVisibility
-                    className="password-icon"
+                    className="password-icon-account"
                     fontSize={22}
                     onClick={() => setShowNewPassword(false)}
                   />
                 ) : (
                   <MdVisibilityOff
-                    className="password-icon"
+                    className="password-icon-account"
                     fontSize={22}
                     onClick={() => setShowNewPassword(true)}
                   />
@@ -173,19 +195,22 @@ const Account = ({ logout }) => {
                   name="new_password"
                   value={formValues.new_password}
                   onChange={changeHandler}
+                  autoComplete="off"
                 />
               </div>
               <div className="password-container">
-                <label htmlFor="confirm_password">Confirm Password</label>
+                <label htmlFor="confirm_password" className={styles.label}>
+                  Confirm Password
+                </label>
                 {showConfirmPassword ? (
                   <MdVisibility
-                    className="password-icon"
+                    className="password-icon-account"
                     fontSize={22}
                     onClick={() => setShowConfirmPassword(false)}
                   />
                 ) : (
                   <MdVisibilityOff
-                    className="password-icon"
+                    className="password-icon-account"
                     fontSize={22}
                     onClick={() => setShowConfirmPassword(true)}
                   />
@@ -197,15 +222,16 @@ const Account = ({ logout }) => {
                   name="confirm_password"
                   value={formValues.confirm_password}
                   onChange={changeHandler}
+                  autoComplete="off"
                 />
               </div>
               <button
                 disabled={disabled}
-                className={disabled ? styles.updatePswrdBtnDisabled : styles.updatePswrdBtn}
+                className={disabled ? styles.updatePswrdBtnDisabled : styles.updatePswrdBtn(dark)}
               >
                 Update Password
               </button>
-              <p className={styles.message}>{message}</p>
+              {message.length > 0 && <p className={styles.message}>{message}</p>}
             </form>
           )}
         </div>

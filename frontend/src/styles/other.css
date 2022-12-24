@@ -40,13 +40,22 @@ body {
   position: relative;
 }
 
-.password-icon {
+.password-icon,
+.password-icon-account {
   position: absolute;
   right: 0;
   z-index: 1;
   margin-right: 10px;
-  margin-top: 3px;
   cursor: pointer;
+  color: black;
+}
+
+.password-icon {
+  margin-top: 3px;
+}
+
+.password-icon-account {
+  margin-top: 9px;
 }
 
 .shadow {

@@ -153,7 +153,11 @@ function App() {
               <div>
                 <Logo setShowLogoAnimation={setShowLogoAnimation} />
               </div>
-              <div className="hidden lg:w-5/12 lg:flex lg:justify-between lg:items-center">
+              <div
+                className={`hidden lg:flex lg:justify-between lg:items-center ${
+                  window.localStorage.getItem("token") ? "lg:w-4/12" : "lg:w-5/12"
+                }`}
+              >
                 <NavLink
                   className="py-[0.5em] px-[1em] rounded-[3em] transition duration-300 ease hover:text-[#52E6FA]"
                   to={window.localStorage.getItem("token") ? "/coins" : "/login"}
@@ -309,7 +313,7 @@ function App() {
               path="/account"
               element={
                 <ProtectedRoute>
-                  <Account logout={logout} />
+                  <Account logout={logout} dark={dark} />
                 </ProtectedRoute>
               }
             />
@@ -350,7 +354,7 @@ function App() {
               }
             />
             <Route path="/" element={<Home cryptoData={cryptoData} dark={dark} />} />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage dark={dark} />} />
           </Routes>
         </div>
       )}

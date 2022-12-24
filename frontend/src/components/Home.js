@@ -66,7 +66,7 @@ const Home = ({ cryptoData, dark }) => {
     0: {
       items: 2,
     },
-    400: {
+    500: {
       items: 4,
     },
     800: {
