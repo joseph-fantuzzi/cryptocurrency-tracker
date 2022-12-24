@@ -49,7 +49,7 @@ const styles = {
       dark ? "text-white" : "bg-[#000924] border-[#000924]",
     ].join(" "),
   logoutBtn:
-    "w-full max-w-md mt-8 py-2 px-4 rounded-2xl drop-shadow-lg bg-white hover:bg-[#52E6FA] transition duration-300 ease",
+    "w-full max-w-md my-8 py-2 px-4 rounded-2xl drop-shadow-lg bg-white hover:bg-[#52E6FA] transition duration-300 ease",
   form: "flex flex-col pt-5",
   input:
     "rounded-xl py-1 px-3 mb-3 w-full shadow-md text-black mt-1 focus:outline-none focus:ring focus:ring-[#52E6FA]",

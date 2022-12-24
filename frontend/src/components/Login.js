@@ -111,7 +111,7 @@ const Login = ({
         </button>
         <div className="text-red-500 text-center font-bold pb-5">{loginError}</div>
         {loginMessage ? (
-          <div>
+          <div className={dark ? "text-white" : "text-black"}>
             <div className="font-bold pb-3">{loginMessage}</div>
             <LinearProgress color="inherit" />
           </div>

@@ -203,7 +203,7 @@ const Register = ({
         </button>
         <div className="text-red-500 text-center font-bold pb-5">{registerError}</div>
         {registerMessage ? (
-          <div>
+          <div className={dark ? "text-white" : "text-black"}>
             <div className="text-center font-bold pb-3">{registerMessage}</div>
             <LinearProgress color="inherit" />
           </div>
