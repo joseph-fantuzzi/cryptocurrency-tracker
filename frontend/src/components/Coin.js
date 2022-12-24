@@ -11,8 +11,8 @@ const Coin = ({ coin, dark, favoritesList }) => {
   const styles = {
     outerDiv: `max-w-7xl w-11/12 text-center mx-auto md:py-2 md:px-2 py-3 px-5 grid
       grid-cols-4 grid-rows-1 flex justify-around items-center rounded-xl my-3 
-      border-2 border-[#E9ECEE] hover:shadow-md transition duration-300 ease ${
-        dark ? "text-white border-[#E9ECEE4D]" : "bg-[#E9ECEE] shadow"
+      border-2 hover:shadow-md transition duration-300 ease ${
+        dark ? "text-white border-[#E9ECEE4D]" : "bg-[#E9ECEE] border-[#E9ECEE] shadow"
       }`,
     imgDiv: "flex items-center justify-start gap-2 col-span-2 md:col-span-1 md:pl-12",
     priceDiv: "flex items-center justify-end",
