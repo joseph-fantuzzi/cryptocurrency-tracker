@@ -50,7 +50,7 @@ describe("Login Page Tests", () => {
     expect(title).toBeTruthy();
   });
 
-  test("Login Component Correctly Displays Username and Password Titles and Input Fields", () => {
+  test("Login Component Correctly Displays Username and Password Titles", () => {
     render(
       <Router>
         <Login
@@ -76,7 +76,7 @@ describe("Login Page Tests", () => {
     expect(passwordTitle).toBeTruthy();
   });
 
-  test("Login Component's Inputs Properly Displays Values", () => {
+  test("Login Component's Inputs Properly Display Values", () => {
     const loginFormValues = { username: "test", password: "test123" };
 
     render(
