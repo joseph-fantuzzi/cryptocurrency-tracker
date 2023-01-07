@@ -353,7 +353,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/" element={<Home cryptoData={cryptoData} dark={dark} />} />
+            <Route path="/" element={<Home dark={dark} />} />
             <Route path="*" element={<ErrorPage dark={dark} />} />
           </Routes>
         </div>

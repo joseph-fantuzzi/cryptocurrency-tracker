@@ -145,7 +145,11 @@ const Account = ({ logout, dark }) => {
           {changePassword && (
             <form className={styles.form} onSubmit={newPasswordHandler}>
               <div className="password-container">
-                <label htmlFor="current_password" className={styles.label}>
+                <label
+                  htmlFor="current_password"
+                  className={styles.label}
+                  data-testid="current-password"
+                >
                   Current Password
                 </label>
                 {showCurrentPassword ? (

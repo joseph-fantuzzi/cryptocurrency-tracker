@@ -5,7 +5,7 @@ import AliceCarousel from "react-alice-carousel";
 import "../styles/other.css";
 import "react-alice-carousel/lib/alice-carousel.css";
 
-const Home = ({ cryptoData, dark }) => {
+const Home = ({ dark }) => {
   const [topCoins, setTopCoins] = useState([]);
 
   useEffect(() => {
