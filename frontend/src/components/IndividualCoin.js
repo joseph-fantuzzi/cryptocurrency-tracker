@@ -23,14 +23,16 @@ const IndividualCoin = ({ dark }) => {
   const { itemID } = useParams();
 
   const styles = {
-    outerDiv: `w-11/12 max-w-7xl mx-auto py-10 flex flex-col ${dark ? "text-white" : "text-black"}`,
+    outerDiv: `outer-min-height w-11/12 max-w-7xl mx-auto py-10 flex flex-col ${
+      dark ? "text-white" : "text-black"
+    }`,
     header: "flex items-center gap-3",
     name: "text-3xl",
     image: "w-16",
-    outerChartDiv: "mt-5 w-full h-auto relative bg-[#000924] p-5 rounded-2xl",
-    innerChartDiv: "w-full h-96 flex justify-center",
-    headerContainer: "flex justify-between items-center",
-    price: "text-xl",
+    chart: "bg-[#000924] my-5 p-5 rounded-2xl w-full flex justify-center",
+    headerContainer: "flex flex-col sm:flex-row justify-between sm:items-center",
+    price: "text-xl mt-5 sm:mt-0",
+    change: (bool) => [bool ? "text-green-500" : "text-red-500"].join(" "),
   };
 
   useEffect(() => {
@@ -87,44 +89,14 @@ const IndividualCoin = ({ dark }) => {
           <img className={styles.image} src={coin.image.large} alt={coin} />
           <h1 className={styles.name}>{coin.name}</h1>
           <p>{coin.symbol.toUpperCase()}</p>
+          <p className={styles.change(coin?.market_data?.price_change_24h >= 0)}>
+            {coin?.market_data?.price_change_percentage_24h?.toFixed(2)}%
+          </p>
         </div>
         <div className={styles.price}>${coin.market_data.current_price.usd}</div>
       </div>
-      <div className={styles.outerChartDiv}>
-        <div className={styles.innerChartDiv}>
-          <Line options={options} data={data} />
-        </div>
-      </div>
-      {/* <p>Market Cap Rank: {coin.market_cap_rank}</p>
-      <p>Market Capitalization: {coin.market_data.market_cap.usd}</p>
-      <p>Circulating Supply: {coin.market_data.circulating_supply}</p>
-      <p>Total Supply: {coin.market_data.total_supply}</p>
-      <p>{coin.description.en}</p>
-      <h2>Links</h2>
-      <ul className="text-left">
-        <li>
-          <a href={coin.links.homepage[0]}>{coin.links.homepage[0]}</a>
-        </li>
-        <li>
-          <a href={coin.links.blockchain_site[0]}>{coin.links.blockchain_site[0]}</a>
-        </li>
-      </ul>
-      <h2>Market Data:</h2>
-      <div>
-        <p>Price: {coin.market_data.current_price.usd}</p>
-        <p>All Time High: {coin.market_data.ath.usd}</p>
-        <p>Percent from ATH: {coin.market_data.ath_change_percentage.usd}</p>
-        <p>ATH Date: {coin.market_data.ath_date.usd}</p>
-      </div>
-      <div>
-        <p>All Time Low: {coin.market_data.atl.usd}</p>
-        <p>Percent from ATL: {coin.market_data.atl_change_percentage.usd}</p>
-        <p>ATL Date: {coin.market_data.atl_date.usd}</p>
-      </div>
-      <p>Fully Diluted Market Valuation: {coin.market_data.fully_diluted_valuation.usd}</p>
-      <p>Total Volume: {coin.market_data.total_volume.usd}</p>
-      <p>24 Hour High: {coin.market_data.high_24h.usd}</p>
-      <p>24 Hour Low: {coin.market_data.low_24h.usd}</p> */}
+      <Line options={options} data={data} className={styles.chart} />
+      <div>{coin.description.en}</div>
     </div>
   ) : (
     <div className="outer-min-height text-4xl flex flex-col justify-center items-center">
