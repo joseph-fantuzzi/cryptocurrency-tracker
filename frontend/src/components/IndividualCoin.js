@@ -82,6 +82,26 @@ const IndividualCoin = ({ dark }) => {
     ],
   };
 
+  const appendClassNameToAnchorTags = () => {
+    let string = coin.description.en;
+    const linkRegex = /<a(.*?)>(.*?)<\/a>/g;
+    let m;
+
+    while ((m = linkRegex.exec(string)) !== null) {
+      if (m.index === linkRegex.lastIndex) {
+        linkRegex.lastIndex++;
+      }
+
+      const linkAttrs = m[1];
+      const linkText = m[2];
+
+      const linkElement = `<a class="link" ${linkAttrs}>${linkText}</a>`;
+      string = string.replace(m[0], linkElement);
+    }
+
+    return string;
+  };
+
   return coin ? (
     <div className={styles.outerDiv}>
       <div className={styles.headerContainer}>
@@ -96,7 +116,7 @@ const IndividualCoin = ({ dark }) => {
         <div className={styles.price}>${coin.market_data.current_price.usd}</div>
       </div>
       <Line options={options} data={data} className={styles.chart} />
-      <div>{coin.description.en}</div>
+      <div dangerouslySetInnerHTML={{ __html: appendClassNameToAnchorTags() }} />
     </div>
   ) : (
     <div className="outer-min-height text-4xl flex flex-col justify-center items-center">
