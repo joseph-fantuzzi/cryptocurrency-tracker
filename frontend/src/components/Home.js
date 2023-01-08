@@ -66,6 +66,9 @@ const Home = ({ dark }) => {
     0: {
       items: 2,
     },
+    350: {
+      items: 3,
+    },
     500: {
       items: 4,
     },

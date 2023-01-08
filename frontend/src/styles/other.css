@@ -66,6 +66,11 @@ body {
   min-height: calc(100vh - 5vh - 100px);
 }
 
+.link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 @media (min-width: 1024px) {
   .outer-min-height {
     min-height: calc(100vh - 5vh - 116px);
