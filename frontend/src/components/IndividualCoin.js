@@ -46,7 +46,7 @@ const IndividualCoin = ({ dark }) => {
     headerContainer: "flex flex-col sm:flex-row justify-between sm:items-center",
     price: "text-lg sm:text-xl sm:mt-0 mt-2",
     text: "text-sm font-light",
-    infoContainer: "mt-5 grid grid-cols-2 grid-rows-4 md:grid-cols-3 md:grid-rows-2 gap-2",
+    infoContainer: "mt-5 grid grid-cols-2 grid-rows-3 md:grid-cols-3 md:grid-rows-2 gap-2",
     title: "text-sm sm:text-lg",
     inner: "flex flex-col py-1 items-center justify-center",
     number: "font-light text-[#52E6FA]",

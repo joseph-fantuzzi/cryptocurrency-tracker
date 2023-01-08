@@ -482,6 +482,66 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: -0.5rem;
 }
 
+.top-10 {
+  top: 2.5rem;
+}
+
+.top-20 {
+  top: 5rem;
+}
+
+.top-16 {
+  top: 4rem;
+}
+
+.top-14 {
+  top: 3.5rem;
+}
+
+.top-12 {
+  top: 3rem;
+}
+
+.right-10 {
+  right: 2.5rem;
+}
+
+.right-8 {
+  right: 2rem;
+}
+
+.right-\[5\%\] {
+  right: 5%;
+}
+
+.right-\[6\%\] {
+  right: 6%;
+}
+
+.right-\[8\%\] {
+  right: 8%;
+}
+
+.-right-0 {
+  right: -0px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.right-\[10\%\] {
+  right: 10%;
+}
+
+.top-11 {
+  top: 2.75rem;
+}
+
+.right-\[7\%\] {
+  right: 7%;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -554,6 +614,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 1rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -564,14 +628,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ml-2 {
   margin-left: 0.5rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
 }
 
 .inline {
@@ -642,8 +698,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 5rem;
 }
 
-.w-16 {
-  width: 4rem;
+.w-24 {
+  width: 6rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-\[30\%\] {
@@ -654,12 +714,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 66.666667%;
 }
 
-.w-12 {
-  width: 3rem;
-}
-
-.w-24 {
-  width: 6rem;
+.w-\[75vw\] {
+  width: 75vw;
 }
 
 .min-w-\[130px\] {
@@ -711,10 +767,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -723,12 +775,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-template-rows: repeat(1, minmax(0, 1fr));
 }
 
-.grid-rows-2 {
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-}
-
 .grid-rows-4 {
   grid-template-rows: repeat(4, minmax(0, 1fr));
+}
+
+.grid-rows-3 {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -763,10 +815,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   justify-content: space-around;
 }
 
-.justify-evenly {
-  justify-content: space-evenly;
-}
-
 .gap-2 {
   gap: 0.5rem;
 }
@@ -775,16 +823,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 2.5rem;
 }
 
-.gap-3 {
-  gap: 0.75rem;
-}
-
 .gap-5 {
   gap: 1.25rem;
 }
 
-.gap-1 {
-  gap: 0.25rem;
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .self-start {
@@ -813,10 +857,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .rounded-full {
   border-radius: 9999px;
-}
-
-.rounded-lg {
-  border-radius: 0.5rem;
 }
 
 .border-2 {
@@ -888,14 +928,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-8 {
   padding: 2rem;
-}
-
-.p-1 {
-  padding: 0.25rem;
-}
-
-.p-2 {
-  padding: 0.5rem;
 }
 
 .py-\[0\.5em\] {
@@ -1037,6 +1069,30 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 4rem;
 }
 
+.pt-12 {
+  padding-top: 3rem;
+}
+
+.pt-20 {
+  padding-top: 5rem;
+}
+
+.pt-24 {
+  padding-top: 6rem;
+}
+
+.pt-28 {
+  padding-top: 7rem;
+}
+
+.pr-\[8\%\] {
+  padding-right: 8%;
+}
+
+.pr-\[6\%\] {
+  padding-right: 6%;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1092,14 +1148,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 500;
 }
 
-.font-normal {
-  font-weight: 400;
-}
-
-.font-thin {
-  font-weight: 100;
-}
-
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1120,14 +1168,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
-.text-green-500 {
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity));
-}
-
 .text-\[\#52E6FA\] {
   --tw-text-opacity: 1;
   color: rgb(82 230 250 / var(--tw-text-opacity));
+}
+
+.text-green-500 {
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1278,32 +1326,12 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-top: 0px;
   }
 
-  .sm\:flex {
-    display: flex;
-  }
-
   .sm\:w-16 {
     width: 4rem;
   }
 
-  .sm\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .sm\:grid-rows-2 {
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-  }
-
   .sm\:flex-row {
     flex-direction: row;
-  }
-
-  .sm\:flex-col {
-    flex-direction: column;
-  }
-
-  .sm\:items-start {
-    align-items: flex-start;
   }
 
   .sm\:items-center {
