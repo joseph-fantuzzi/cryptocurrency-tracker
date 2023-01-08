@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -20,6 +20,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, 
 const IndividualCoin = ({ dark }) => {
   const [coin, setCoin] = useState(null);
   const [coinData, setCoinData] = useState([]);
+  const [selectedTime, setSelectedTime] = useState("24h");
   const { itemID } = useParams();
 
   const styles = {
@@ -27,13 +28,70 @@ const IndividualCoin = ({ dark }) => {
       dark ? "text-white" : "text-black"
     }`,
     header: "flex items-center gap-3",
-    name: "text-3xl",
-    image: "w-16",
-    chart: "bg-[#000924] my-5 p-5 rounded-2xl w-full flex justify-center",
+    name: "text-2xl sm:text-3xl",
+    symbol: "text-xs sm:text-base bg-[#000924] text-white rounded-xl px-2 py-1",
+    image: "w-12 sm:w-16",
+    chart: (dark) =>
+      [
+        "bg-[#000924] my-5 p-5 border-2 rounded-2xl w-full flex justify-center",
+        dark ? "border-[#E9ECEE4D]" : "border-[#000924]",
+      ].join(" "),
     headerContainer: "flex flex-col sm:flex-row justify-between sm:items-center",
-    price: "text-xl mt-5 sm:mt-0",
+    price: "text-lg sm:text-xl mt-2 sm:mt-0",
+    text: "text-sm font-light",
+    timeRangeContainer: (dark) =>
+      [
+        "w-full bg-[#000924] border-2 text-white flex items-center justify-around py-3 rounded-xl mt-5 text-sm",
+        dark ? "border-[#E9ECEE4D]" : "border-[#000924]",
+      ].join(" "),
+    time24: (selected) =>
+      [
+        "cursor-pointer w-12 flex items-center justify-center rounded-xl py-1 transition duration-300 ease",
+        selected === "24h" && "bg-[#52E6FA] text-black",
+      ].join(" "),
+    time7: (selected) =>
+      [
+        "cursor-pointer w-12 flex items-center justify-center rounded-xl py-1 transition duration-300 ease",
+        selected === "7d" && "bg-[#52E6FA] text-black",
+      ].join(" "),
+    time30: (selected) =>
+      [
+        "cursor-pointer w-12 flex items-center justify-center rounded-xl py-1 transition duration-300 ease",
+        selected === "30d" && "bg-[#52E6FA] text-black",
+      ].join(" "),
+    time90: (selected) =>
+      [
+        "cursor-pointer w-12 flex items-center justify-center rounded-xl py-1 transition duration-300 ease",
+        selected === "90d" && "bg-[#52E6FA] text-black",
+      ].join(" "),
+    time1: (selected) =>
+      [
+        "cursor-pointer w-12 flex items-center justify-center rounded-xl py-1 transition duration-300 ease",
+        selected === "1y" && "bg-[#52E6FA] text-black",
+      ].join(" "),
+    timeMax: (selected) =>
+      [
+        "cursor-pointer w-12 flex items-center justify-center rounded-xl py-1 transition duration-300 ease",
+        selected === "Max" && "bg-[#52E6FA] text-black",
+      ].join(" "),
     change: (bool) => [bool ? "text-green-500" : "text-red-500"].join(" "),
   };
+
+  const getRange = useCallback(() => {
+    if (selectedTime === "24h") {
+      return "days=1";
+    } else if (selectedTime === "7d") {
+      return "days=7";
+    } else if (selectedTime === "30d") {
+      return "days=30";
+    } else if (selectedTime === "90d") {
+      return "days=90";
+    } else if (selectedTime === "1y") {
+      return "days=365";
+    } else if (selectedTime === "Max") {
+      return "days=max";
+    }
+  }, [selectedTime]);
 
   useEffect(() => {
     axios
@@ -46,14 +104,16 @@ const IndividualCoin = ({ dark }) => {
       });
 
     axios
-      .get(`https://api.coingecko.com/api/v3/coins/${itemID}/market_chart?vs_currency=usd&days=7`)
+      .get(
+        `https://api.coingecko.com/api/v3/coins/${itemID}/market_chart?vs_currency=usd&${getRange()}`
+      )
       .then((res) => {
         setCoinData(res.data.prices.map((value) => ({ x: value[0], y: value[1] })));
       })
       .catch((err) => {
         console.error(err);
       });
-  }, [itemID]);
+  }, [itemID, getRange]);
 
   const options = {
     responsive: true,
@@ -70,6 +130,7 @@ const IndividualCoin = ({ dark }) => {
       },
     },
   };
+
   const data = {
     labels: coinData.map((value) => moment(value.x).format("MMM DD")),
     datasets: [
@@ -108,15 +169,38 @@ const IndividualCoin = ({ dark }) => {
         <div className={styles.header}>
           <img className={styles.image} src={coin.image.large} alt={coin} />
           <h1 className={styles.name}>{coin.name}</h1>
-          <p>{coin.symbol.toUpperCase()}</p>
+          <p className={styles.symbol}>{coin.symbol.toUpperCase()}</p>
           <p className={styles.change(coin?.market_data?.price_change_24h >= 0)}>
             {coin?.market_data?.price_change_percentage_24h?.toFixed(2)}%
           </p>
         </div>
         <div className={styles.price}>${coin.market_data.current_price.usd}</div>
       </div>
-      <Line options={options} data={data} className={styles.chart} />
-      <div dangerouslySetInnerHTML={{ __html: appendClassNameToAnchorTags() }} />
+      <div className={styles.timeRangeContainer(dark)}>
+        <div className={styles.time24(selectedTime)} onClick={() => setSelectedTime("24h")}>
+          24h
+        </div>
+        <div className={styles.time7(selectedTime)} onClick={() => setSelectedTime("7d")}>
+          7d
+        </div>
+        <div className={styles.time30(selectedTime)} onClick={() => setSelectedTime("30d")}>
+          30d
+        </div>
+        <div className={styles.time90(selectedTime)} onClick={() => setSelectedTime("90d")}>
+          90d
+        </div>
+        <div className={styles.time1(selectedTime)} onClick={() => setSelectedTime("1y")}>
+          1y
+        </div>
+        <div className={styles.timeMax(selectedTime)} onClick={() => setSelectedTime("Max")}>
+          Max
+        </div>
+      </div>
+      <Line options={options} data={data} className={styles.chart(dark)} />
+      <div
+        className={styles.text}
+        dangerouslySetInnerHTML={{ __html: appendClassNameToAnchorTags() }}
+      />
     </div>
   ) : (
     <div className="outer-min-height text-4xl flex flex-col justify-center items-center">
