@@ -27,7 +27,14 @@ const IndividualCoin = ({ dark }) => {
     outerDiv: `outer-min-height w-11/12 max-w-7xl mx-auto py-10 flex flex-col ${
       dark ? "text-white" : "text-black"
     }`,
-    header: "flex items-center gap-3",
+    header: "flex flex-col gap-5",
+    topHeader: (dark) =>
+      [
+        "flex items-center border-2 justify-center py-1 bg-[#000924] rounded-2xl text-[#52E6FA] w-24",
+        dark ? "border-[#E9ECEE4D]" : "border-[#000924]",
+      ].join(" "),
+    bottomHeader: "w-full flex flex-col sm:flex-row sm:items-center sm:justify-between",
+    bottomHeaderLeft: "flex items-center gap-3",
     name: "text-2xl sm:text-3xl",
     symbol: "text-xs sm:text-base bg-[#000924] text-white rounded-xl px-2 py-1",
     image: "w-12 sm:w-16",
@@ -37,8 +44,17 @@ const IndividualCoin = ({ dark }) => {
         dark ? "border-[#E9ECEE4D]" : "border-[#000924]",
       ].join(" "),
     headerContainer: "flex flex-col sm:flex-row justify-between sm:items-center",
-    price: "text-lg sm:text-xl mt-2 sm:mt-0",
+    price: "text-lg sm:text-xl sm:mt-0 mt-2",
     text: "text-sm font-light",
+    infoContainer: "mt-5 grid grid-cols-2 grid-rows-4 md:grid-cols-3 md:grid-rows-2 gap-2",
+    title: "text-sm sm:text-lg",
+    inner: "flex flex-col py-1 items-center justify-center",
+    number: "font-light text-[#52E6FA]",
+    card: (dark) =>
+      [
+        "flex flex-col border-2 justify-center items-center py-10 px-2 bg-[#000924] text-white rounded-2xl",
+        dark ? "border-[#E9ECEE4D]" : "border-[#000924]",
+      ].join(" "),
     timeRangeContainer: (dark) =>
       [
         "w-full bg-[#000924] border-2 text-white flex items-center justify-around py-3 rounded-xl mt-5 text-sm",
@@ -165,16 +181,21 @@ const IndividualCoin = ({ dark }) => {
 
   return coin ? (
     <div className={styles.outerDiv}>
-      <div className={styles.headerContainer}>
-        <div className={styles.header}>
-          <img className={styles.image} src={coin.image.large} alt={coin} />
-          <h1 className={styles.name}>{coin.name}</h1>
-          <p className={styles.symbol}>{coin.symbol.toUpperCase()}</p>
-          <p className={styles.change(coin?.market_data?.price_change_24h >= 0)}>
-            {coin?.market_data?.price_change_percentage_24h?.toFixed(2)}%
-          </p>
+      <div className={styles.header}>
+        <div className={styles.topHeader(dark)}>Rank: {coin.market_cap_rank}</div>
+        <div className={styles.bottomHeader}>
+          <div className={styles.bottomHeaderLeft}>
+            <img className={styles.image} src={coin.image.large} alt={coin} />
+            <h1 className={styles.name}>{coin.name}</h1>
+            <p className={styles.symbol}>{coin.symbol.toUpperCase()}</p>
+            <p className={styles.change(coin?.market_data?.price_change_24h >= 0)}>
+              {coin?.market_data?.price_change_percentage_24h?.toFixed(2)}%
+            </p>
+          </div>
+          <div className={styles.price}>
+            ${coin.market_data.current_price.usd.toLocaleString("en-US")}
+          </div>
         </div>
-        <div className={styles.price}>${coin.market_data.current_price.usd}</div>
       </div>
       <div className={styles.timeRangeContainer(dark)}>
         <div className={styles.time24(selectedTime)} onClick={() => setSelectedTime("24h")}>
@@ -201,6 +222,60 @@ const IndividualCoin = ({ dark }) => {
         className={styles.text}
         dangerouslySetInnerHTML={{ __html: appendClassNameToAnchorTags() }}
       />
+      <div className={styles.infoContainer}>
+        <div className={styles.card(dark)}>
+          <p className={styles.title}>Price:</p>
+          <p className={styles.number}>
+            ${coin.market_data.current_price.usd.toLocaleString("en-US")}
+          </p>
+        </div>
+        <div className={styles.card(dark)}>
+          <p className={styles.title}>Market Cap:</p>
+          <p className={styles.number}>
+            ${coin.market_data.market_cap.usd.toLocaleString("en-US")}
+          </p>
+        </div>
+        <div className={styles.card(dark)}>
+          <div className={styles.inner}>
+            <p className={styles.title}>Total Supply:</p>
+            <p className={styles.number}>{coin.market_data.total_supply.toLocaleString("en-US")}</p>
+          </div>
+          <div className={styles.inner}>
+            <p className={styles.title}>Circulating Supply:</p>
+            <p className={styles.number}>
+              {coin.market_data.circulating_supply.toLocaleString("en-US")}
+            </p>
+          </div>
+        </div>
+        <div className={styles.card(dark)}>
+          <p className={styles.title}>Total Volume:</p>
+          <p className={styles.number}>
+            ${coin.market_data.total_volume.usd.toLocaleString("en-US")}
+          </p>
+        </div>
+        <div className={styles.card(dark)}>
+          <div className={styles.inner}>
+            <p className={styles.title}>All Time High:</p>
+            <p className={styles.number}>${coin.market_data.ath.usd.toLocaleString("en-US")}</p>
+          </div>
+          <div className={styles.inner}>
+            <p className={styles.title}>All Time Low:</p>
+            <p className={styles.number}>${coin.market_data.atl.usd.toLocaleString("en-US")}</p>
+          </div>
+        </div>
+        <div className={styles.card(dark)}>
+          <div className={styles.inner}>
+            <p className={styles.title}>24h Low:</p>
+            <p className={styles.number}>${coin.market_data.low_24h.usd.toLocaleString("en-US")}</p>
+          </div>
+          <div className={styles.inner}>
+            <p className={styles.title}>24h High:</p>
+            <p className={styles.number}>
+              ${coin.market_data.high_24h.usd.toLocaleString("en-US")}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   ) : (
     <div className="outer-min-height text-4xl flex flex-col justify-center items-center">
