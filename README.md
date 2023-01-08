@@ -8,7 +8,7 @@
    A cryptocurrency tracking software enabling authenticated users to view the top 250 coins, create a favorites list, and view important market data for each coin.
 </p>
 <p align="center">
-   Deployed Site: <a href="https://cryptox-cryptocurrency-tracker.vercel.app/" target="_blank">Cryptox</a>
+   Deployed Site: <a href="https://cryptox-cryptocurrency-tracker.vercel.app/" target="_blank">cryptox-cryptocurrency-tracker.vercel.app</a>
 </p>
 <img alt="home-page-img" src="frontend/public/home-page.png">
 <img alt="coins-page-img" src="frontend/public/coins-page.png">
@@ -16,7 +16,7 @@
 
 ## Installation and Set Up
 
-- Frontend
+### Frontend
 
 1. Install dependencies
 
@@ -30,7 +30,7 @@ npm install
 npm run start
 ```
 
-- Backend
+### Backend
 
 1. Install dependencies
 
@@ -60,16 +60,16 @@ npm run build
 
 ## Scripts
 
-- Frontend
+### Frontend
 
-  - `npm run start` starts the development react server
-  - `npm run build` builds the react frontend for production
+- `npm run start` starts the development react server
+- `npm run build` builds the react frontend for production
 
-- Backend
+### Backend
 
-  - `npm run start` starts the node server
-  - `npm run server` starts the nodemon server
-  - `npm run migrate` runs the knex migration up functions
-  - `npm run rollback` runs the knex migration down functions
-  - `npm run seed` runs the knex seed files
-  - `npm run resetdb` resets the database back to its original state
+- `npm run start` starts the node server
+- `npm run server` starts the nodemon server
+- `npm run migrate` runs the knex migration up functions
+- `npm run rollback` runs the knex migration down functions
+- `npm run seed` runs the knex seed files
+- `npm run resetdb` resets the database back to its original state
