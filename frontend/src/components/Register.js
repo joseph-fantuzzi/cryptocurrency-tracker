@@ -67,6 +67,7 @@ const Register = ({
             name="first_name"
             value={first_name}
             onChange={changeHandler}
+            data-testid="fname-input"
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 max-w-sm mb-2 focus:outline-none focus:ring focus:ring-[#52E6FA]"
           />
         </div>
@@ -85,6 +86,7 @@ const Register = ({
             name="last_name"
             value={last_name}
             onChange={changeHandler}
+            data-testid="lname-input"
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 max-w-sm mb-2 focus:outline-none focus:ring focus:ring-[#52E6FA]"
           />
         </div>
@@ -103,6 +105,7 @@ const Register = ({
             name="email"
             value={email}
             onChange={changeHandler}
+            data-testid="email-input"
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 max-w-sm mb-2 focus:outline-none focus:ring focus:ring-[#52E6FA]"
           />
         </div>
@@ -121,6 +124,7 @@ const Register = ({
             name="username"
             value={username}
             onChange={changeHandler}
+            data-testid="username-input"
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 max-w-sm mb-2 focus:outline-none focus:ring focus:ring-[#52E6FA]"
           />
         </div>
@@ -152,6 +156,7 @@ const Register = ({
             name="password"
             value={password}
             onChange={changeHandler}
+            data-testid="password-input"
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 mb-2 focus:outline-none focus:ring focus:ring-[#52E6FA]"
             autoComplete="off"
           />
@@ -184,6 +189,7 @@ const Register = ({
             name="confirm"
             value={confirm}
             onChange={changeHandler}
+            data-testid="confirm-input"
             className="text-black w-full rounded-xl drop-shadow-md py-0.5 px-2 mb-2 focus:outline-none focus:ring focus:ring-[#52E6FA]"
             autoComplete="off"
           />
@@ -201,7 +207,9 @@ const Register = ({
         >
           Create Account
         </button>
-        <div className="text-red-500 text-center font-bold pb-5">{registerError}</div>
+        <div className="text-red-500 text-center font-bold pb-5" data-testid="errorMsg">
+          {registerError}
+        </div>
         {registerMessage ? (
           <div className={dark ? "text-white" : "text-black"}>
             <div className="text-center font-bold pb-3">{registerMessage}</div>

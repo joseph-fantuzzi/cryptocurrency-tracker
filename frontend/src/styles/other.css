@@ -24,8 +24,7 @@ body {
 }
 
 .glassmorphism {
-  background: rgb(0, 9, 36, 0.7);
-  border-radius: 16px;
+  background: #000924f1;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -64,6 +63,11 @@ body {
 
 .outer-min-height {
   min-height: calc(100vh - 5vh - 100px);
+}
+
+.link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 @media (min-width: 1024px) {
