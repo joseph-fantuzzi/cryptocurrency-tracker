@@ -478,68 +478,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: 0px;
 }
 
-.-right-2 {
-  right: -0.5rem;
-}
-
-.top-10 {
-  top: 2.5rem;
-}
-
-.top-20 {
-  top: 5rem;
-}
-
-.top-16 {
-  top: 4rem;
-}
-
-.top-14 {
-  top: 3.5rem;
-}
-
-.top-12 {
-  top: 3rem;
-}
-
-.right-10 {
-  right: 2.5rem;
-}
-
-.right-8 {
-  right: 2rem;
-}
-
-.right-\[5\%\] {
-  right: 5%;
-}
-
-.right-\[6\%\] {
-  right: 6%;
-}
-
-.right-\[8\%\] {
-  right: 8%;
-}
-
-.-right-0 {
-  right: -0px;
-}
-
 .right-0 {
   right: 0px;
-}
-
-.right-\[10\%\] {
-  right: 10%;
 }
 
 .top-11 {
   top: 2.75rem;
 }
 
-.right-\[7\%\] {
-  right: 7%;
+.right-\[6\%\] {
+  right: 6%;
 }
 
 .z-10 {
@@ -678,8 +626,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 91.666667%;
 }
 
-.w-\[70vw\] {
-  width: 70vw;
+.w-\[75vw\] {
+  width: 75vw;
 }
 
 .w-full {
@@ -712,10 +660,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-4\/6 {
   width: 66.666667%;
-}
-
-.w-\[75vw\] {
-  width: 75vw;
 }
 
 .min-w-\[130px\] {
@@ -773,10 +717,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .grid-rows-1 {
   grid-template-rows: repeat(1, minmax(0, 1fr));
-}
-
-.grid-rows-4 {
-  grid-template-rows: repeat(4, minmax(0, 1fr));
 }
 
 .grid-rows-3 {
@@ -841,10 +781,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .rounded-2xl {
   border-radius: 1rem;
-}
-
-.rounded-md {
-  border-radius: 0.375rem;
 }
 
 .rounded-3xl {
@@ -922,12 +858,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.p-5 {
-  padding: 1.25rem;
-}
-
 .p-8 {
   padding: 2rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .py-\[0\.5em\] {
@@ -1029,8 +965,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 1.25rem;
 }
 
-.pr-5 {
-  padding-right: 1.25rem;
+.pt-28 {
+  padding-top: 7rem;
+}
+
+.pr-\[6\%\] {
+  padding-right: 6%;
 }
 
 .pt-8 {
@@ -1069,37 +1009,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 4rem;
 }
 
-.pt-12 {
-  padding-top: 3rem;
-}
-
-.pt-20 {
-  padding-top: 5rem;
-}
-
-.pt-24 {
-  padding-top: 6rem;
-}
-
-.pt-28 {
-  padding-top: 7rem;
-}
-
-.pr-\[8\%\] {
-  padding-right: 8%;
-}
-
-.pr-\[6\%\] {
-  padding-right: 6%;
-}
-
 .text-center {
   text-align: center;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .text-xs {
@@ -1127,9 +1043,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.75rem;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-semibold {
