@@ -212,33 +212,25 @@ function App() {
                 )}
               </div>
               <div className="lg:hidden">
-                {toggleNav ? (
-                  <AiOutlineClose
-                    fontSize={28}
-                    className={`cursor-pointer ${dark ? "text-white" : "text-black"}`}
-                    onClick={() => setToggleNav(false)}
-                  />
-                ) : (
-                  <HiMenuAlt4
-                    fontSize={28}
-                    className={`cursor-pointer ${dark ? "text-white" : "text-black"}`}
-                    onClick={() => setToggleNav(true)}
-                  />
-                )}
+                <HiMenuAlt4
+                  fontSize={28}
+                  className={`cursor-pointer ${dark ? "text-white" : "text-black"}`}
+                  onClick={() => setToggleNav(true)}
+                />
                 {toggleNav && (
                   <div
                     id="nav-mobile"
-                    className="glassmorphism text-white fixed top-0 -right-2 p-5 z-10 flex flex-col justify-start items-end w-[70vw] 
-                h-screen shadow-2xl rounded-md"
+                    className="glassmorphism text-white fixed top-0 right-0 pt-28 z-10 flex flex-col justify-start items-end w-[75vw] 
+                h-screen shadow-2xl"
                   >
-                    <div className="w-full">
+                    <div className="fixed top-11 right-[6%]">
                       <AiOutlineClose
                         fontSize={28}
                         className={`cursor-pointer ${dark ? "" : "text-white"}`}
                         onClick={() => setToggleNav(false)}
                       />
                     </div>
-                    <div className="flex flex-col items-end text-2xl pr-5">
+                    <div className="flex flex-col items-end pr-[6%] text-xl">
                       <NavLink
                         className="py-4"
                         to={window.localStorage.getItem("token") ? "/coins" : "/login"}
@@ -272,7 +264,7 @@ function App() {
                         </button>
                       )}
                     </div>
-                    <div className="pr-5 mt-5">
+                    <div className="mt-5 pr-[6%]">
                       {dark ? (
                         <MdDarkMode fontSize={28} onClick={() => setDark(false)} />
                       ) : (
